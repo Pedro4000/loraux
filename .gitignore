@@ -1,19 +1,19 @@
 
 ###> symfony/framework-bundle ###
-/.env.local
-/.env
-/.env.local.php
-/.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
-/var/
-/vendor/
-/credentials.json
+### /.env.local
+### /.env
+### /.env.local.php
+### /.env.*.local
+### /config/secrets/prod/prod.decrypt.private.php
+### /public/bundles/
+### /var/
+### /vendor/
+### /credentials.json
 ###< symfony/framework-bundle ###
 
 ###> symfony/webpack-encore-bundle ###
-/node_modules/
-/public/build/
-npm-debug.log
-yarn-error.log
+#s/node_modules/
+#s/public/build/
+#snpm-debug.log
+#syarn-error.log
 ###< symfony/webpack-encore-bundle ###
