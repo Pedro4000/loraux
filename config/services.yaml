@@ -6,6 +6,7 @@
 parameters:
     app.google_client_id: '%env(GOOGLE_CLIENT_ID)%'
     app.google_calendar_access_token: '%env(GOOGLE_CLIENT_ACCESS_TOKEN)%'
+    app.google_credentials_api_json: '%env(google_credentials_api_json)%'
 
 services:
     # default configuration for services in *this* file
@@ -31,3 +32,6 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Service\CalendarService:
+        arguments:

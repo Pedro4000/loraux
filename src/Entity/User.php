@@ -33,6 +33,11 @@ class User
     private $emailAddress;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $birthDate;
@@ -127,4 +132,21 @@ class User
     {
         $this->isMailAddressVerified = $isMailAddressVerified;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password): void
+    {
+        $this->password = $password;
+    }
 }
+

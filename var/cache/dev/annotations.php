@@ -67,13 +67,17 @@ return [[
 '%5B%5BC%5DApp%5CController%5CIndexController%23__construct%5D%5B1%5D' => 2,
 '%5BApp%5CController%5CIndexController%23index%5D%5B1%5D' => 3,
 '%5B%5BC%5DApp%5CController%5CIndexController%23index%5D%5B1%5D' => 2,
-'%5BApp%5CController%5CIndexController%23resume%5D%5B1%5D' => 4,
+'%5BApp%5CController%5CIndexController%23getGoogleCalendarRedirectInformation%5D%5B1%5D' => 4,
+'%5B%5BC%5DApp%5CController%5CIndexController%23getGoogleCalendarRedirectInformation%5D%5B1%5D' => 2,
+'%5BApp%5CController%5CIndexController%23resume%5D%5B1%5D' => 5,
 '%5B%5BC%5DApp%5CController%5CIndexController%23resume%5D%5B1%5D' => 2,
 '%5BApp%5CController%5CIndexController%24params%5D%5B1%5D' => 1,
 '%5B%5BC%5DApp%5CController%5CIndexController%24params%5D%5B1%5D' => 2,
 '%5BApp%5CController%5CIndexController%24client%5D%5B1%5D' => 1,
 '%5B%5BC%5DApp%5CController%5CIndexController%24client%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CUser%5D%5B1%5D' => 5,
+'%5BApp%5CController%5CIndexController%24em%5D%5B1%5D' => 1,
+'%5B%5BC%5DApp%5CController%5CIndexController%24em%5D%5B1%5D' => 2,
+'%5BApp%5CEntity%5CUser%5D%5B1%5D' => 6,
 '%5B%5BC%5DApp%5CEntity%5CUser%5D%5B1%5D' => 2,
 '%5BApp%5CEntity%5CUser%23getId%5D%5B1%5D' => 1,
 '%5B%5BC%5DApp%5CEntity%5CUser%23getId%5D%5B1%5D' => 2,
@@ -101,19 +105,19 @@ return [[
 '%5B%5BC%5DApp%5CEntity%5CUser%23getIsMailAddressVerified%5D%5B1%5D' => 2,
 '%5BApp%5CEntity%5CUser%23setIsMailAddressVerified%5D%5B1%5D' => 1,
 '%5B%5BC%5DApp%5CEntity%5CUser%23setIsMailAddressVerified%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CUser%24id%5D%5B1%5D' => 6,
+'%5BApp%5CEntity%5CUser%24id%5D%5B1%5D' => 7,
 '%5B%5BC%5DApp%5CEntity%5CUser%24id%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CUser%24firstName%5D%5B1%5D' => 7,
+'%5BApp%5CEntity%5CUser%24firstName%5D%5B1%5D' => 8,
 '%5B%5BC%5DApp%5CEntity%5CUser%24firstName%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CUser%24familyName%5D%5B1%5D' => 7,
+'%5BApp%5CEntity%5CUser%24familyName%5D%5B1%5D' => 8,
 '%5B%5BC%5DApp%5CEntity%5CUser%24familyName%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CUser%24emailAddress%5D%5B1%5D' => 7,
+'%5BApp%5CEntity%5CUser%24emailAddress%5D%5B1%5D' => 8,
 '%5B%5BC%5DApp%5CEntity%5CUser%24emailAddress%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CUser%24birthDate%5D%5B1%5D' => 8,
+'%5BApp%5CEntity%5CUser%24birthDate%5D%5B1%5D' => 9,
 '%5B%5BC%5DApp%5CEntity%5CUser%24birthDate%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CUser%24sex%5D%5B1%5D' => 7,
+'%5BApp%5CEntity%5CUser%24sex%5D%5B1%5D' => 8,
 '%5B%5BC%5DApp%5CEntity%5CUser%24sex%5D%5B1%5D' => 2,
-'%5BApp%5CEntity%5CUser%24isMailAddressVerified%5D%5B1%5D' => 9,
+'%5BApp%5CEntity%5CUser%24isMailAddressVerified%5D%5B1%5D' => 10,
 '%5B%5BC%5DApp%5CEntity%5CUser%24isMailAddressVerified%5D%5B1%5D' => 2,
 '%5BDoctrine%5CBundle%5CDoctrineBundle%5CController%5CProfilerController%5D%5B1%5D' => 1,
 '%5B%5BC%5DDoctrine%5CBundle%5CDoctrineBundle%5CController%5CProfilerController%5D%5B1%5D' => 2,
@@ -576,7 +580,7 @@ return [[
 
 0 => 'N;',
 1 => [],
-2 => 1601546862,
+2 => 1603281476,
 3 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
@@ -586,10 +590,10 @@ return [[
         [
             'Symfony\\Component\\Routing\\Annotation\\Route' => [
                 'path' => [
-                    '/index',
+                    '/sign_up',
                 ],
                 'name' => [
-                    'index',
+                    'sign_up',
                 ],
             ],
         ],
@@ -600,6 +604,28 @@ return [[
     );
 },
 4 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
+        ],
+        null,
+        [
+            'Symfony\\Component\\Routing\\Annotation\\Route' => [
+                'path' => [
+                    '/google_redirect_for_calendar',
+                ],
+                'name' => [
+                    'google_redirect_for_calendar',
+                ],
+            ],
+        ],
+        [
+            $o[0],
+        ],
+        []
+    );
+},
+5 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
@@ -621,7 +647,7 @@ return [[
         []
     );
 },
-5 => static function () {
+6 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
@@ -640,7 +666,7 @@ return [[
         []
     );
 },
-6 => static function () {
+7 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Id'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Id')),
@@ -663,7 +689,7 @@ return [[
         []
     );
 },
-7 => static function () {
+8 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
@@ -682,7 +708,7 @@ return [[
         []
     );
 },
-8 => static function () {
+9 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
@@ -701,7 +727,7 @@ return [[
         []
     );
 },
-9 => static function () {
+10 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),

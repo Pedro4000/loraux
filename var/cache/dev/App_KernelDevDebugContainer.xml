@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
   <parameters>
-    <parameter key="kernel.project_dir">C:\wamp64\www\sites\portfolio_symfony4</parameter>
+    <parameter key="kernel.project_dir">C:\Users\Boulanger\dev\cultureClub</parameter>
     <parameter key="kernel.environment">dev</parameter>
     <parameter key="kernel.debug">true</parameter>
-    <parameter key="kernel.cache_dir">C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev</parameter>
-    <parameter key="kernel.logs_dir">C:\wamp64\www\sites\portfolio_symfony4\var\log</parameter>
+    <parameter key="kernel.cache_dir">C:\Users\Boulanger\dev\cultureClub\var\cache\dev</parameter>
+    <parameter key="kernel.logs_dir">C:\Users\Boulanger\dev\cultureClub\var\log</parameter>
     <parameter key="kernel.bundles" type="collection">
       <parameter key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</parameter>
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
@@ -19,45 +19,47 @@
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
-        <parameter key="path">C:\wamp64\www\sites\portfolio_symfony4\vendor\symfony\framework-bundle</parameter>
+        <parameter key="path">C:\Users\Boulanger\dev\cultureClub\vendor\symfony\framework-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\FrameworkBundle</parameter>
       </parameter>
       <parameter key="MakerBundle" type="collection">
-        <parameter key="path">C:\wamp64\www\sites\portfolio_symfony4\vendor\symfony\maker-bundle\src</parameter>
+        <parameter key="path">C:\Users\Boulanger\dev\cultureClub\vendor\symfony\maker-bundle\src</parameter>
         <parameter key="namespace">Symfony\Bundle\MakerBundle</parameter>
       </parameter>
       <parameter key="SensioFrameworkExtraBundle" type="collection">
-        <parameter key="path">C:\wamp64\www\sites\portfolio_symfony4\vendor\sensio\framework-extra-bundle\src</parameter>
+        <parameter key="path">C:\Users\Boulanger\dev\cultureClub\vendor\sensio\framework-extra-bundle\src</parameter>
         <parameter key="namespace">Sensio\Bundle\FrameworkExtraBundle</parameter>
       </parameter>
       <parameter key="TwigBundle" type="collection">
-        <parameter key="path">C:\wamp64\www\sites\portfolio_symfony4\vendor\symfony\twig-bundle</parameter>
+        <parameter key="path">C:\Users\Boulanger\dev\cultureClub\vendor\symfony\twig-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\TwigBundle</parameter>
       </parameter>
       <parameter key="TwigExtraBundle" type="collection">
-        <parameter key="path">C:\wamp64\www\sites\portfolio_symfony4\vendor\twig\extra-bundle\src</parameter>
+        <parameter key="path">C:\Users\Boulanger\dev\cultureClub\vendor\twig\extra-bundle\src</parameter>
         <parameter key="namespace">Twig\Extra\TwigExtraBundle</parameter>
       </parameter>
       <parameter key="WebpackEncoreBundle" type="collection">
-        <parameter key="path">C:\wamp64\www\sites\portfolio_symfony4\vendor\symfony\webpack-encore-bundle\src</parameter>
+        <parameter key="path">C:\Users\Boulanger\dev\cultureClub\vendor\symfony\webpack-encore-bundle\src</parameter>
         <parameter key="namespace">Symfony\WebpackEncoreBundle</parameter>
       </parameter>
       <parameter key="DoctrineBundle" type="collection">
-        <parameter key="path">C:\wamp64\www\sites\portfolio_symfony4\vendor\doctrine\doctrine-bundle</parameter>
+        <parameter key="path">C:\Users\Boulanger\dev\cultureClub\vendor\doctrine\doctrine-bundle</parameter>
         <parameter key="namespace">Doctrine\Bundle\DoctrineBundle</parameter>
       </parameter>
       <parameter key="DoctrineMigrationsBundle" type="collection">
-        <parameter key="path">C:\wamp64\www\sites\portfolio_symfony4\vendor\doctrine\doctrine-migrations-bundle</parameter>
+        <parameter key="path">C:\Users\Boulanger\dev\cultureClub\vendor\doctrine\doctrine-migrations-bundle</parameter>
         <parameter key="namespace">Doctrine\Bundle\MigrationsBundle</parameter>
       </parameter>
       <parameter key="DebugBundle" type="collection">
-        <parameter key="path">C:\wamp64\www\sites\portfolio_symfony4\vendor\symfony\debug-bundle</parameter>
+        <parameter key="path">C:\Users\Boulanger\dev\cultureClub\vendor\symfony\debug-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\DebugBundle</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">App_KernelDevDebugContainer</parameter>
     <parameter key="app.google_client_id">%env(GOOGLE_CLIENT_ID)%</parameter>
+    <parameter key="app.google_calendar_access_token">%env(GOOGLE_CLIENT_ACCESS_TOKEN)%</parameter>
+    <parameter key="app.google_credentials_api_json">%env(google_credentials_api_json)%</parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
       <parameter key="Symfony\Component\Console\Event\ConsoleCommandEvent">console.command</parameter>
       <parameter key="Symfony\Component\Console\Event\ConsoleErrorEvent">console.error</parameter>
@@ -99,7 +101,7 @@
       <parameter key="cookie_samesite">lax</parameter>
       <parameter key="gc_probability">1</parameter>
     </parameter>
-    <parameter key="session.save_path">C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/sessions</parameter>
+    <parameter key="session.save_path">C:\Users\Boulanger\dev\cultureClub/var/sessions/dev</parameter>
     <parameter key="session.metadata.update_threshold">0</parameter>
     <parameter key="form.type_extension.csrf.enabled">false</parameter>
     <parameter key="validator.translation_domain">validators</parameter>
@@ -107,7 +109,7 @@
     <parameter key="asset.request_context.secure">null</parameter>
     <parameter key="data_collector.templates" type="collection"/>
     <parameter key="debug.error_handler.throw_at">-1</parameter>
-    <parameter key="debug.container.dump">C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/App_KernelDevDebugContainer.xml</parameter>
+    <parameter key="debug.container.dump">C:\Users\Boulanger\dev\cultureClub\var\cache\dev/App_KernelDevDebugContainer.xml</parameter>
     <parameter key="router.request_context.host">localhost</parameter>
     <parameter key="router.request_context.scheme">http</parameter>
     <parameter key="router.request_context.base_url"></parameter>
@@ -117,7 +119,7 @@
     <parameter key="twig.form.resources" type="collection">
       <parameter>form_div_layout.html.twig</parameter>
     </parameter>
-    <parameter key="twig.default_path">C:\wamp64\www\sites\portfolio_symfony4/templates</parameter>
+    <parameter key="twig.default_path">C:\Users\Boulanger\dev\cultureClub/templates</parameter>
     <parameter key="doctrine.dbal.logger.chain.class">Doctrine\DBAL\Logging\LoggerChain</parameter>
     <parameter key="doctrine.dbal.logger.profiling.class">Doctrine\DBAL\Logging\DebugStack</parameter>
     <parameter key="doctrine.dbal.logger.class">Symfony\Bridge\Doctrine\Logger\DbalLogger</parameter>
@@ -183,7 +185,7 @@
     <parameter key="doctrine.orm.second_level_cache.cache_configuration.class">Doctrine\ORM\Cache\CacheConfiguration</parameter>
     <parameter key="doctrine.orm.second_level_cache.regions_configuration.class">Doctrine\ORM\Cache\RegionsConfiguration</parameter>
     <parameter key="doctrine.orm.auto_generate_proxy_classes">true</parameter>
-    <parameter key="doctrine.orm.proxy_dir">C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/doctrine/orm/Proxies</parameter>
+    <parameter key="doctrine.orm.proxy_dir">C:\Users\Boulanger\dev\cultureClub\var\cache\dev/doctrine/orm/Proxies</parameter>
     <parameter key="doctrine.orm.proxy_namespace">Proxies</parameter>
     <parameter key="doctrine.migrations.preferred_em">null</parameter>
     <parameter key="doctrine.migrations.preferred_connection">null</parameter>
@@ -212,6 +214,7 @@
       <tag name="container.service_subscriber"/>
       <argument type="service" id="Google_Client"/>
       <argument type="service" id="parameter_bag"/>
+      <argument type="service" id="session"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.g9CqTPp.App\Controller\IndexController"/>
       </call>
@@ -225,6 +228,16 @@
     <service id="App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Service\CalendarService" class="App\Service\CalendarService" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="request_stack"/>
+      <argument type="service" id="session"/>
+      <argument type="service" id="router.default"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.g9CqTPp.App\Service\CalendarService"/>
+      </call>
     </service>
     <service id="App\Service\MailToNewMember" class="App\Service\MailToNewMember" autowire="true" autoconfigure="true"/>
     <service id="argument_metadata_factory" class="Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory" public="false"/>
@@ -287,7 +300,7 @@
       <tag name="container.no_preload"/>
       <argument type="tagged_iterator" tag="kernel.cache_warmer"/>
       <argument>true</argument>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/App_KernelDevDebugContainerDeprecations.log</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/App_KernelDevDebugContainerDeprecations.log</argument>
     </service>
     <service id="cache_clearer" class="Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer" public="true">
       <argument type="tagged_iterator" tag="kernel.cache_clearer"/>
@@ -422,21 +435,21 @@
         <argument>/_fragment</argument>
       </call>
     </service>
-    <service id=".2_~WZfXw1H" public="false">
+    <service id=".2_~5N2Zout" public="false">
       <argument type="service" id="request_stack"/>
       <factory class="Symfony\Component\ErrorHandler\ErrorRenderer\HtmlErrorRenderer" method="getAndCleanOutputBuffer"/>
     </service>
-    <service id=".1_~WZfXw1H" public="false">
+    <service id=".1_~5N2Zout" public="false">
       <argument type="service" id="request_stack"/>
       <argument>true</argument>
       <factory class="Symfony\Component\ErrorHandler\ErrorRenderer\HtmlErrorRenderer" method="isDebug"/>
     </service>
     <service id="error_handler.error_renderer.html" class="Symfony\Component\ErrorHandler\ErrorRenderer\HtmlErrorRenderer">
-      <argument type="service" id=".1_~WZfXw1H"/>
+      <argument type="service" id=".1_~5N2Zout"/>
       <argument>UTF-8</argument>
       <argument type="service" id="debug.file_link_formatter" on-invalid="null"/>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4</argument>
-      <argument type="service" id=".2_~WZfXw1H"/>
+      <argument>C:\Users\Boulanger\dev\cultureClub</argument>
+      <argument type="service" id=".2_~5N2Zout"/>
       <argument type="service" id="logger" on-invalid="null"/>
     </service>
     <service id="console.error_listener" class="Symfony\Component\Console\EventListener\ErrorListener" public="false">
@@ -460,7 +473,7 @@
       <tag name="console.command" command="assets:install"/>
       <tag name="container.no_preload"/>
       <argument type="service" id="filesystem"/>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub</argument>
       <call method="setName">
         <argument>assets:install</argument>
       </call>
@@ -684,9 +697,9 @@
     <service id="cache.app" class="Symfony\Component\Cache\Adapter\FilesystemAdapter" public="true">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
-      <argument>zxcmB0pzf3</argument>
+      <argument>msE0ZCW9I6</argument>
       <argument>0</argument>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="logger" on-invalid="ignore"/>
@@ -698,50 +711,50 @@
     <service id="cache.system" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="true">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
-      <argument>WQ73c7c-cV</argument>
+      <argument>gBwwqUYDEc</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.validator" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
-      <argument>Ca6TekGYJe</argument>
+      <argument>RUlLpdncLE</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.serializer" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
-      <argument>me8hkpOuwg</argument>
+      <argument>XkF58WNLNI</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.annotations" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
-      <argument>Ub0iT07OHw</argument>
+      <argument>RY13zxBChk</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.property_info" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
-      <argument>ZILfoXegjN</argument>
+      <argument>3KOHYeB13x</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -751,7 +764,7 @@
       <argument></argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -780,7 +793,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="logger" on-invalid="ignore"/>
@@ -888,8 +901,8 @@
       <argument>0</argument>
       <argument>false</argument>
     </service>
-    <service id=".1_NativeFileSessionHandler~Cf3Dg70" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler" public="false">
-      <argument>C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/sessions</argument>
+    <service id=".1_NativeFileSessionHandler~MlI_tKx" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler" public="false">
+      <argument>C:\Users\Boulanger\dev\cultureClub/var/sessions/dev</argument>
     </service>
     <service id="session" class="Symfony\Component\HttpFoundation\Session\Session" public="true">
       <argument type="service" id="session.storage.native"/>
@@ -906,11 +919,11 @@
     </service>
     <service id="session.storage.native" class="Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage" public="false">
       <argument>%session.storage.options%</argument>
-      <argument>null</argument>
+      <argument type="service" id="session.handler.native_file"/>
       <argument type="service" id="session.storage.metadata_bag"/>
     </service>
     <service id="session.storage.php_bridge" class="Symfony\Component\HttpFoundation\Session\Storage\PhpBridgeSessionStorage" public="false">
-      <argument>null</argument>
+      <argument type="service" id="session.handler.native_file"/>
       <argument type="service" id="session.storage.metadata_bag"/>
     </service>
     <service id="session.flash_bag" class="Symfony\Component\HttpFoundation\Session\Flash\FlashBag" public="false">
@@ -923,12 +936,12 @@
       <deprecated package="symfony/framework-bundle" version="5.1">The "%service_id%" service is deprecated, use "$session-&gt;getAttributeBag()" instead.</deprecated>
     </service>
     <service id="session.storage.mock_file" class="Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage" public="false">
-      <argument>C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/sessions</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/sessions</argument>
       <argument>MOCKSESSID</argument>
       <argument type="service" id="session.storage.metadata_bag"/>
     </service>
     <service id="session.handler.native_file" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\StrictSessionHandler" public="false">
-      <argument type="service" id=".1_NativeFileSessionHandler~Cf3Dg70"/>
+      <argument type="service" id=".1_NativeFileSessionHandler~MlI_tKx"/>
     </service>
     <service id="session.abstract_handler" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler" public="false">
       <argument></argument>
@@ -1059,7 +1072,7 @@
       <argument type="service" id="http_client"/>
     </service>
     <service id="assets._version__default" class="Symfony\Component\Asset\VersionStrategy\JsonManifestVersionStrategy" public="false">
-      <argument>C:\wamp64\www\sites\portfolio_symfony4/public/build/manifest.json</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub/public/build/manifest.json</argument>
     </service>
     <service id="assets._default_package" class="Symfony\Component\Asset\PathPackage" public="false">
       <argument></argument>
@@ -1483,10 +1496,10 @@
       <argument type="service" id="debug.argument_resolver.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".2_int~ZsNfn40" class="int" public="false">
+    <service id=".2_int~6k.jtBG" class="int" public="false">
       <factory service="router.request_context" method="getHttpsPort"/>
     </service>
-    <service id=".1_int~ZsNfn40" class="int" public="false">
+    <service id=".1_int~6k.jtBG" class="int" public="false">
       <factory service="router.request_context" method="getHttpPort"/>
     </service>
     <service id="routing.resolver" class="Symfony\Component\Config\Loader\LoaderResolver" public="false">
@@ -1555,7 +1568,7 @@
       <argument type="service" id=".service_locator.vEnWPsK.router.default"/>
       <argument>kernel::loadRoutes</argument>
       <argument type="collection">
-        <argument key="cache_dir">C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev</argument>
+        <argument key="cache_dir">C:\Users\Boulanger\dev\cultureClub\var\cache\dev</argument>
         <argument key="debug">true</argument>
         <argument key="generator_class">Symfony\Component\Routing\Generator\CompiledUrlGenerator</argument>
         <argument key="generator_dumper_class">Symfony\Component\Routing\Generator\Dumper\CompiledUrlGeneratorDumper</argument>
@@ -1594,13 +1607,13 @@
       <argument type="service" id="request_stack"/>
       <argument type="service" id="router.request_context" on-invalid="ignore"/>
       <argument type="service" id="logger" on-invalid="ignore"/>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub</argument>
       <argument>true</argument>
     </service>
     <service id="Symfony\Bundle\FrameworkBundle\Controller\RedirectController" class="Symfony\Bundle\FrameworkBundle\Controller\RedirectController" public="true">
       <argument type="service" id="router.default"/>
-      <argument type="service" id=".1_int~ZsNfn40"/>
-      <argument type="service" id=".2_int~ZsNfn40"/>
+      <argument type="service" id=".1_int~6k.jtBG"/>
+      <argument type="service" id=".2_int~6k.jtBG"/>
     </service>
     <service id="Symfony\Bundle\FrameworkBundle\Controller\TemplateController" class="Symfony\Bundle\FrameworkBundle\Controller\TemplateController" public="true">
       <argument type="service" id="twig" on-invalid="ignore"/>
@@ -1619,12 +1632,12 @@
       <argument type="service" id="file_locator"/>
       <argument type="service" id="routing.loader.annotation"/>
     </service>
-    <service id=".2_PhpArrayAdapter~3E1X9LC" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" public="false">
-      <argument>C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/annotations.php</argument>
+    <service id=".2_PhpArrayAdapter~SKyPfX8" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" public="false">
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/annotations.php</argument>
       <argument type="service" id="cache.annotations"/>
       <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
     </service>
-    <service id=".1_ArrayCache~3E1X9LC" class="Doctrine\Common\Cache\ArrayCache" public="false"/>
+    <service id=".1_ArrayCache~SKyPfX8" class="Doctrine\Common\Cache\ArrayCache" public="false"/>
     <service id="annotations.reader" class="Doctrine\Common\Annotations\AnnotationReader" public="false">
       <call method="addGlobalIgnoredName">
         <argument>required</argument>
@@ -1639,7 +1652,7 @@
     <service id="annotations.cached_reader" class="Doctrine\Common\Annotations\CachedReader" public="false">
       <tag name="annotations.cached_reader"/>
       <argument type="service" id="annotations.reader"/>
-      <argument type="service" id=".1_ArrayCache~3E1X9LC"/>
+      <argument type="service" id=".1_ArrayCache~SKyPfX8"/>
       <argument>true</argument>
       <property name="cacheProviderBackup" type="service" id="annotations.cache"/>
     </service>
@@ -1649,12 +1662,12 @@
     <service id="annotations.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\AnnotationsCacheWarmer" public="false">
       <tag name="kernel.cache_warmer"/>
       <argument type="service" id="annotations.reader"/>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/annotations.php</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/annotations.php</argument>
       <argument>#^Symfony\\(?:Component\\HttpKernel\\|Bundle\\FrameworkBundle\\Controller\\(?!.*Controller$))#</argument>
       <argument>true</argument>
     </service>
     <service id="annotations.cache" class="Symfony\Component\Cache\DoctrineProvider" public="false">
-      <argument type="service" id=".2_PhpArrayAdapter~3E1X9LC"/>
+      <argument type="service" id=".2_PhpArrayAdapter~SKyPfX8"/>
     </service>
     <service id="property_accessor" class="Symfony\Component\PropertyAccess\PropertyAccessor" public="false">
       <argument>false</argument>
@@ -1666,7 +1679,7 @@
     </service>
     <service id="secrets.vault" class="Symfony\Bundle\FrameworkBundle\Secrets\SodiumVault">
       <tag name="container.env_var_loader"/>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4/config/secrets/dev</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub/config/secrets/dev</argument>
       <argument type="service" id="secrets.decryption_key" on-invalid="ignore"/>
     </service>
     <service id="secrets.decryption_key" class="Symfony\Component\String\LazyString" public="false">
@@ -1675,7 +1688,7 @@
       <factory class="Symfony\Component\String\LazyString" method="fromCallable"/>
     </service>
     <service id="secrets.local_vault" class="Symfony\Bundle\FrameworkBundle\Secrets\DotenvVault">
-      <argument>C:\wamp64\www\sites\portfolio_symfony4/.env.dev.local</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub/.env.dev.local</argument>
     </service>
     <service id="property_info" class="Symfony\Component\PropertyInfo\PropertyInfoExtractor" public="false">
       <argument type="iterator">
@@ -1710,8 +1723,8 @@
       <argument type="service" id="filesystem"/>
       <argument type="service" id="maker.autoloader_util"/>
       <argument type="service" id="maker.file_link_formatter"/>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4</argument>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4/templates</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub/templates</argument>
     </service>
     <service id="maker.autoloader_finder" class="Symfony\Bundle\MakerBundle\Util\ComposerAutoloaderFinder" public="false">
       <argument>App</argument>
@@ -1781,7 +1794,7 @@
       <tag name="maker.command"/>
       <argument type="service" id="maker.file_manager"/>
       <argument type="service" id="maker.doctrine_helper"/>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub</argument>
       <argument type="service" id="maker.generator"/>
       <argument type="service" id="maker.entity_class_generator"/>
     </service>
@@ -1847,7 +1860,7 @@
     </service>
     <service id="maker.maker.make_migration" class="Symfony\Bundle\MakerBundle\Maker\MakeMigration" public="false">
       <tag name="maker.command"/>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub</argument>
     </service>
     <service id="sensio_framework_extra.controller.listener" class="Sensio\Bundle\FrameworkExtraBundle\EventListener\ControllerListener">
       <tag name="kernel.event_subscriber"/>
@@ -1906,7 +1919,7 @@
     <service id="framework_extra_bundle.argument_name_convertor" class="Sensio\Bundle\FrameworkExtraBundle\Request\ArgumentNameConverter">
       <argument type="service" id="argument_metadata_factory"/>
     </service>
-    <service id=".1_~zoukxds" public="false">
+    <service id=".1_~.vztbne" public="false">
       <argument type="service" id="request_stack"/>
       <argument>true</argument>
       <factory class="Symfony\Bridge\Twig\ErrorRenderer\TwigErrorRenderer" method="isDebug"/>
@@ -1923,7 +1936,7 @@
       <argument type="service" id="twig.loader.native_filesystem"/>
       <argument type="collection">
         <argument key="autoescape">name</argument>
-        <argument key="cache">C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/twig</argument>
+        <argument key="cache">C:\Users\Boulanger\dev\cultureClub\var\cache\dev/twig</argument>
         <argument key="charset">UTF-8</argument>
         <argument key="debug">true</argument>
         <argument key="strict_variables">true</argument>
@@ -2002,10 +2015,10 @@
     <service id="twig.template_iterator" class="Symfony\Bundle\TwigBundle\TemplateIterator" public="false">
       <argument type="service" id="kernel"/>
       <argument type="collection">
-        <argument key="C:\wamp64\www\sites\portfolio_symfony4\vendor\symfony\twig-bridge/Resources/views/Email">email</argument>
-        <argument key="C:\wamp64\www\sites\portfolio_symfony4\vendor\symfony\twig-bridge/Resources/views/Form">null</argument>
+        <argument key="C:\Users\Boulanger\dev\cultureClub\vendor\symfony\twig-bridge/Resources/views/Email">email</argument>
+        <argument key="C:\Users\Boulanger\dev\cultureClub\vendor\symfony\twig-bridge/Resources/views/Form">null</argument>
       </argument>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4/templates</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub/templates</argument>
     </service>
     <service id="twig.template_cache_warmer" class="Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheWarmer" public="false">
       <tag name="kernel.cache_warmer"/>
@@ -2016,36 +2029,36 @@
     <service id="twig.loader.native_filesystem" class="Twig\Loader\FilesystemLoader" public="false">
       <tag name="twig.loader"/>
       <argument type="collection"/>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub</argument>
       <call method="addPath">
-        <argument>C:\wamp64\www\sites\portfolio_symfony4\vendor\doctrine\doctrine-bundle/Resources/views</argument>
+        <argument>C:\Users\Boulanger\dev\cultureClub\vendor\doctrine\doctrine-bundle/Resources/views</argument>
         <argument>Doctrine</argument>
       </call>
       <call method="addPath">
-        <argument>C:\wamp64\www\sites\portfolio_symfony4\vendor\doctrine\doctrine-bundle/Resources/views</argument>
+        <argument>C:\Users\Boulanger\dev\cultureClub\vendor\doctrine\doctrine-bundle/Resources/views</argument>
         <argument>!Doctrine</argument>
       </call>
       <call method="addPath">
-        <argument>C:\wamp64\www\sites\portfolio_symfony4\vendor\symfony\debug-bundle/Resources/views</argument>
+        <argument>C:\Users\Boulanger\dev\cultureClub\vendor\symfony\debug-bundle/Resources/views</argument>
         <argument>Debug</argument>
       </call>
       <call method="addPath">
-        <argument>C:\wamp64\www\sites\portfolio_symfony4\vendor\symfony\debug-bundle/Resources/views</argument>
+        <argument>C:\Users\Boulanger\dev\cultureClub\vendor\symfony\debug-bundle/Resources/views</argument>
         <argument>!Debug</argument>
       </call>
       <call method="addPath">
-        <argument>C:\wamp64\www\sites\portfolio_symfony4/templates</argument>
+        <argument>C:\Users\Boulanger\dev\cultureClub/templates</argument>
       </call>
       <call method="addPath">
-        <argument>C:\wamp64\www\sites\portfolio_symfony4\vendor\symfony\twig-bridge/Resources/views/Email</argument>
+        <argument>C:\Users\Boulanger\dev\cultureClub\vendor\symfony\twig-bridge/Resources/views/Email</argument>
         <argument>email</argument>
       </call>
       <call method="addPath">
-        <argument>C:\wamp64\www\sites\portfolio_symfony4\vendor\symfony\twig-bridge/Resources/views/Email</argument>
+        <argument>C:\Users\Boulanger\dev\cultureClub\vendor\symfony\twig-bridge/Resources/views/Email</argument>
         <argument>!email</argument>
       </call>
       <call method="addPath">
-        <argument>C:\wamp64\www\sites\portfolio_symfony4\vendor\symfony\twig-bridge/Resources/views/Form</argument>
+        <argument>C:\Users\Boulanger\dev\cultureClub\vendor\symfony\twig-bridge/Resources/views/Form</argument>
       </call>
     </service>
     <service id="twig.loader.chain" class="Twig\Loader\ChainLoader" public="false"/>
@@ -2071,7 +2084,7 @@
     <service id="twig.extension.code" class="Symfony\Bridge\Twig\Extension\CodeExtension" public="false">
       <tag name="twig.extension"/>
       <argument type="service" id="debug.file_link_formatter" on-invalid="ignore"/>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub</argument>
       <argument>UTF-8</argument>
     </service>
     <service id="twig.extension.routing" class="Symfony\Bridge\Twig\Extension\RoutingExtension" public="false">
@@ -2115,7 +2128,7 @@
     <service id="twig.error_renderer.html" class="Symfony\Bridge\Twig\ErrorRenderer\TwigErrorRenderer" public="false">
       <argument type="service" id="twig"/>
       <argument type="service" id="error_handler.error_renderer.html"/>
-      <argument type="service" id=".1_~zoukxds"/>
+      <argument type="service" id=".1_~.vztbne"/>
     </service>
     <service id="twig.extension.form" class="Symfony\Bridge\Twig\Extension\FormExtension" public="false">
       <tag name="twig.extension"/>
@@ -2133,9 +2146,9 @@
       <tag name="console.command" command="debug:twig"/>
       <tag name="container.no_preload"/>
       <argument type="service" id="twig"/>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub</argument>
       <argument>%kernel.bundles_metadata%</argument>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4/templates</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub/templates</argument>
       <argument type="service" id="debug.file_link_formatter" on-invalid="null"/>
       <call method="setName">
         <argument>debug:twig</argument>
@@ -2158,7 +2171,7 @@
       <argument type="service" id="twig"/>
     </service>
     <service id="twig.missing_extension_suggestor" class="Twig\Extra\TwigExtraBundle\MissingExtensionSuggestor" public="false"/>
-    <service id=".1_ServiceLocator~bojN5Ke" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".1_ServiceLocator~wxYExn." class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="webpack_encore.entrypoint_lookup_collection" type="service" id="webpack_encore.entrypoint_lookup_collection"/>
@@ -2177,28 +2190,28 @@
     </service>
     <service id="webpack_encore.twig_entry_files_extension" class="Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension" public="false">
       <tag name="twig.extension"/>
-      <argument type="service" id=".1_ServiceLocator~bojN5Ke"/>
+      <argument type="service" id=".1_ServiceLocator~wxYExn."/>
     </service>
     <service id="webpack_encore.entrypoint_lookup.cache_warmer" class="Symfony\WebpackEncoreBundle\CacheWarmer\EntrypointCacheWarmer" public="false">
       <tag name="kernel.cache_warmer"/>
       <argument type="collection">
-        <argument key="_default">C:\wamp64\www\sites\portfolio_symfony4/public/build/entrypoints.json</argument>
+        <argument key="_default">C:\Users\Boulanger\dev\cultureClub/public/build/entrypoints.json</argument>
       </argument>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/webpack_encore.cache.php</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/webpack_encore.cache.php</argument>
       <argument type="service" id="cache.webpack_encore"/>
     </service>
     <service id="webpack_encore.cache" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" public="false">
-      <argument>C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/webpack_encore.cache.php</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/webpack_encore.cache.php</argument>
       <argument type="service" id="cache.webpack_encore"/>
       <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
     </service>
     <service id="cache.webpack_encore" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
-      <argument>gww58SHCwu</argument>
+      <argument>I9JiwIft+L</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -2211,7 +2224,7 @@
     </service>
     <service id="webpack_encore.entrypoint_lookup[_default]" class="Symfony\WebpackEncoreBundle\Asset\EntrypointLookup">
       <tag name="kernel.reset" method="reset"/>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4/public/build/entrypoints.json</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub/public/build/entrypoints.json</argument>
       <argument>null</argument>
       <argument>_default</argument>
       <argument>true</argument>
@@ -2340,7 +2353,7 @@
       <argument type="collection"/>
       <factory service="doctrine.dbal.connection_factory" method="createConnection"/>
     </service>
-    <service id=".1_ServiceLocator~yZFGrGQ" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".1_ServiceLocator~ZDjXbOS" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <argument type="collection"/>
     </service>
     <service id="doctrine.orm.proxy_cache_warmer" class="Symfony\Bridge\Doctrine\CacheWarmer\ProxyCacheWarmer" public="false">
@@ -2517,7 +2530,7 @@
         <argument type="service" id="doctrine.orm.default_metadata_driver"/>
       </call>
       <call method="setProxyDir">
-        <argument>C:\wamp64\www\sites\portfolio_symfony4\var\cache\dev/doctrine/orm/Proxies</argument>
+        <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/doctrine/orm/Proxies</argument>
       </call>
       <call method="setProxyNamespace">
         <argument>Proxies</argument>
@@ -2547,7 +2560,7 @@
     <service id="doctrine.orm.default_annotation_metadata_driver" class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
       <argument type="service" id="annotations.cached_reader"/>
       <argument type="collection">
-        <argument>C:\wamp64\www\sites\portfolio_symfony4\src\Entity</argument>
+        <argument>C:\Users\Boulanger\dev\cultureClub\src\Entity</argument>
       </argument>
     </service>
     <service id="doctrine.orm.default_metadata_driver" class="Doctrine\Persistence\Mapping\Driver\MappingDriverChain" public="false">
@@ -2617,7 +2630,7 @@
     <service id="doctrine.migrations.configuration" class="Doctrine\Migrations\Configuration\Configuration" public="false">
       <call method="addMigrationsDirectory">
         <argument>DoctrineMigrations</argument>
-        <argument>C:\wamp64\www\sites\portfolio_symfony4/migrations</argument>
+        <argument>C:\Users\Boulanger\dev\cultureClub/migrations</argument>
       </call>
       <call method="setAllOrNothing">
         <argument>false</argument>
@@ -2747,24 +2760,24 @@
       </call>
     </service>
     <service id="doctrine.migrations.storage.table_storage" class="Doctrine\Migrations\Metadata\Storage\TableMetadataStorageConfiguration"/>
-    <service id=".6_HtmlDescriptor~KGIFTlc" class="Symfony\Component\VarDumper\Command\Descriptor\HtmlDescriptor" public="false">
+    <service id=".6_HtmlDescriptor~sVIPDSi" class="Symfony\Component\VarDumper\Command\Descriptor\HtmlDescriptor" public="false">
       <argument type="service" id="var_dumper.html_dumper"/>
     </service>
-    <service id=".5_CliDescriptor~KGIFTlc" class="Symfony\Component\VarDumper\Command\Descriptor\CliDescriptor" public="false">
+    <service id=".5_CliDescriptor~sVIPDSi" class="Symfony\Component\VarDumper\Command\Descriptor\CliDescriptor" public="false">
       <argument type="service" id="var_dumper.contextualized_cli_dumper.inner"/>
     </service>
-    <service id=".4_CliContextProvider~KGIFTlc" class="Symfony\Component\VarDumper\Dumper\ContextProvider\CliContextProvider" public="false"/>
-    <service id=".3_RequestContextProvider~KGIFTlc" class="Symfony\Component\VarDumper\Dumper\ContextProvider\RequestContextProvider" public="false">
+    <service id=".4_CliContextProvider~sVIPDSi" class="Symfony\Component\VarDumper\Dumper\ContextProvider\CliContextProvider" public="false"/>
+    <service id=".3_RequestContextProvider~sVIPDSi" class="Symfony\Component\VarDumper\Dumper\ContextProvider\RequestContextProvider" public="false">
       <argument type="service" id="request_stack"/>
     </service>
-    <service id=".2_SourceContextProvider~KGIFTlc" class="Symfony\Component\VarDumper\Dumper\ContextProvider\SourceContextProvider" public="false">
+    <service id=".2_SourceContextProvider~sVIPDSi" class="Symfony\Component\VarDumper\Dumper\ContextProvider\SourceContextProvider" public="false">
       <argument>UTF-8</argument>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub</argument>
       <argument type="service" id="debug.file_link_formatter" on-invalid="null"/>
     </service>
-    <service id=".1_SourceContextProvider~KGIFTlc" class="Symfony\Component\VarDumper\Dumper\ContextProvider\SourceContextProvider" public="false">
+    <service id=".1_SourceContextProvider~sVIPDSi" class="Symfony\Component\VarDumper\Dumper\ContextProvider\SourceContextProvider" public="false">
       <argument>UTF-8</argument>
-      <argument>C:\wamp64\www\sites\portfolio_symfony4</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub</argument>
       <argument type="service" id="debug.file_link_formatter" on-invalid="null"/>
     </service>
     <service id="twig.extension.dump" class="Symfony\Bridge\Twig\Extension\DumpExtension" public="false">
@@ -2806,7 +2819,7 @@
     <service id="var_dumper.contextualized_cli_dumper" class="Symfony\Component\VarDumper\Dumper\ContextualizedDumper" public="false">
       <argument type="service" id="var_dumper.contextualized_cli_dumper.inner"/>
       <argument type="collection">
-        <argument key="source" type="service" id=".1_SourceContextProvider~KGIFTlc"/>
+        <argument key="source" type="service" id=".1_SourceContextProvider~sVIPDSi"/>
       </argument>
     </service>
     <service id="var_dumper.html_dumper" class="Symfony\Component\VarDumper\Dumper\HtmlDumper" public="false">
@@ -2822,9 +2835,9 @@
     <service id="var_dumper.server_connection" class="Symfony\Component\VarDumper\Server\Connection" public="false">
       <argument>tcp://%env(VAR_DUMPER_SERVER)%</argument>
       <argument type="collection">
-        <argument key="source" type="service" id=".2_SourceContextProvider~KGIFTlc"/>
-        <argument key="request" type="service" id=".3_RequestContextProvider~KGIFTlc"/>
-        <argument key="cli" type="service" id=".4_CliContextProvider~KGIFTlc"/>
+        <argument key="source" type="service" id=".2_SourceContextProvider~sVIPDSi"/>
+        <argument key="request" type="service" id=".3_RequestContextProvider~sVIPDSi"/>
+        <argument key="cli" type="service" id=".4_CliContextProvider~sVIPDSi"/>
       </argument>
     </service>
     <service id="var_dumper.dump_server" class="Symfony\Component\VarDumper\Server\DumpServer" public="false">
@@ -2837,8 +2850,8 @@
       <tag name="container.no_preload"/>
       <argument type="service" id="var_dumper.dump_server"/>
       <argument type="collection">
-        <argument key="cli" type="service" id=".5_CliDescriptor~KGIFTlc"/>
-        <argument key="html" type="service" id=".6_HtmlDescriptor~KGIFTlc"/>
+        <argument key="cli" type="service" id=".5_CliDescriptor~sVIPDSi"/>
+        <argument key="html" type="service" id=".6_HtmlDescriptor~sVIPDSi"/>
       </argument>
       <call method="setName">
         <argument>server:dump</argument>
@@ -2853,6 +2866,9 @@
     <service id=".abstract.instanceof.App\Form\UsersType" class="App\Form\UsersType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Service\CalendarService" class="App\Service\CalendarService" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Service\CalendarService" class="App\Service\CalendarService" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Service\CalendarService" class="App\Service\CalendarService" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.WaGDpDt" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -3106,24 +3122,51 @@
         <argument key="loader" type="service" id=".errored..service_locator.C9JCBPC.Symfony\Component\Config\Loader\LoaderInterface"/>
       </argument>
     </service>
-    <service id=".service_locator.EJGF50h" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.erj0vfI" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="calendarService" type="service" id="App\Service\CalendarService"/>
         <argument key="mailToNewMember" type="service" id="App\Service\MailToNewMember"/>
         <argument key="mailerInterface" type="service" id="mailer.mailer"/>
       </argument>
     </service>
-    <service id=".service_locator.URWYDYf" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.T7jXptp" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Controller\IndexController::index" type="service" id=".service_locator.EJGF50h"/>
+        <argument key="calendarService" type="service" id="App\Service\CalendarService"/>
+      </argument>
+    </service>
+    <service id=".errored.5XgtHvL" class="App\Service\Request"/>
+    <service id=".service_locator.A2Pbamn" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="request" type="service" id=".errored.5XgtHvL"/>
+      </argument>
+    </service>
+    <service id=".errored.LoOJ_wE" class="App\Service\Request"/>
+    <service id=".service_locator.rsTcYNL" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="request" type="service" id=".errored.LoOJ_wE"/>
+      </argument>
+    </service>
+    <service id=".service_locator.X3js2iY" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="App\Controller\IndexController::getGoogleCalendarRedirectInformationAction" type="service" id=".service_locator.T7jXptp"/>
+        <argument key="App\Controller\IndexController::signUpAction" type="service" id=".service_locator.erj0vfI"/>
         <argument key="App\Kernel::loadRoutes" type="service" id=".service_locator.C9JCBPC"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service" id=".service_locator.C9JCBPC"/>
         <argument key="App\Kernel::terminate" type="service" id=".service_locator.beq5mCo"/>
+        <argument key="App\Service\CalendarService::store" type="service" id=".service_locator.A2Pbamn"/>
+        <argument key="App\Service\CalendarService::update" type="service" id=".service_locator.rsTcYNL"/>
         <argument key="kernel::loadRoutes" type="service" id=".service_locator.C9JCBPC"/>
         <argument key="kernel::registerContainerConfiguration" type="service" id=".service_locator.C9JCBPC"/>
         <argument key="kernel::terminate" type="service" id=".service_locator.beq5mCo"/>
-        <argument key="App\Controller\IndexController:index" type="service" id=".service_locator.EJGF50h"/>
+        <argument key="App\Controller\IndexController:getGoogleCalendarRedirectInformationAction" type="service" id=".service_locator.T7jXptp"/>
+        <argument key="App\Controller\IndexController:signUpAction" type="service" id=".service_locator.erj0vfI"/>
+        <argument key="App\Service\CalendarService:store" type="service" id=".service_locator.A2Pbamn"/>
+        <argument key="App\Service\CalendarService:update" type="service" id=".service_locator.rsTcYNL"/>
         <argument key="kernel:loadRoutes" type="service" id=".service_locator.C9JCBPC"/>
         <argument key="kernel:registerContainerConfiguration" type="service" id=".service_locator.C9JCBPC"/>
         <argument key="kernel:terminate" type="service" id=".service_locator.beq5mCo"/>
@@ -3211,6 +3254,12 @@
     <service id=".service_locator.g9CqTPp.App\Controller\IndexController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\IndexController"/>
       <argument>App\Controller\IndexController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.g9CqTPp" method="withContext"/>
+    </service>
+    <service id=".service_locator.g9CqTPp.App\Service\CalendarService" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Service\CalendarService"/>
+      <argument>App\Service\CalendarService</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.g9CqTPp" method="withContext"/>
     </service>
@@ -3315,12 +3364,12 @@
     <service id="debug.argument_resolver.request.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver" public="false"/>
     <service id="debug.argument_resolver.session.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver" public="false"/>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.URWYDYf"/>
+      <argument type="service" id=".service_locator.X3js2iY"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.URWYDYf"/>
+      <argument type="service" id=".service_locator.X3js2iY"/>
     </service>
     <service id=".errored..service_locator.beq5mCo.Symfony\Component\HttpFoundation\Response" class="Symfony\Component\HttpFoundation\Response"/>
     <service id=".errored..service_locator.C9JCBPC.Symfony\Component\Config\Loader\LoaderInterface" class="Symfony\Component\Config\Loader\LoaderInterface"/>
@@ -3593,10 +3642,10 @@
     <service id="doctrine.migrations.metadata_storage" alias="doctrine.migrations.storage.table_storage"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.WaGDpDt" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.URWYDYf"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.X3js2iY"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface" alias="logger" public="false"/>
-    <service id=".service_locator.A.pnDXl" alias=".1_ServiceLocator~bojN5Ke" public="false"/>
+    <service id=".service_locator.A.pnDXl" alias=".1_ServiceLocator~wxYExn." public="false"/>
     <service id="event_dispatcher" alias="debug.event_dispatcher" public="true"/>
     <service id="controller_resolver" alias="debug.controller_resolver" public="false"/>
     <service id="argument_resolver" alias="debug.argument_resolver" public="false"/>

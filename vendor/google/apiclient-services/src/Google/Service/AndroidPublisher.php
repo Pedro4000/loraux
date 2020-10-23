@@ -900,13 +900,13 @@ class Google_Service_AndroidPublisher extends Google_Service
                   'location' => 'query',
                   'type' => 'integer',
                 ),
-                'token' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'maxResults' => array(
                   'location' => 'query',
                   'type' => 'integer',
+                ),
+                'token' => array(
+                  'location' => 'query',
+                  'type' => 'string',
                 ),
               ),
             ),'patch' => array(
@@ -1087,15 +1087,10 @@ class Google_Service_AndroidPublisher extends Google_Service
                 ),
               ),
             ),'cancel' => array(
-              'path' => 'androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel',
+              'path' => 'androidpublisher/v3/applications/{packageName}/purchases/subscriptions/tokens/{token}:cancel',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'packageName' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'subscriptionId' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -1205,11 +1200,15 @@ class Google_Service_AndroidPublisher extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'token' => array(
+                'maxResults' => array(
+                  'location' => 'query',
+                  'type' => 'integer',
+                ),
+                'endTime' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'endTime' => array(
+                'token' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -1217,17 +1216,13 @@ class Google_Service_AndroidPublisher extends Google_Service
                   'location' => 'query',
                   'type' => 'integer',
                 ),
-                'type' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
                 'startTime' => array(
                   'location' => 'query',
                   'type' => 'string',
+                ),
+                'type' => array(
+                  'location' => 'query',
+                  'type' => 'integer',
                 ),
               ),
             ),
@@ -1272,17 +1267,17 @@ class Google_Service_AndroidPublisher extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'startIndex' => array(
+                'translationLanguage' => array(
                   'location' => 'query',
-                  'type' => 'integer',
+                  'type' => 'string',
                 ),
                 'maxResults' => array(
                   'location' => 'query',
                   'type' => 'integer',
                 ),
-                'translationLanguage' => array(
+                'startIndex' => array(
                   'location' => 'query',
-                  'type' => 'string',
+                  'type' => 'integer',
                 ),
               ),
             ),'reply' => array(

@@ -9,17 +9,7 @@ return [[
 ], [
 
 0 => [
-    'entrypoints' => [
-        'app' => [
-            'js' => [
-                '/build/runtime.js',
-                '/build/app.js',
-            ],
-            'css' => [
-                '/build/app.css',
-            ],
-        ],
-    ],
+    'entrypoints' => [],
 ],
 
 ]];

@@ -4,6 +4,8 @@
 
 return [
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], []],
-    'index' => [[], ['_controller' => 'App\\Controller\\IndexController::index'], [], [['text', '/index']], [], []],
+    'index' => [[], ['_controller' => 'App\\Controller\\IndexController::indexAction'], [], [['text', '/index']], [], []],
+    'sign_up' => [[], ['_controller' => 'App\\Controller\\IndexController::signUpAction'], [], [['text', '/sign_up']], [], []],
+    'google_redirect_for_calendar' => [[], ['_controller' => 'App\\Controller\\IndexController::getGoogleCalendarRedirectInformationAction'], [], [['text', '/google_redirect_for_calendar']], [], []],
     'resume' => [[], ['_controller' => 'App\\Controller\\IndexController::resume'], [], [['text', '/resume']], [], []],
 ];
