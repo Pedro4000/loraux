@@ -73,29 +73,39 @@ class __TwigTemplate_8ee951afa1e48b7028cab8015e8f36fe57f39665cbb9e22727f4b0fa6fe
                     ";
         // line 14
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 14, $this->source); })()), "firstName", [], "any", false, false, false, 14), 'row', ["attr" => ["class" => "signInFormInput"]]);
-        echo "
-                    ";
-        // line 15
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 15, $this->source); })()), "familyName", [], "any", false, false, false, 15), 'row', ["attr" => ["class" => "signInFormInput"]]);
-        echo "
-                    ";
         // line 16
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 16, $this->source); })()), "emailAddress", [], "any", false, false, false, 16), 'row', ["attr" => ["class" => "signInFormInput"]]);
+        echo "
+                    ";
+        // line 17
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 17, $this->source); })()), "familyName", [], "any", false, false, false, 17), 'row', ["attr" => ["class" => "signInFormInput"]]);
+        echo "
+                    ";
+        // line 18
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 18, $this->source); })()), "emailAddress", [], "any", false, false, false, 18), 'row', ["attr" => ["class" => "signInFormInput", "data-container" => "body", "data-toggle" => "popover", "data-placement" => "top", "data-content" => "Vivamus sagittis lacus vel augue laoreet rutrum faucibus."]]);
+        // line 24
         echo "
                     <div>
                         <input type=\"text\" id=\"mail_confirm\"  placeholder=\"Confirmez votre adresse mail\" class=\"confirm_mail\">
                     </div>
                     ";
-        // line 20
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 20, $this->source); })()), "birthDate", [], "any", false, false, false, 20), 'row', ["attr" => ["class" => "signInFormInput"]]);
+        // line 28
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 28, $this->source); })()), "password", [], "any", false, false, false, 28), 'row');
         echo "
                     ";
-        // line 21
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 21, $this->source); })()), "sex", [], "any", false, false, false, 21), 'row', ["attr" => ["class" => "signInFormInput"]]);
+        // line 29
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 29, $this->source); })()), "birthDate", [], "any", false, false, false, 29), 'row', ["attr" => ["class" => "signInFormInput"]]);
         echo "
                     ";
-        // line 22
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 22, $this->source); })()), 'form_end');
+        // line 30
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 30, $this->source); })()), "sex", [], "any", false, false, false, 30), 'row', ["attr" => ["class" => "signInFormInput"]]);
+        echo "
+                    ";
+        // line 31
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 31, $this->source); })()), "save", [], "any", false, false, false, 31), 'row', ["attr" => ["class" => "btn btn-light"]]);
+        echo "
+                    ";
+        // line 32
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 32, $this->source); })()), 'form_end');
         echo "
                 </section>
             </section>
@@ -119,7 +129,7 @@ class __TwigTemplate_8ee951afa1e48b7028cab8015e8f36fe57f39665cbb9e22727f4b0fa6fe
 
     public function getDebugInfo()
     {
-        return array (  98 => 22,  94 => 21,  90 => 20,  83 => 16,  79 => 15,  75 => 14,  71 => 13,  59 => 3,  52 => 2,  35 => 1,);
+        return array (  108 => 32,  104 => 31,  100 => 30,  96 => 29,  92 => 28,  86 => 24,  84 => 18,  80 => 17,  77 => 16,  75 => 14,  71 => 13,  59 => 3,  52 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -137,14 +147,24 @@ class __TwigTemplate_8ee951afa1e48b7028cab8015e8f36fe57f39665cbb9e22727f4b0fa6fe
 
                 <section class=\"signInFormSection\">
                     {{ form_start(userForm, { 'attr' : { 'class':'signInForm'}}) }}
-                    {{ form_row(userForm.firstName, { 'attr' : { 'class':'signInFormInput' }} ) }}
+                    {{ form_row(userForm.firstName, { 'attr' : {
+                        'class':'signInFormInput'
+                    }} ) }}
                     {{ form_row(userForm.familyName, { 'attr' : { 'class':'signInFormInput' }} ) }}
-                    {{ form_row(userForm.emailAddress, { 'attr' : { 'class':'signInFormInput' }} ) }}
+                    {{ form_row(userForm.emailAddress, { 'attr' : {
+                        'class':'signInFormInput',
+                        'data-container' : 'body',
+                        'data-toggle': 'popover',
+                        'data-placement' : 'top',
+                        'data-content' : 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus.'
+                    }} ) }}
                     <div>
                         <input type=\"text\" id=\"mail_confirm\"  placeholder=\"Confirmez votre adresse mail\" class=\"confirm_mail\">
                     </div>
+                    {{ form_row(userForm.password) }}
                     {{ form_row(userForm.birthDate, { 'attr' : { 'class':'signInFormInput' }} ) }}
                     {{ form_row(userForm.sex, { 'attr' : { 'class':'signInFormInput' }} ) }}
+                    {{ form_row(userForm.save, { 'attr' : { 'class':'btn btn-light' }} ) }}
                     {{ form_end(userForm) }}
                 </section>
             </section>

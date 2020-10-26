@@ -31,6 +31,7 @@ class __TwigTemplate_b3852294568ccad7253a389df19ea44930c49cc8ab8078a2710c6c2a0d8
             'stylesheets' => [$this, 'block_stylesheets'],
             'body' => [$this, 'block_body'],
             'content' => [$this, 'block_content'],
+            'jsfiles' => [$this, 'block_jsfiles'],
         ];
     }
 
@@ -49,18 +50,25 @@ class __TwigTemplate_b3852294568ccad7253a389df19ea44930c49cc8ab8078a2710c6c2a0d8
         // line 5
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
+    <favicon src=\"#\"></favicon>
+    <script src=\"https://code.jquery.com/jquery-3.5.1.min.js\"></script>
+    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js\" integrity=\"sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4\" crossorigin=\"anonymous\"></script>
     ";
-        // line 6
-        $this->displayBlock('stylesheets', $context, $blocks);
         // line 9
+        $this->displayBlock('stylesheets', $context, $blocks);
+        // line 12
         echo "</head>
 <body>
 ";
-        // line 11
+        // line 14
         $this->displayBlock('body', $context, $blocks);
-        // line 16
+        // line 19
         echo "</body>
-</html>";
+";
+        // line 20
+        $this->displayBlock('jsfiles', $context, $blocks);
+        // line 24
+        echo "</html>";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -73,20 +81,20 @@ class __TwigTemplate_b3852294568ccad7253a389df19ea44930c49cc8ab8078a2710c6c2a0d8
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        echo "My Application";
+        echo "Culture Club ma fry";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
     }
 
-    // line 6
+    // line 9
     public function block_stylesheets($context, array $blocks = [])
     {
         $macros = $this->macros;
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
-        // line 7
+        // line 10
         echo "        ";
         echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackLinkTags("app");
         echo "
@@ -96,19 +104,19 @@ class __TwigTemplate_b3852294568ccad7253a389df19ea44930c49cc8ab8078a2710c6c2a0d8
 
     }
 
-    // line 11
+    // line 14
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 12
+        // line 15
         echo "    <div id=\"content\">
         ";
-        // line 13
+        // line 16
         $this->displayBlock('content', $context, $blocks);
-        // line 14
+        // line 17
         echo "    </div>
 ";
         
@@ -116,13 +124,34 @@ class __TwigTemplate_b3852294568ccad7253a389df19ea44930c49cc8ab8078a2710c6c2a0d8
 
     }
 
-    // line 13
+    // line 16
     public function block_content($context, array $blocks = [])
     {
         $macros = $this->macros;
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
 
+        
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+    }
+
+    // line 20
+    public function block_jsfiles($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "jsfiles"));
+
+        // line 21
+        echo "    ";
+        echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("app");
+        echo "
+    ";
+        // line 22
+        echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("signup");
+        echo "
+";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -135,7 +164,7 @@ class __TwigTemplate_b3852294568ccad7253a389df19ea44930c49cc8ab8078a2710c6c2a0d8
 
     public function getDebugInfo()
     {
-        return array (  120 => 13,  112 => 14,  110 => 13,  107 => 12,  100 => 11,  90 => 7,  83 => 6,  70 => 5,  62 => 16,  60 => 11,  56 => 9,  54 => 6,  50 => 5,  44 => 1,);
+        return array (  152 => 22,  147 => 21,  140 => 20,  128 => 16,  120 => 17,  118 => 16,  115 => 15,  108 => 14,  98 => 10,  91 => 9,  78 => 5,  71 => 24,  69 => 20,  66 => 19,  64 => 14,  60 => 12,  58 => 9,  51 => 5,  45 => 1,);
     }
 
     public function getSourceContext()
@@ -144,7 +173,10 @@ class __TwigTemplate_b3852294568ccad7253a389df19ea44930c49cc8ab8078a2710c6c2a0d8
 <html>
 <head>
     <meta charset=\"UTF-8\">
-    <title>{% block title %}My Application{% endblock %}</title>
+    <title>{% block title %}Culture Club ma fry{% endblock %}</title>
+    <favicon src=\"#\"></favicon>
+    <script src=\"https://code.jquery.com/jquery-3.5.1.min.js\"></script>
+    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js\" integrity=\"sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4\" crossorigin=\"anonymous\"></script>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
@@ -156,6 +188,10 @@ class __TwigTemplate_b3852294568ccad7253a389df19ea44930c49cc8ab8078a2710c6c2a0d8
     </div>
 {% endblock %}
 </body>
+{% block jsfiles %}
+    {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('signup') }}
+{% endblock %}
 </html>", "base.html.twig", "C:\\Users\\Boulanger\\dev\\cultureClub\\templates\\base.html.twig");
     }
 }

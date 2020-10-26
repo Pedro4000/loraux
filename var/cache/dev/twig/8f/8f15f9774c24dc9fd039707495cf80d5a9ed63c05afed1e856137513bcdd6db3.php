@@ -63,7 +63,7 @@ class __TwigTemplate_425bbedd9520a4014520457934ad8e03278c94cf031448e489a64a8842d
             <li><a href=";
         // line 7
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("index");
-        echo ">Culture Club</a></li>
+        echo " id='landing_link'>Culture Club</a></li>
         </ul>
     </nav>
     ";
@@ -111,7 +111,7 @@ class __TwigTemplate_425bbedd9520a4014520457934ad8e03278c94cf031448e489a64a8842d
 
     <nav class=\"navbar\">
         <ul>
-            <li><a href={{ path('index') }}>Culture Club</a></li>
+            <li><a href={{ path('index') }} id='landing_link'>Culture Club</a></li>
         </ul>
     </nav>
     {% block page_content %}

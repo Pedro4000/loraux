@@ -1,8 +1,15 @@
 {
   "entrypoints": {
+    "signup": {
+      "js": [
+        "/build/runtime.js",
+        "/build/signup.js"
+      ]
+    },
     "app": {
       "js": [
         "/build/runtime.js",
+        "/build/vendors~app.js",
         "/build/app.js"
       ],
       "css": [

@@ -6,11 +6,15 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
+
+import '../bootstrap-4.5.3-dist/css/bootstrap.min.css';
+import '../bootstrap-4.5.3-dist/css/bootstrap-grid.min.css';
+import '../bootstrap-4.5.3-dist/css/bootstrap-reboot.min.css';
+/*import '../bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js';
+import '../bootstrap-4.5.3-dist/js/bootstrap.min.js';*/
 import '../css/app.css';
 import '../css/signin.scss';
 import '../css/layout.scss';
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
-// import $ from 'jquery';
 
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+import $ from 'jquery';

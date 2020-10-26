@@ -11,14 +11,24 @@
 
                 <section class="signInFormSection">
                     {{ form_start(userForm, { 'attr' : { 'class':'signInForm'}}) }}
-                    {{ form_row(userForm.firstName, { 'attr' : { 'class':'signInFormInput' }} ) }}
+                    {{ form_row(userForm.firstName, { 'attr' : {
+                        'class':'signInFormInput'
+                    }} ) }}
                     {{ form_row(userForm.familyName, { 'attr' : { 'class':'signInFormInput' }} ) }}
-                    {{ form_row(userForm.emailAddress, { 'attr' : { 'class':'signInFormInput' }} ) }}
+                    {{ form_row(userForm.emailAddress, { 'attr' : {
+                        'class':'signInFormInput',
+                        'data-container' : 'body',
+                        'data-toggle': 'popover',
+                        'data-placement' : 'top',
+                        'data-content' : 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus.'
+                    }} ) }}
                     <div>
                         <input type="text" id="mail_confirm"  placeholder="Confirmez votre adresse mail" class="confirm_mail">
                     </div>
+                    {{ form_row(userForm.password) }}
                     {{ form_row(userForm.birthDate, { 'attr' : { 'class':'signInFormInput' }} ) }}
                     {{ form_row(userForm.sex, { 'attr' : { 'class':'signInFormInput' }} ) }}
+                    {{ form_row(userForm.save, { 'attr' : { 'class':'btn btn-light' }} ) }}
                     {{ form_end(userForm) }}
                 </section>
             </section>

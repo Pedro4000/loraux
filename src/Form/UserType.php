@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,6 +24,11 @@ class UserType extends AbstractType
                 ['placeholder'=>'Nom de famille']])
             ->add('emailAddress', TextType::class, [ 'attr' =>
                 ['placeholder'=>'Adresse mail']])
+            ->add('password', PasswordType::class, [ 'attr' =>
+                ['class'=>'password',
+                    'placeholder'=>'mot de passe'],
+
+                ])
             ->add('birthDate', DateType::class, [
                 'label'=>'Date de naissance',
                 'widget'=>'single_text'
@@ -39,7 +45,8 @@ class UserType extends AbstractType
                 ['placeholder'=> true
                 ]])
             ->add('save', SubmitType::class, [ 'attr' =>
-                ['placeholder'=>'Créer']])
+                ['placeholder'=>'Créer'],
+                'label'=>'Créer'])
         ;
     }
 

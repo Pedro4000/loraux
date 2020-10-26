@@ -9,7 +9,24 @@ return [[
 ], [
 
 0 => [
-    'entrypoints' => [],
+    'entrypoints' => [
+        'app' => [
+            'js' => [
+                '/build/runtime.js',
+                '/build/vendors~app.js',
+                '/build/app.js',
+            ],
+            'css' => [
+                '/build/app.css',
+            ],
+        ],
+        'signup' => [
+            'js' => [
+                '/build/runtime.js',
+                '/build/signup.js',
+            ],
+        ],
+    ],
 ],
 
 ]];
