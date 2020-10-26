@@ -22,6 +22,9 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use GuzzleHttp\Client;
+use GuzzleHttp\Command\Guzzle\Description;
+use GuzzleHttp\Command\Guzzle\GuzzleClient;
 
 
 
@@ -45,6 +48,32 @@ class IndexController extends AbstractController
      * @Route("/index", name="index")
      */
     public function indexAction(){
+
+
+        $defaultConfit = [
+
+        ];
+        $discogsAuthUri = 'https://api.discogs.com/oauth/request_token';
+
+        $client = new GuzzleHttp\Client();
+        $res = $client->request('GET', 'https://api.github.com/user', [
+            'auth' => ['user', 'pass']
+        ]);
+        echo $res->getStatusCode();
+
+        echo $res->getHeader('content-type')[0];
+
+        echo $res->getBody();
+
+        $request = new \GuzzleHttp\Psr7\Request('GET', 'https://api.discogs.com/database/search?q="jah shaka"');
+        $promise = $client->sendAsync($request)->then(function ($response) {
+            echo 'I completed! ' . $response->getBody();
+        });
+        $promise->wait();
+
+
+
+
 
 
         return $this->render('index.html.twig');
@@ -87,7 +116,6 @@ class IndexController extends AbstractController
         foreach($credentialsFiles as $credentialsFile) {
             $absoluteFilePathCredentials = $credentialsFile->getRealPath();
         }*/
-
 
 
         return $this->render('signup.html.twig', [
