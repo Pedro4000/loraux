@@ -2,6 +2,10 @@ var Encore = require('@symfony/webpack-encore');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
+if (!Encore.isRuntimeEnvironmentConfigured()) {
+    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
+}
+
 Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
@@ -19,7 +23,12 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
+     .copyFiles({
+         from: './assets/img',
+
+     })
     .addEntry('signup', './assets/js/signup.js')
+    .addEntry('index', './assets/js/discogs.js')
     .addEntry('app', './assets/js/app.js')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
@@ -27,6 +36,7 @@ Encore
     .splitEntryChunks()
 
     // will require an extra script tag for runtime.js
+
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()
     .enableLessLoader()

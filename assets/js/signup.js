@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-    $(document).getElementsByClassName('signInFormInput');
-
     $("#user_save").click(function(e){
         e.preventDefault();
         console.log(validateEmail($("#user_emailAddress").val()));

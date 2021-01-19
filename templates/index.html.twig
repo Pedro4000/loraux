@@ -2,4 +2,36 @@
 
 {% block page_content %}
 
+    <section class="discogs-research-section">
+        <form method="post" >
+            <label for="query">Votre recherche</label>
+            <input type="text" id="query-discogs" name="query-discogs">
+            <button type="submit">Cherche ma frye</button>
+            <button type="reset">Annule</button>
+        </form>
+    </section>
+    {% if img and responseContents %}
+    <section class="discogs-response-section">
+        <img src="{{ img }}" onerror="this.src='{{ asset('build/images/no_image.jpg') }}'" class="research-logo">
+        <p class="dj-or-label">Juste pour info c'est un
+            {% if responseContents['results'][0]['type'] == 'artist'%}
+                artiste
+            {% else %}
+                {{ responseContents['results'][0]['type'] }}
+            {% endif %}</p>
+        <p>Alors c'est ça ?</p>
+        {% if guzzleException %}
+            <p>{{ guzzleException }}</p>
+        {% endif %}
+         <div class="discogs-query-control-pannel">
+             <button type="button" class="good-answer-ma-man">Yesss c ca</button>
+             <button type="button" class='previous-research-button discogs-research-button'><img class="previous-discogs-image" src="{{ asset('build/icons/keyboard_arrow_left-24px.svg') }}"></button>
+             <button type="button" class='next-research-button discogs-research-button'><img class="next-discogs-image" src="{{ asset('build/icons/keyboard_arrow_right-24px.svg') }}"> </button>
+         </div>
+        {% for videoUri in videosArray %}
+            <p><a href="{{ videoUri }}">Allé clicke là</a> </p>
+        {% endfor %}
+    </section>
+    {% endif %}
+
 {% endblock %}

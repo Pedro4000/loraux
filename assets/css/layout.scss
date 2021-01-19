@@ -1,10 +1,19 @@
 .navbar{
-  position : fixed;
   width: 100%;
   ul{
     list-style: none;
     li{
-
     }
+  }
+}
+
+.navbar+section{
+  margin : 50px;
+}
+
+.discogs-response-section{
+  margin : 50px;
+  img{
+    width: 200px;
   }
 }

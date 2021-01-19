@@ -67,7 +67,7 @@ class __TwigTemplate_b3852294568ccad7253a389df19ea44930c49cc8ab8078a2710c6c2a0d8
 ";
         // line 20
         $this->displayBlock('jsfiles', $context, $blocks);
-        // line 24
+        // line 25
         echo "</html>";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -151,6 +151,10 @@ class __TwigTemplate_b3852294568ccad7253a389df19ea44930c49cc8ab8078a2710c6c2a0d8
         // line 22
         echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("signup");
         echo "
+    ";
+        // line 23
+        echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("index");
+        echo "
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -164,7 +168,7 @@ class __TwigTemplate_b3852294568ccad7253a389df19ea44930c49cc8ab8078a2710c6c2a0d8
 
     public function getDebugInfo()
     {
-        return array (  152 => 22,  147 => 21,  140 => 20,  128 => 16,  120 => 17,  118 => 16,  115 => 15,  108 => 14,  98 => 10,  91 => 9,  78 => 5,  71 => 24,  69 => 20,  66 => 19,  64 => 14,  60 => 12,  58 => 9,  51 => 5,  45 => 1,);
+        return array (  156 => 23,  152 => 22,  147 => 21,  140 => 20,  128 => 16,  120 => 17,  118 => 16,  115 => 15,  108 => 14,  98 => 10,  91 => 9,  78 => 5,  71 => 25,  69 => 20,  66 => 19,  64 => 14,  60 => 12,  58 => 9,  51 => 5,  45 => 1,);
     }
 
     public function getSourceContext()
@@ -191,6 +195,7 @@ class __TwigTemplate_b3852294568ccad7253a389df19ea44930c49cc8ab8078a2710c6c2a0d8
 {% block jsfiles %}
     {{ encore_entry_script_tags('app') }}
     {{ encore_entry_script_tags('signup') }}
+    {{ encore_entry_script_tags('index') }}
 {% endblock %}
 </html>", "base.html.twig", "C:\\Users\\Boulanger\\dev\\cultureClub\\templates\\base.html.twig");
     }

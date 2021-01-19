@@ -7,6 +7,8 @@ parameters:
     app.google_client_id: '%env(GOOGLE_CLIENT_ID)%'
     app.google_calendar_access_token: '%env(GOOGLE_CLIENT_ACCESS_TOKEN)%'
     app.google_credentials_api_json: '%env(google_credentials_api_json)%'
+    app.discogs_consumer_key: '%env(discogs_consumer_key)%'
+    app.discogs_consumer_secret: '%env(discogs_consumer_secret)%'
 
 services:
     # default configuration for services in *this* file

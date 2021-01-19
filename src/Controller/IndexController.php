@@ -12,6 +12,7 @@ use Google_Service_Calendar;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,6 +26,10 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use GuzzleHttp\Client;
 use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
+use Guzzle\Http\Exception\ClientErrorResponseException;
+use GuzzleHttp\Exception\ClientException;
+
+
 
 
 
@@ -46,37 +51,120 @@ class IndexController extends AbstractController
 
     /**
      * @Route("/index", name="index")
+     * @param Request $request
      */
-    public function indexAction(){
+    public function indexAction(Request $request){
+
+        $client = new Client();
+        $consumeyKey = $this->getParameter('app.discogs_consumer_key');
+        $consumerSecret = $this->getParameter('app.discogs_consumer_secret');
+        $baseDiscogsApi = 'https://www.discogs.com/';
+        $imgRecSpec ='';
+        $recArray = [];
+        $responseContents = [];
+        $videosArray = [];
+        $coverImgCount=0;
+        $guzzleException='';
+        $discogsCredentials = 'key='.$consumeyKey.'&secret='.$consumerSecret;
+        /* auth of type "https://api.discogs.com/database/search?q=Nirvana&key=foo123&secret=bar456" */
+
+        // SI  ON RECOIT UNE REQUETE AJAX
+        if ($request->isXmlHttpRequest()) {
+            $coverImgCount = $request->query->get('count');
+            dump($coverImgCount);die;
+        }
 
 
-        $defaultConfit = [
+            // PREMIERE RECHERCHE AFIN DE TROUVER LOBJET VOULU
+        if($request->request->get('query-discogs')){
+            $this->session->set('discogsQueryResult','');
+            $queryString = $request->request->get('query-discogs');
+            $res = $client->request('GET', 'https://api.discogs.com/database/search?q='.$queryString.'&'.$discogsCredentials);
+            $responseContents = json_decode($res->getBody()->getContents(), true);
+            $pagesOfDiscogsResponse = $responseContents['pagination']['pages'];
+            $recResults = $responseContents['results'];
+            $imgRecSpec = $responseContents['results'][0]['cover_image'];
+            $this->session->set('discogsQueryResult',$responseContents);
 
-        ];
+/*            dump($responseContents);die;*/
+
+
+            // SI ON A DU CONTENU ALORS ON VA LISTER LES RELEASE PAR TYPE DOBJET
+            if($responseContents){
+                if($responseContents['results'][0]['type'] == 'label') {
+                    $client = new Client();
+                    $resSpec = $client->request('GET', 'https://api.discogs.com/labels/'.$responseContents['results'][1]['id'].'/releases?'.$discogsCredentials);
+                    $recArray = json_decode($resSpec->getBody()->getContents(),true);
+                }
+                elseif($responseContents['results'][0]['type'] == 'artist') {
+                    $client = new Client();
+                    $resSpec = $client->request('GET', 'https://api.discogs.com/artists/'.$responseContents['results'][1]['id'].'/releases?'.$discogsCredentials);
+                    $recArray = json_decode($resSpec->getBody()->getContents(),true);
+                }
+                else {
+                    $blop = 2;
+                }
+
+                // ICI ON VIENT CHERCHER LES VIDEOS UNES A UNES
+                if(!empty($recArray)) {
+                    $i=1;
+                    foreach ($recArray['releases'] as $release)
+                    {
+                        $i++;
+                        if($i==4){
+                            break;
+                        }
+                        sleep(2);
+                        $client = new Client();
+                        try{
+                            $resSpec = $client->request('GET', 'https://api.discogs.com/releases/'.$release['id'],
+                                ['exceptions' => false]
+                            );
+                            $releaseInfos = json_decode($resSpec->getBody()->getContents(),true);
+                        } catch (ClientException $exception) {
+                            $guzzleException = $exception->getMessage();
+                            break;
+                        }
+                        if (array_key_exists('videos',$releaseInfos)) {
+                            foreach ($releaseInfos['videos'] as $video){
+                                array_push($videosArray, $video['uri']);
+                            }
+                        }
+                    }
+                    dump($videosArray);die;
+
+                }
+            }
+        }
+
+
         $discogsAuthUri = 'https://api.discogs.com/oauth/request_token';
+        $apiEndPOint = 'https://api.discogs.com/database/search?q=Nirvana&'.$discogsCredentials;
 
-        $client = new GuzzleHttp\Client();
-        $res = $client->request('GET', 'https://api.github.com/user', [
-            'auth' => ['user', 'pass']
+/*        if($pagesOfDiscogsResponse) {
+            $secondPageResponse = $client->request('GET', 'https://api.discogs.com/database/search?q='.$queryString.'&'.$discogsCredentials.'&page=2');
+            $secondPagContent = json_decode($secondPageResponse->getBody()->getContents());
+        }*/
+
+
+        return $this->render('index.html.twig',[
+            'img'=>$imgRecSpec,
+            'responseContents'=>$responseContents,
+            'videosArray'=>$videosArray,
+            'guzzleException'=>$guzzleException
         ]);
-        echo $res->getStatusCode();
 
-        echo $res->getHeader('content-type')[0];
-
-        echo $res->getBody();
-
-        $request = new \GuzzleHttp\Psr7\Request('GET', 'https://api.discogs.com/database/search?q="jah shaka"');
-        $promise = $client->sendAsync($request)->then(function ($response) {
-            echo 'I completed! ' . $response->getBody();
-        });
-        $promise->wait();
+    }
 
 
+    /**
+     * @Route("/ajaxImage", name="ajaxImage")
+     * @param Request $request
+     */
+    public function ajaxImageAction(Request $request){
 
-
-
-
-        return $this->render('index.html.twig');
+        $queryResults = $this->session->get('discogsQueryResult');
+        return new JsonResponse($queryResults);
 
     }
 

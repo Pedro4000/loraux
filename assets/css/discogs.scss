@@ -1,0 +1,14 @@
+.next-research-button,.previous-research-button{
+  height:30px;
+  padding:0;
+  img{
+    height:30px;
+    width: 30px;
+  }
+}
+
+.discogs-query-control-pannel{
+  display: flex;
+  width: 30%;
+  justify-content: space-evenly;
+}

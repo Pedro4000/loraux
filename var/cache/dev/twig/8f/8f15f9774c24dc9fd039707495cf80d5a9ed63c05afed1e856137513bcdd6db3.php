@@ -64,10 +64,14 @@ class __TwigTemplate_425bbedd9520a4014520457934ad8e03278c94cf031448e489a64a8842d
         // line 7
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("index");
         echo " id='landing_link'>Culture Club</a></li>
+            <li><a href=";
+        // line 8
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("sign_up");
+        echo " id='signup_link'>Créer un profil</a></li>
         </ul>
     </nav>
     ";
-        // line 10
+        // line 11
         $this->displayBlock('page_content', $context, $blocks);
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -80,7 +84,7 @@ class __TwigTemplate_425bbedd9520a4014520457934ad8e03278c94cf031448e489a64a8842d
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "page_content"));
 
-        // line 11
+        // line 12
         echo "
     ";
         
@@ -100,7 +104,7 @@ class __TwigTemplate_425bbedd9520a4014520457934ad8e03278c94cf031448e489a64a8842d
 
     public function getDebugInfo()
     {
-        return array (  84 => 11,  71 => 10,  65 => 7,  60 => 4,  53 => 3,  36 => 1,);
+        return array (  88 => 12,  75 => 11,  69 => 8,  65 => 7,  60 => 4,  53 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -112,6 +116,7 @@ class __TwigTemplate_425bbedd9520a4014520457934ad8e03278c94cf031448e489a64a8842d
     <nav class=\"navbar\">
         <ul>
             <li><a href={{ path('index') }} id='landing_link'>Culture Club</a></li>
+            <li><a href={{ path('sign_up') }} id='signup_link'>Créer un profil</a></li>
         </ul>
     </nav>
     {% block page_content %}

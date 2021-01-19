@@ -15,6 +15,7 @@ import '../bootstrap-4.5.3-dist/js/bootstrap.min.js';*/
 import '../css/app.css';
 import '../css/signin.scss';
 import '../css/layout.scss';
+import '../css/discogs.scss';
 
 
 import $ from 'jquery';

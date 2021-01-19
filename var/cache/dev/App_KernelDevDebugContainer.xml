@@ -4,7 +4,7 @@
     <parameter key="kernel.project_dir">C:\Users\Boulanger\dev\cultureClub</parameter>
     <parameter key="kernel.environment">dev</parameter>
     <parameter key="kernel.debug">true</parameter>
-    <parameter key="kernel.cache_dir">C:/Users/Boulanger/dev/cultureClub/var/cache/dev</parameter>
+    <parameter key="kernel.cache_dir">C:\Users\Boulanger\dev\cultureClub\var\cache\dev</parameter>
     <parameter key="kernel.logs_dir">C:\Users\Boulanger\dev\cultureClub\var\log</parameter>
     <parameter key="kernel.bundles" type="collection">
       <parameter key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</parameter>
@@ -60,6 +60,8 @@
     <parameter key="app.google_client_id">%env(GOOGLE_CLIENT_ID)%</parameter>
     <parameter key="app.google_calendar_access_token">%env(GOOGLE_CLIENT_ACCESS_TOKEN)%</parameter>
     <parameter key="app.google_credentials_api_json">%env(google_credentials_api_json)%</parameter>
+    <parameter key="app.discogs_consumer_key">%env(discogs_consumer_key)%</parameter>
+    <parameter key="app.discogs_consumer_secret">%env(discogs_consumer_secret)%</parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
       <parameter key="Symfony\Component\Console\Event\ConsoleCommandEvent">console.command</parameter>
       <parameter key="Symfony\Component\Console\Event\ConsoleErrorEvent">console.error</parameter>
@@ -109,7 +111,7 @@
     <parameter key="asset.request_context.secure">null</parameter>
     <parameter key="data_collector.templates" type="collection"/>
     <parameter key="debug.error_handler.throw_at">-1</parameter>
-    <parameter key="debug.container.dump">C:/Users/Boulanger/dev/cultureClub/var/cache/dev/App_KernelDevDebugContainer.xml</parameter>
+    <parameter key="debug.container.dump">C:\Users\Boulanger\dev\cultureClub\var\cache\dev/App_KernelDevDebugContainer.xml</parameter>
     <parameter key="router.request_context.host">localhost</parameter>
     <parameter key="router.request_context.scheme">http</parameter>
     <parameter key="router.request_context.base_url"></parameter>
@@ -185,7 +187,7 @@
     <parameter key="doctrine.orm.second_level_cache.cache_configuration.class">Doctrine\ORM\Cache\CacheConfiguration</parameter>
     <parameter key="doctrine.orm.second_level_cache.regions_configuration.class">Doctrine\ORM\Cache\RegionsConfiguration</parameter>
     <parameter key="doctrine.orm.auto_generate_proxy_classes">true</parameter>
-    <parameter key="doctrine.orm.proxy_dir">C:/Users/Boulanger/dev/cultureClub/var/cache/dev/doctrine/orm/Proxies</parameter>
+    <parameter key="doctrine.orm.proxy_dir">C:\Users\Boulanger\dev\cultureClub\var\cache\dev/doctrine/orm/Proxies</parameter>
     <parameter key="doctrine.orm.proxy_namespace">Proxies</parameter>
     <parameter key="doctrine.migrations.preferred_em">null</parameter>
     <parameter key="doctrine.migrations.preferred_connection">null</parameter>
@@ -300,7 +302,7 @@
       <tag name="container.no_preload"/>
       <argument type="tagged_iterator" tag="kernel.cache_warmer"/>
       <argument>true</argument>
-      <argument>C:/Users/Boulanger/dev/cultureClub/var/cache/dev/App_KernelDevDebugContainerDeprecations.log</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/App_KernelDevDebugContainerDeprecations.log</argument>
     </service>
     <service id="cache_clearer" class="Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer" public="true">
       <argument type="tagged_iterator" tag="kernel.cache_clearer"/>
@@ -699,7 +701,7 @@
       <tag name="kernel.reset" method="reset"/>
       <argument>msE0ZCW9I6</argument>
       <argument>0</argument>
-      <argument>C:/Users/Boulanger/dev/cultureClub/var/cache/dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="logger" on-invalid="ignore"/>
@@ -714,7 +716,7 @@
       <argument>gBwwqUYDEc</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Boulanger/dev/cultureClub/var/cache/dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -724,7 +726,7 @@
       <argument>RUlLpdncLE</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Boulanger/dev/cultureClub/var/cache/dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -734,7 +736,7 @@
       <argument>XkF58WNLNI</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Boulanger/dev/cultureClub/var/cache/dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -744,7 +746,7 @@
       <argument>RY13zxBChk</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Boulanger/dev/cultureClub/var/cache/dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -754,7 +756,7 @@
       <argument>3KOHYeB13x</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Boulanger/dev/cultureClub/var/cache/dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -764,7 +766,7 @@
       <argument></argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Boulanger/dev/cultureClub/var/cache/dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -793,7 +795,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>C:/Users/Boulanger/dev/cultureClub/var/cache/dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="logger" on-invalid="ignore"/>
@@ -936,7 +938,7 @@
       <deprecated package="symfony/framework-bundle" version="5.1">The "%service_id%" service is deprecated, use "$session-&gt;getAttributeBag()" instead.</deprecated>
     </service>
     <service id="session.storage.mock_file" class="Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage" public="false">
-      <argument>C:/Users/Boulanger/dev/cultureClub/var/cache/dev/sessions</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/sessions</argument>
       <argument>MOCKSESSID</argument>
       <argument type="service" id="session.storage.metadata_bag"/>
     </service>
@@ -1568,7 +1570,7 @@
       <argument type="service" id=".service_locator.vEnWPsK.router.default"/>
       <argument>kernel::loadRoutes</argument>
       <argument type="collection">
-        <argument key="cache_dir">C:/Users/Boulanger/dev/cultureClub/var/cache/dev</argument>
+        <argument key="cache_dir">C:\Users\Boulanger\dev\cultureClub\var\cache\dev</argument>
         <argument key="debug">true</argument>
         <argument key="generator_class">Symfony\Component\Routing\Generator\CompiledUrlGenerator</argument>
         <argument key="generator_dumper_class">Symfony\Component\Routing\Generator\Dumper\CompiledUrlGeneratorDumper</argument>
@@ -1633,7 +1635,7 @@
       <argument type="service" id="routing.loader.annotation"/>
     </service>
     <service id=".2_PhpArrayAdapter~SKyPfX8" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" public="false">
-      <argument>C:/Users/Boulanger/dev/cultureClub/var/cache/dev/annotations.php</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/annotations.php</argument>
       <argument type="service" id="cache.annotations"/>
       <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
     </service>
@@ -1662,7 +1664,7 @@
     <service id="annotations.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\AnnotationsCacheWarmer" public="false">
       <tag name="kernel.cache_warmer"/>
       <argument type="service" id="annotations.reader"/>
-      <argument>C:/Users/Boulanger/dev/cultureClub/var/cache/dev/annotations.php</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/annotations.php</argument>
       <argument>#^Symfony\\(?:Component\\HttpKernel\\|Bundle\\FrameworkBundle\\Controller\\(?!.*Controller$))#</argument>
       <argument>true</argument>
     </service>
@@ -1936,7 +1938,7 @@
       <argument type="service" id="twig.loader.native_filesystem"/>
       <argument type="collection">
         <argument key="autoescape">name</argument>
-        <argument key="cache">C:/Users/Boulanger/dev/cultureClub/var/cache/dev/twig</argument>
+        <argument key="cache">C:\Users\Boulanger\dev\cultureClub\var\cache\dev/twig</argument>
         <argument key="charset">UTF-8</argument>
         <argument key="debug">true</argument>
         <argument key="strict_variables">true</argument>
@@ -2197,11 +2199,11 @@
       <argument type="collection">
         <argument key="_default">C:\Users\Boulanger\dev\cultureClub/public/build/entrypoints.json</argument>
       </argument>
-      <argument>C:/Users/Boulanger/dev/cultureClub/var/cache/dev/webpack_encore.cache.php</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/webpack_encore.cache.php</argument>
       <argument type="service" id="cache.webpack_encore"/>
     </service>
     <service id="webpack_encore.cache" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" public="false">
-      <argument>C:/Users/Boulanger/dev/cultureClub/var/cache/dev/webpack_encore.cache.php</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/webpack_encore.cache.php</argument>
       <argument type="service" id="cache.webpack_encore"/>
       <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
     </service>
@@ -2211,7 +2213,7 @@
       <argument>I9JiwIft+L</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Boulanger/dev/cultureClub/var/cache/dev/pools</argument>
+      <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -2530,7 +2532,7 @@
         <argument type="service" id="doctrine.orm.default_metadata_driver"/>
       </call>
       <call method="setProxyDir">
-        <argument>C:/Users/Boulanger/dev/cultureClub/var/cache/dev/doctrine/orm/Proxies</argument>
+        <argument>C:\Users\Boulanger\dev\cultureClub\var\cache\dev/doctrine/orm/Proxies</argument>
       </call>
       <call method="setProxyNamespace">
         <argument>Proxies</argument>
