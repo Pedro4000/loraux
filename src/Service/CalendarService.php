@@ -53,17 +53,7 @@ class CalendarService extends AbstractController
      */
     public function createGoogleClient($client = null)
     {
-
-
             $this->session->set('auth_code', null);
-            $client = new Google_Client();
-            $client->setAuthConfig('credentials.json');
-            $client->addScope(Google_Service_Calendar::CALENDAR);
-
-            $guzzleClient = new \GuzzleHttp\Client(array('curl' => array(CURLOPT_SSL_VERIFYPEER => false)));
-            $client->setHttpClient($guzzleClient);
-            $authUrl = $client->createAuthUrl();
-
             $client = new Google_Client();
             $client->setAuthConfig('credentials.json');
             $client->addScope(Google_Service_Calendar::CALENDAR);
@@ -72,11 +62,6 @@ class CalendarService extends AbstractController
             $client->setHttpClient($guzzleClient);
             $client->setRedirectUri('http://127.0.0.1:8000/google_redirect_for_calendar');
             $authUrl = $client->createAuthUrl();
-
-
-
-
-
 
 
         if ($this->session->get('access_token')) {
@@ -92,17 +77,10 @@ class CalendarService extends AbstractController
            }
             $client->setAccessToken($this->session->get('access_token'));
             $service = new Google_Service_Calendar($client);
-
             $calendarId = 'primary';
-
             $results = $service->events->listEvents($calendarId);
             return $results->getItems();
-
-        } else {
-
-
         }
-
     }
 
     public function oauth($client)

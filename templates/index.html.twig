@@ -12,7 +12,8 @@
     </section>
     {% if img and responseContents %}
     <section class="discogs-response-section">
-        <img src="{{ img }}" onerror="this.src='{{ asset('build/images/no_image.jpg') }}'" class="research-logo">
+        <img src="{{ img }}" onerror="this.src='{{ asset('build/images/no_image.jpg') }}'" class="research-logo" data-item-type="{{ responseContents['results'][0]['type']}}"
+             data-item-id="{{ responseContents['results'][0]['id']}}" >
         <p class="dj-or-label">Juste pour info c'est un
             {% if responseContents['results'][0]['type'] == 'artist'%}
                 artiste
@@ -28,9 +29,9 @@
              <button type="button" class='previous-research-button discogs-research-button'><img class="previous-discogs-image" src="{{ asset('build/icons/keyboard_arrow_left-24px.svg') }}"></button>
              <button type="button" class='next-research-button discogs-research-button'><img class="next-discogs-image" src="{{ asset('build/icons/keyboard_arrow_right-24px.svg') }}"> </button>
          </div>
-        {% for videoUri in videosArray %}
-            <p><a href="{{ videoUri }}">Allé clicke là</a> </p>
-        {% endfor %}
+        <div class="video-section">
+
+        </div>
     </section>
     {% endif %}
 

@@ -5,6 +5,7 @@
 return [
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], []],
     'index' => [[], ['_controller' => 'App\\Controller\\IndexController::indexAction'], [], [['text', '/index']], [], []],
+    'ajaxLoadVideos' => [[], ['_controller' => 'App\\Controller\\IndexController::ajaxLoadVideosAction'], [], [['text', '/ajaxLoadVideos']], [], []],
     'ajaxImage' => [[], ['_controller' => 'App\\Controller\\IndexController::ajaxImageAction'], [], [['text', '/ajaxImage']], [], []],
     'sign_up' => [[], ['_controller' => 'App\\Controller\\IndexController::signUpAction'], [], [['text', '/sign_up']], [], []],
     'google_redirect_for_calendar' => [[], ['_controller' => 'App\\Controller\\IndexController::getGoogleCalendarRedirectInformationAction'], [], [['text', '/google_redirect_for_calendar']], [], []],

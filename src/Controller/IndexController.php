@@ -16,23 +16,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Asset\Package;
-use Symfony\Component\Asset\VersionStrategy\StaticVersionStrategy;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\Finder\Finder;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use GuzzleHttp\Client;
 use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use Guzzle\Http\Exception\ClientErrorResponseException;
 use GuzzleHttp\Exception\ClientException;
-
-
-
-
-
 
 
 class IndexController extends AbstractController
@@ -68,13 +59,6 @@ class IndexController extends AbstractController
         $discogsCredentials = 'key='.$consumeyKey.'&secret='.$consumerSecret;
         /* auth of type "https://api.discogs.com/database/search?q=Nirvana&key=foo123&secret=bar456" */
 
-        // SI  ON RECOIT UNE REQUETE AJAX
-        if ($request->isXmlHttpRequest()) {
-            $coverImgCount = $request->query->get('count');
-            dump($coverImgCount);die;
-        }
-
-
             // PREMIERE RECHERCHE AFIN DE TROUVER LOBJET VOULU
         if($request->request->get('query-discogs')){
             $this->session->set('discogsQueryResult','');
@@ -86,55 +70,6 @@ class IndexController extends AbstractController
             $imgRecSpec = $responseContents['results'][0]['cover_image'];
             $this->session->set('discogsQueryResult',$responseContents);
 
-/*            dump($responseContents);die;*/
-
-
-            // SI ON A DU CONTENU ALORS ON VA LISTER LES RELEASE PAR TYPE DOBJET
-            if($responseContents){
-                if($responseContents['results'][0]['type'] == 'label') {
-                    $client = new Client();
-                    $resSpec = $client->request('GET', 'https://api.discogs.com/labels/'.$responseContents['results'][1]['id'].'/releases?'.$discogsCredentials);
-                    $recArray = json_decode($resSpec->getBody()->getContents(),true);
-                }
-                elseif($responseContents['results'][0]['type'] == 'artist') {
-                    $client = new Client();
-                    $resSpec = $client->request('GET', 'https://api.discogs.com/artists/'.$responseContents['results'][1]['id'].'/releases?'.$discogsCredentials);
-                    $recArray = json_decode($resSpec->getBody()->getContents(),true);
-                }
-                else {
-                    $blop = 2;
-                }
-
-                // ICI ON VIENT CHERCHER LES VIDEOS UNES A UNES
-                if(!empty($recArray)) {
-                    $i=1;
-                    foreach ($recArray['releases'] as $release)
-                    {
-                        $i++;
-                        if($i==4){
-                            break;
-                        }
-                        sleep(2);
-                        $client = new Client();
-                        try{
-                            $resSpec = $client->request('GET', 'https://api.discogs.com/releases/'.$release['id'],
-                                ['exceptions' => false]
-                            );
-                            $releaseInfos = json_decode($resSpec->getBody()->getContents(),true);
-                        } catch (ClientException $exception) {
-                            $guzzleException = $exception->getMessage();
-                            break;
-                        }
-                        if (array_key_exists('videos',$releaseInfos)) {
-                            foreach ($releaseInfos['videos'] as $video){
-                                array_push($videosArray, $video['uri']);
-                            }
-                        }
-                    }
-                    dump($videosArray);die;
-
-                }
-            }
         }
 
 
@@ -156,6 +91,90 @@ class IndexController extends AbstractController
 
     }
 
+    /**
+     * @Route("/ajaxLoadVideos", name="ajaxLoadVideos")
+     * @param Request $request
+     * @param int $itemId
+     * @param string $itemType
+     * @return JsonResponse
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function ajaxLoadVideosAction(Request $request){
+
+        $id = $request->query->get('id');
+        $type = $request->query->get('type');
+        $consumeyKey = $this->getParameter('app.discogs_consumer_key');
+        $consumerSecret = $this->getParameter('app.discogs_consumer_secret');
+        $baseDiscogsApi = 'https://api.discogs.com/';
+        $recArray = [];
+        $videosArray = [];
+        $artists = '';
+        $guzzleException= '';
+        $discogsCredentials = 'key='.$consumeyKey.'&secret='.$consumerSecret;
+        $responseContents=[];
+
+
+        // SI ON A DU CONTENU ALORS ON VA LISTER LES RELEASE PAR TYPE DOBJET
+        if($type == 'label') {
+            $client = new Client();
+            $resSpec = $client->request('GET', $baseDiscogsApi.'labels/'.$id.'/releases?'.$discogsCredentials);
+            $recArray = json_decode($resSpec->getBody()->getContents(),true);
+        }
+        elseif($type == 'artist') {
+            $client = new Client();
+            $resSpec = $client->request('GET', $baseDiscogsApi.'artists/'.$id.'/releases?'.$discogsCredentials);
+            $recArray = json_decode($resSpec->getBody()->getContents(),true);
+        }
+        else {
+            $blop = 2;
+        }
+
+        // ICI ON VIENT CHERCHER LES VIDEOS UNES A UNES
+        if(!empty($recArray)) {
+            $i=1;
+            foreach ($recArray['releases'] as $release)
+            {
+                $i++;
+                if($i==4){
+                    break;
+                }
+                sleep(2);
+                $client = new Client();
+                try{
+                    $resSpec = $client->request('GET', $baseDiscogsApi.'releases/'.$release['id'],
+                        ['exceptions' => false]
+                    );
+                    $releaseInfos = json_decode($resSpec->getBody()->getContents(),true);
+                } catch (ClientException $exception) {
+                    $guzzleException = $exception->getMessage();
+                    break;
+                }
+
+                foreach ($releaseInfos['artists'] as $key => $artist) {
+                    if ($key == array_key_first($releaseInfos['artists'])){
+                        $artists = $artist['name'];
+                    }
+                    else {
+                        $artists .= ', '.$artist['name'];
+                    }
+                }
+
+                if (array_key_exists('videos',$releaseInfos)) {
+                    foreach ($releaseInfos['videos'] as $video){
+                        array_push($videosArray, [
+                            'videoUri'=> $video['uri'],
+                            'artists'=> $artists,
+                            'videoName'=> $video['title']
+                                ]
+                        );
+                    }
+                }
+            }
+        }
+
+        return new JsonResponse([$guzzleException, $videosArray]);
+
+    }
 
     /**
      * @Route("/ajaxImage", name="ajaxImage")
