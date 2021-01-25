@@ -57,10 +57,15 @@ $(document).ready(function(){
         }).done(function(response) {
             queryResult = response;
             for (i=0; i <= queryResult[1].length; i++) {
-                console.log('ok');
+                console.log(response);
+/*
                 $('.video-section').append('<p><a href='+queryResult[1][i]['videoUri']+'>Allé clicke là - '+queryResult[1][i]['videoName']+'</a> </p>')
+*/
             }
+            $('.video-section').append('<p><a href="http://127.0.0.1:8000/createYoutubePlaylist">Créer la playlist</a> </p>')
         });
+
+
 
         $videosss = {
             0 : "",

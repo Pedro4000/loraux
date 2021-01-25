@@ -112,6 +112,7 @@ class IndexController extends AbstractController
         $guzzleException= '';
         $discogsCredentials = 'key='.$consumeyKey.'&secret='.$consumerSecret;
         $responseContents=[];
+        $this->session->set('videosToPutInPlaylist','');
 
 
         // SI ON A DU CONTENU ALORS ON VA LISTER LES RELEASE PAR TYPE DOBJET
@@ -128,7 +129,6 @@ class IndexController extends AbstractController
         else {
             $blop = 2;
         }
-
         // ICI ON VIENT CHERCHER LES VIDEOS UNES A UNES
         if(!empty($recArray)) {
             $i=1;
@@ -169,6 +169,7 @@ class IndexController extends AbstractController
                         );
                     }
                 }
+                $this->session->set('videosToPutInPlaylist',$videosArray);
             }
         }
 
