@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Artist;
+use App\Entity\Label;
+use App\Entity\Release;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Service\CalendarService;
@@ -24,6 +27,8 @@ use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use Guzzle\Http\Exception\ClientErrorResponseException;
 use GuzzleHttp\Exception\ClientException;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 
 class IndexController extends AbstractController
@@ -32,7 +37,7 @@ class IndexController extends AbstractController
     private $client;
     public $em;
 
-    public function __construct (Google_Client $client, ParameterBagInterface $params, SessionInterface $session )
+    public function __construct (Google_Client $client, ParameterBagInterface $params, SessionInterface $session)
     {
         $this->client = $client;
         $this->params = $params;
@@ -112,42 +117,118 @@ class IndexController extends AbstractController
         $guzzleException= '';
         $discogsCredentials = 'key='.$consumeyKey.'&secret='.$consumerSecret;
         $responseContents=[];
+        $videosArray['releases'] = [];
         $this->session->set('videosToPutInPlaylist','');
+        $em =$this->getDoctrine()->getManager();
 
 
         // SI ON A DU CONTENU ALORS ON VA LISTER LES RELEASE PAR TYPE DOBJET
         if($type == 'label') {
             $client = new Client();
             $resSpec = $client->request('GET', $baseDiscogsApi.'labels/'.$id.'/releases?'.$discogsCredentials);
+            $labelInfos = $client->request('GET', $baseDiscogsApi.'labels/'.$id.'?'.$discogsCredentials);
+            $labelInfos = json_decode($labelInfos->getBody()->getContents(),true);
             $recArray = json_decode($resSpec->getBody()->getContents(),true);
+
+            if(!$this->getDoctrine()
+                ->getRepository(Label::class)
+                ->findBy([ 'discogsId' => $labelInfos['id']])){
+                $newLabel = new Label();
+                $newLabel->setName($labelInfos['name']);
+                $newLabel->setDiscogsId($labelInfos['id']);
+                $em->persist($newLabel);
+                $em->flush();
+            };
         }
         elseif($type == 'artist') {
             $client = new Client();
             $resSpec = $client->request('GET', $baseDiscogsApi.'artists/'.$id.'/releases?'.$discogsCredentials);
+            $artistInfos = $client->request('GET', $baseDiscogsApi.'artists/'.$id.'?'.$discogsCredentials);
+            $artistInfos = json_decode($artistInfos->getBody()->getContents(),true);
             $recArray = json_decode($resSpec->getBody()->getContents(),true);
+
+            if(!$this->getDoctrine()
+                ->getRepository(Artist::class)
+                ->findBy([ 'discogsId' => $artistInfos['id']])){
+                $newArtist = new Artist();
+                $newArtist->setName($artistInfos['name']);
+                $newArtist->setDiscogsId($artistInfos['id']);
+                $em->persist($newArtist);
+                $em->flush();
+            };
+
         }
         else {
             $blop = 2;
         }
+
+
+
+
         // ICI ON VIENT CHERCHER LES VIDEOS UNES A UNES
         if(!empty($recArray)) {
             $i=1;
             foreach ($recArray['releases'] as $release)
             {
-                $i++;
+/*                $i++;
                 if($i==4){
                     break;
+                }*/
+
+
+                // On crée l'artiste si il ne sont pas présent en BDD
+
+
+                $labelInMyDb = $this->getDoctrine()
+                    ->getRepository(Release::class)
+                    ->findBy([ 'discogsId' => $labelInfos['id']]);
+
+
+
+                if(!$this->getDoctrine()
+                    ->getRepository(Release::class)
+                    ->findBy([ 'discogsId' => $release['id']]))
+                {
+                    try{
+                        $client = new Client();
+                        $resSpec = $client->request('GET', $baseDiscogsApi.'releases/'.$release['id'],
+                            ['exceptions' => false]
+                        );
+                        $releaseInfos = json_decode($resSpec->getBody()->getContents(),true);
+
+                        foreach($releaseInfos['artists'] as $artist) {
+                            $artistInfos = $client->request('GET', $baseDiscogsApi.'artists/'.$releaseInfos['artists']['0']['id'].'?'.$discogsCredentials);
+                            $artistInfos= json_decode($artistInfos->getBody()->getContents(),true);
+                            $newArtist = new Artist();
+                            $newArtist->setName($artistInfos['name']);
+                            $newArtist->setDiscogsId($artistInfos['id']);
+                        }
+
+
+
+                        $newArtist = new Artist();
+                        $newArtist->setName($artistInfos['name']);
+                        $newArtist->setDiscogsId($artistInfos['id']);
+
+                        $newRelease = new Release();
+                        $newRelease->setDiscogsId($releaseInfos['id']);
+                        $newRelease->addArtist();
+
+
+
+
+                    } catch (ClientException $exception) {
+                        $guzzleException = $exception->getMessage();
+                        break;
+                    }
                 }
+
                 sleep(2);
                 $client = new Client();
-                try{
-                    $resSpec = $client->request('GET', $baseDiscogsApi.'releases/'.$release['id'],
-                        ['exceptions' => false]
-                    );
-                    $releaseInfos = json_decode($resSpec->getBody()->getContents(),true);
-                } catch (ClientException $exception) {
-                    $guzzleException = $exception->getMessage();
-                    break;
+
+
+                if($releaseInfos['artists'][0]['name']=='Various'){
+                    dump($releaseInfos);die;
                 }
 
                 foreach ($releaseInfos['artists'] as $key => $artist) {
@@ -158,10 +239,10 @@ class IndexController extends AbstractController
                         $artists .= ', '.$artist['name'];
                     }
                 }
-
                 if (array_key_exists('videos',$releaseInfos)) {
+                    $videosArray['label']= $releaseInfos['labels']['0']['name'];
                     foreach ($releaseInfos['videos'] as $video){
-                        array_push($videosArray, [
+                        array_push($videosArray['releases'], [
                             'videoUri'=> $video['uri'],
                             'artists'=> $artists,
                             'videoName'=> $video['title']
@@ -172,7 +253,6 @@ class IndexController extends AbstractController
                 $this->session->set('videosToPutInPlaylist',$videosArray);
             }
         }
-
         return new JsonResponse([$guzzleException, $videosArray]);
 
     }

@@ -152,26 +152,24 @@ class YoutubeController extends AbstractController
             // Add 'snippet' object to the $playlist object.
             $playlistSnippet = new Google_Service_YouTube_PlaylistSnippet();
             $playlistSnippet->setDefaultLanguage('fr');
-            $playlistSnippet->setDescription('On va créer une première playlist');
+            $playlistSnippet->setDescription('Playlist pour le label '.$videosArrayFromDiscogs['label']);
 /*            $playlistSnippet->setTags(['sample playlist', 'API call']);*/
-            $playlistSnippet->setTitle('Playlist mega sure');
+            $playlistSnippet->setTitle($videosArrayFromDiscogs['label']);
             $playlist->setSnippet($playlistSnippet);
 
             // Add 'status' object to the $playlist object.
             $playlistStatus = new Google_Service_YouTube_PlaylistStatus();
-            $playlistStatus->setPrivacyStatus('private');
+            $playlistStatus->setPrivacyStatus('public');
             $playlist->setStatus($playlistStatus);
 
             $responseForPlaylistCreation = $service->playlists->insert('snippet,status', $playlist);
 
             $newPlaylistId = $responseForPlaylistCreation['id'];
-            dump($newPlaylistId);die;
-
 
             // Partie ou on va ajouter les playlists items donc les vidéos, à la playlist
             // Define the $playlistItem object, which will be uploaded as the request body.
 
-            foreach($videosArrayFromDiscogs as $videoFromDiscogs){
+            foreach($videosArrayFromDiscogs['releases'] as $videoFromDiscogs){
 
                 $videoId = explode('&',explode('v=',  $videoFromDiscogs['videoUri'])[1])[0];
                 $playlistItem = new Google_Service_YouTube_PlaylistItem();
@@ -187,16 +185,8 @@ class YoutubeController extends AbstractController
                 $response = $service->playlistItems->insert('snippet', $playlistItem);
             }
 
-            dump('ok');die;
 
-
-
-
-
-
-
-
-            return $results->getItems();
+            return $this->redirect("index");
         }
     }
 

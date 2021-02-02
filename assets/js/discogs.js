@@ -27,7 +27,6 @@ $(document).ready(function(){
                 url: "/ajaxImage"
             }).done(function(response) {
                 queryResult = response;
-                console.log(queryResult['results'][i]['cover_image'], queryResult);
                 $('.research-logo').attr('src',queryResult['results'][i]['cover_image']);
                 $('.research-logo').attr('data-item-type',queryResult['results'][i]['type']);
                 $('.research-logo').attr('data-item-id',queryResult['results'][i]['id']);
@@ -35,7 +34,6 @@ $(document).ready(function(){
             });
         }
         else {
-            console.log("Juste pour info c'est un"+queryResult['results'][i]['type']);
             $('.research-logo').attr('src',queryResult['results'][i]['cover_image']);
             $('.research-logo').attr('data-item-type',queryResult['results'][i]['type']);
             $('.research-logo').attr('data-item-id',queryResult['results'][i]['id']);
@@ -50,22 +48,18 @@ $(document).ready(function(){
         let i;
         type = $('.research-logo').attr('data-item-type');
         id = $('.research-logo').attr('data-item-id');
-        console.log(id,type);
         $.ajax({
             data: {id:id,type:type},
             url: "/ajaxLoadVideos"
         }).done(function(response) {
             queryResult = response;
             for (i=0; i <= queryResult[1].length; i++) {
-                console.log(response);
 /*
                 $('.video-section').append('<p><a href='+queryResult[1][i]['videoUri']+'>Allé clicke là - '+queryResult[1][i]['videoName']+'</a> </p>')
 */
             }
             $('.video-section').append('<p><a href="http://127.0.0.1:8000/createYoutubePlaylist">Créer la playlist</a> </p>')
         });
-
-
 
         $videosss = {
             0 : "",

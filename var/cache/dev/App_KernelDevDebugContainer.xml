@@ -237,6 +237,22 @@
     <service id="App\Form\UsersType" class="App\Form\UsersType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Repository\ArtistRepository" class="App\Repository\ArtistRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\LabelRepository" class="App\Repository\LabelRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\ReleaseRepository" class="App\Repository\ReleaseRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\TrackRepository" class="App\Repository\TrackRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -2386,7 +2402,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.ptFjzsg"/>
+      <argument type="service" id=".service_locator.k.IUBYC"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -2879,6 +2895,14 @@
     <service id=".abstract.instanceof.App\Form\UserType" class="App\Form\UserType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\UsersType" class="App\Form\UsersType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\UsersType" class="App\Form\UsersType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ArtistRepository" class="App\Repository\ArtistRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ArtistRepository" class="App\Repository\ArtistRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\LabelRepository" class="App\Repository\LabelRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\LabelRepository" class="App\Repository\LabelRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ReleaseRepository" class="App\Repository\ReleaseRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ReleaseRepository" class="App\Repository\ReleaseRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\TrackRepository" class="App\Repository\TrackRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\TrackRepository" class="App\Repository\TrackRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Service\CalendarService" class="App\Service\CalendarService" autowire="true" abstract="true"/>
@@ -3246,9 +3270,13 @@
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
       </argument>
     </service>
-    <service id=".service_locator.ptFjzsg" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.k.IUBYC" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Repository\ArtistRepository" type="service" id="App\Repository\ArtistRepository"/>
+        <argument key="App\Repository\LabelRepository" type="service" id="App\Repository\LabelRepository"/>
+        <argument key="App\Repository\ReleaseRepository" type="service" id="App\Repository\ReleaseRepository"/>
+        <argument key="App\Repository\TrackRepository" type="service" id="App\Repository\TrackRepository"/>
         <argument key="App\Repository\UserRepository" type="service" id="App\Repository\UserRepository"/>
       </argument>
     </service>
