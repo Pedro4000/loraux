@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ArtistRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,6 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Artist
 {
+
+    public function __construct()
+    {
+        $this->releases = new ArrayCollection();
+        $this->tracks = new ArrayCollection();
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -29,9 +37,14 @@ class Artist
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Release", inversedBy="artists")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Release", mappedBy="artists")
      */
     private $releases;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Track", mappedBy="artists")
+     */
+    private $tracks;
 
     /**
      * @return mixed
@@ -66,17 +79,17 @@ class Artist
     }
 
     /**
-     * @return array
+     * @return mixed
      */
-    public function getName(): array
+    public function getName()
     {
         return $this->name;
     }
 
     /**
-     * @param array $name
+     * @param mixed $name
      */
-    public function setName(array $name): void
+    public function setName($name): void
     {
         $this->name = $name;
     }
@@ -96,6 +109,31 @@ class Artist
     {
         $this->releases = $releases;
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getTracks(): ArrayCollection
+    {
+        return $this->tracks;
+    }
+
+    public function addTrack(Track $track): self
+    {
+        if (!$this->tracks->contains($track)) {
+            $this->tracks[] = $track;
+        }
+        return $this;
+    }
+    public function removeTrack(Track $track): self
+    {
+        if ($this->tracks->contains($track)) {
+            $this->tracks->removeElement($track);
+        }
+        return $this;
+    }
+
+
 
 
 

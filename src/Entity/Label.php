@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\LabelRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,6 +12,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Label
 {
+
+
+    public function __construct()
+    {
+        $this->labels = new ArrayCollection();
+        $this->artists = new ArrayCollection();
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -24,7 +33,7 @@ class Label
     private $discogsId;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Release", inversedBy="labels")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Release", mappedBy="labels")
      */
     private $releases;
 

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ReleaseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,6 +12,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Release
 {
+
+
+    public function __construct()
+    {
+        $this->labels = new ArrayCollection();
+        $this->artists = new ArrayCollection();
+        $this->tracks = new ArrayCollection();
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -39,14 +49,19 @@ class Release
     private $artists;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $releaseDate;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Track", mappedBy="Release")
+     * @ORM\OneToMany(targetEntity="App\Entity\Track", mappedBy="release")
      */
     private $tracks;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
 
 
     public function getId(): ?int
@@ -78,17 +93,31 @@ class Release
         return $this;
     }
 
-    public function getLabels(): ?array
+    /**
+     * @return mixed
+     */
+    public function getLabels()
     {
         return $this->labels;
     }
 
-    public function setLabels(?array $labels): self
+    public function addLabel(Label $label): self
     {
-        $this->labels = $labels;
-
+        if (!$this->labels->contains($label)) {
+            $this->labels[] = $label;
+            $label->addRelease($this);
+        }
         return $this;
     }
+    public function removeLabel(Label $label): self
+    {
+        if ($this->labels->contains($label)) {
+            $this->labels->removeElement($label);
+            $label->removeRelease($this);
+        }
+        return $this;
+    }
+
 
     /**
      * @return mixed
@@ -96,14 +125,6 @@ class Release
     public function getArtists()
     {
         return $this->artists;
-    }
-
-    /**
-     * @param mixed $artists
-     */
-    public function setArtists($artists): void
-    {
-        $this->artists = $artists;
     }
 
     public function addArtist(Artist $artist): self
@@ -146,12 +167,41 @@ class Release
         return $this->tracks;
     }
 
-    /**
-     * @param mixed $tracks
-     */
-    public function setTracks($tracks): void
+    public function addTrack(Track $track): self
     {
-        $this->tracks = $tracks;
+        if (!$this->tracks->contains($track)) {
+            $this->tracks[] = $track;
+        }
+        return $this;
     }
+
+    public function removeTrack(Track $track): self
+    {
+        if ($this->tracks->contains($track)) {
+            $this->tracks->removeElement($track);
+        }
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name): void
+    {
+        $this->name = $name;
+    }
+
+
+
+
+
 
 }

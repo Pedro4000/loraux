@@ -217,6 +217,7 @@
       <argument type="service" id="Google_Client"/>
       <argument type="service" id="parameter_bag"/>
       <argument type="service" id="session"/>
+      <argument type="service" id="App\Service\DiscogsService"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.g9CqTPp.App\Controller\IndexController"/>
       </call>
@@ -266,6 +267,9 @@
       <call method="setContainer">
         <argument type="service" id=".service_locator.g9CqTPp.App\Service\CalendarService"/>
       </call>
+    </service>
+    <service id="App\Service\DiscogsService" class="App\Service\DiscogsService" autowire="true" autoconfigure="true">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
     </service>
     <service id="App\Service\MailToNewMember" class="App\Service\MailToNewMember" autowire="true" autoconfigure="true"/>
     <service id="argument_metadata_factory" class="Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory" public="false"/>

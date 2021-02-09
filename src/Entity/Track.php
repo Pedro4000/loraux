@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TrackRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Track
 {
+
+    public function __construct(){
+        $this->artists = new ArrayCollection();
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -21,17 +28,17 @@ class Track
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name = [];
+    private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Release", inversedBy="artists")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Release", inversedBy="tracks")
      */
-    private $releases;
+    private $release;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Artist", inversedBy="tracks")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Artist", inversedBy="tracks")
      */
-    private $artist;
+    private $artists;
 
     /**
      * @return mixed
@@ -50,52 +57,69 @@ class Track
     }
 
     /**
-     * @return array
+     * @return mixed
      */
-    public function getName(): array
+    public function getRelease()
+    {
+        return $this->release;
+    }
+
+    /**
+     * @param mixed $release
+     */
+    public function setRelease($release): self
+    {
+        $this->release = $release;
+        return $this;
+    }
+
+    /**
+     * @return Collection|Artist[]
+     */
+    public function getArtists() : Collection
+    {
+        return $this->artists;
+    }
+
+    public function addArtist(Artist $artist): self
+    {
+        if (!$this->artists->contains($artist)) {
+            $this->artists[] = $artist;
+            $artist->addTrack($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArtist(Product $artist): self
+    {
+        if ($this->artists->contains($artist)) {
+            $this->artists->removeElement($artist);
+            // set the owning side to null (unless already changed)
+            if ($artist->getTracks() === $this) {
+                $artist->setTrack(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
     {
         return $this->name;
     }
 
     /**
-     * @param array $name
+     * @param mixed $name
      */
-    public function setName(array $name): void
+    public function setName($name): void
     {
         $this->name = $name;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getReleases()
-    {
-        return $this->releases;
-    }
-
-    /**
-     * @param mixed $releases
-     */
-    public function setReleases($releases): void
-    {
-        $this->releases = $releases;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getArtist()
-    {
-        return $this->artist;
-    }
-
-    /**
-     * @param mixed $artist
-     */
-    public function setArtist($artist): void
-    {
-        $this->artist = $artist;
-    }
 
 
 
