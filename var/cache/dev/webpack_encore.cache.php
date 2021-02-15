@@ -10,6 +10,19 @@ return [[
 
 0 => [
     'entrypoints' => [
+        'signup' => [
+            'js' => [
+                '/build/runtime.js',
+                '/build/signup.js',
+            ],
+        ],
+        'index' => [
+            'js' => [
+                '/build/runtime.js',
+                '/build/vendors~index.js',
+                '/build/index.js',
+            ],
+        ],
         'app' => [
             'js' => [
                 '/build/runtime.js',
@@ -18,12 +31,6 @@ return [[
             ],
             'css' => [
                 '/build/app.css',
-            ],
-        ],
-        'signup' => [
-            'js' => [
-                '/build/runtime.js',
-                '/build/signup.js',
             ],
         ],
     ],

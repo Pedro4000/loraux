@@ -109,7 +109,11 @@ class __TwigTemplate_612c3c750cc7b9bb3a02e9b2e443cddeb886ee0bb05986565e859646645
         ";
             }
             // line 27
-            echo "         <div class=\"discogs-query-control-pannel\">
+            echo "         <div class=\"discogs-query-control-pannel\" data-pages=\"";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["discogsQueryInfos"]) || array_key_exists("discogsQueryInfos", $context) ? $context["discogsQueryInfos"] : (function () { throw new RuntimeError('Variable "discogsQueryInfos" does not exist.', 27, $this->source); })()), "pages", [], "any", false, false, false, 27), "html", null, true);
+            echo "\" data-elements=\"";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["discogsQueryInfos"]) || array_key_exists("discogsQueryInfos", $context) ? $context["discogsQueryInfos"] : (function () { throw new RuntimeError('Variable "discogsQueryInfos" does not exist.', 27, $this->source); })()), "totalLength", [], "any", false, false, false, 27), "html", null, true);
+            echo "\">
              <button type=\"button\" class=\"good-answer-ma-man\">Yesss c ca</button>
              <button type=\"button\" class='previous-research-button discogs-research-button'><img class=\"previous-discogs-image\" src=\"";
             // line 29
@@ -146,7 +150,7 @@ class __TwigTemplate_612c3c750cc7b9bb3a02e9b2e443cddeb886ee0bb05986565e859646645
 
     public function getDebugInfo()
     {
-        return array (  130 => 37,  120 => 30,  116 => 29,  112 => 27,  106 => 25,  104 => 24,  100 => 22,  94 => 21,  90 => 19,  88 => 18,  83 => 16,  75 => 15,  72 => 14,  70 => 13,  59 => 4,  52 => 3,  35 => 1,);
+        return array (  134 => 37,  124 => 30,  120 => 29,  112 => 27,  106 => 25,  104 => 24,  100 => 22,  94 => 21,  90 => 19,  88 => 18,  83 => 16,  75 => 15,  72 => 14,  70 => 13,  59 => 4,  52 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -177,7 +181,7 @@ class __TwigTemplate_612c3c750cc7b9bb3a02e9b2e443cddeb886ee0bb05986565e859646645
         {% if guzzleException %}
             <p>{{ guzzleException }}</p>
         {% endif %}
-         <div class=\"discogs-query-control-pannel\">
+         <div class=\"discogs-query-control-pannel\" data-pages=\"{{ discogsQueryInfos.pages }}\" data-elements=\"{{ discogsQueryInfos.totalLength }}\">
              <button type=\"button\" class=\"good-answer-ma-man\">Yesss c ca</button>
              <button type=\"button\" class='previous-research-button discogs-research-button'><img class=\"previous-discogs-image\" src=\"{{ asset('build/icons/keyboard_arrow_left-24px.svg') }}\"></button>
              <button type=\"button\" class='next-research-button discogs-research-button'><img class=\"next-discogs-image\" src=\"{{ asset('build/icons/keyboard_arrow_right-24px.svg') }}\"> </button>

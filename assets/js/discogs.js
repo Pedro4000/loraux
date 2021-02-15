@@ -1,8 +1,13 @@
 $(document).ready(function(){
-    const discogsArrayLenght = 49;
+    const howManyTabs = 5;
+    const discogsArrayLenght = $('.discogs-query-control-pannel').data('elements')-1;
     let i = 0;
+    let j= 0;
+    let k= howManyTabs;
     let queryResult;
     let direction;
+    let gotWholeResult = false;
+    let videosLinks = [];
     $('.discogs-research-button').on('click',function(e){
         direction = e.target.className.split('-')[0];
         if(direction=='next'){
@@ -21,7 +26,8 @@ $(document).ready(function(){
                 i--;
             }
         }
-        if(i==1){
+        if(!gotWholeResult){
+            gotWholeResult = true;
             $.ajax({
                 data: {count:i},
                 url: "/ajaxImage"
@@ -41,7 +47,6 @@ $(document).ready(function(){
         }
     });
 
-
     $('.good-answer-ma-man').on('click',function(e){
         let id;
         let type;
@@ -54,12 +59,50 @@ $(document).ready(function(){
         }).done(function(response) {
             queryResult = response;
             for (i=0; i <= queryResult[1].length; i++) {
-/*
-                $('.video-section').append('<p><a href='+queryResult[1][i]['videoUri']+'>Allé clicke là - '+queryResult[1][i]['videoName']+'</a> </p>')
-*/
+
             }
+/*
             $('.video-section').append('<p><a href="http://127.0.0.1:8000/createYoutubePlaylist">Créer la playlist</a> </p>')
+*/
+            for(i=0; i<5; i++){
+                videosLinks.push(queryResult[1][i]);
+            }
+            $('.video-section').append('<p><button type="button" class="open-links-in-new-tab" data-uri='+videosLinks+'>Ouvrir cinq onglets</button> </p>')
+            console.log(queryResult);
         });
+
+
+
+    $(document).on('click','.open-links-in-new-tab',function(e){
+        console.log($('.open-links-in-new-tab').data("uri"));
+        let videosArray = $('.open-links-in-new-tab').data('uri');
+        let l;
+        let m=1;
+        j+=5;
+        k+=5;
+        videosArray = videosArray.split(',');
+        console.log(videosArray.length);
+       for(i=0; i<videosArray.length; i++){
+           win = window.open(videosArray[i]);
+           win.blur()
+           window.focus();
+       }
+        m=1;
+        videosLinks=[];
+        for(l=j; l<k ; l++){
+            if(m==1){
+                videosLinks= queryResult[1][l]+',';
+                m=2;
+                continue;
+            }
+            if(l==k-1){
+                videosLinks = videosLinks+queryResult[1][l];
+            }else{
+                videosLinks = videosLinks+queryResult[1][l]+',';
+            }
+            $('.open-links-in-new-tab').data("uri",videosLinks);
+        }
+    });
 
         $videosss = {
             0 : "",

@@ -18,6 +18,7 @@ class Label
     {
         $this->labels = new ArrayCollection();
         $this->artists = new ArrayCollection();
+        $this->releases = new ArrayCollection();
     }
 
     /**
@@ -41,6 +42,12 @@ class Label
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $lastTimeFullyScraped;
 
     /**
      * @return mixed
@@ -111,6 +118,22 @@ class Label
     public function setName($name): void
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastTimeFullyScraped()
+    {
+        return $this->lastTimeFullyScraped;
+    }
+
+    /**
+     * @param mixed $lastTimeFullyScraped
+     */
+    public function setLastTimeFullyScraped($lastTimeFullyScraped): void
+    {
+        $this->lastTimeFullyScraped = $lastTimeFullyScraped;
     }
 
 
