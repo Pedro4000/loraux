@@ -70,8 +70,8 @@ class __TwigTemplate_ccada23f8dad0a42fd5582983a30a3ee11248ccccce60352c4385f9a1d4
         <form method=\"post\" >
             <label for=\"query\">Votre recherche</label>
             <input type=\"text\" id=\"query-discogs\" name=\"query-discogs\">
-            <button type=\"submit\">Cherche ma frye</button>
-            <button type=\"reset\">Annule</button>
+            <button type=\"submit btn btn-light\" id=\"discogs-query-research-button\">Cherche ma frye</button>
+            <button type=\"reset btn btn-light\" id=\"discogs-query-cancel-button\">Annule</button>
         </form>
     </section>
     ";
@@ -80,60 +80,63 @@ class __TwigTemplate_ccada23f8dad0a42fd5582983a30a3ee11248ccccce60352c4385f9a1d4
             // line 14
             echo "    <section class=\"discogs-response-section\">
         <div class=\"discogs-result-display\">
-            <img src=\"";
-            // line 16
-            echo twig_escape_filter($this->env, (isset($context["img"]) || array_key_exists("img", $context) ? $context["img"] : (function () { throw new RuntimeError('Variable "img" does not exist.', 16, $this->source); })()), "html", null, true);
+            <div class=\"stay-put\">
+                <img src=\"";
+            // line 17
+            echo twig_escape_filter($this->env, (isset($context["img"]) || array_key_exists("img", $context) ? $context["img"] : (function () { throw new RuntimeError('Variable "img" does not exist.', 17, $this->source); })()), "html", null, true);
             echo "\" onerror=\"this.src='";
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/images/no_image.jpg"), "html", null, true);
             echo "'\" class=\"research-logo\" data-item-type=\"";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["responseContents"]) || array_key_exists("responseContents", $context) ? $context["responseContents"] : (function () { throw new RuntimeError('Variable "responseContents" does not exist.', 16, $this->source); })()), "results", [], "array", false, false, false, 16), 0, [], "array", false, false, false, 16), "type", [], "array", false, false, false, 16), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["responseContents"]) || array_key_exists("responseContents", $context) ? $context["responseContents"] : (function () { throw new RuntimeError('Variable "responseContents" does not exist.', 17, $this->source); })()), "results", [], "array", false, false, false, 17), 0, [], "array", false, false, false, 17), "type", [], "array", false, false, false, 17), "html", null, true);
             echo "\"
-                 data-item-id=\"";
-            // line 17
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["responseContents"]) || array_key_exists("responseContents", $context) ? $context["responseContents"] : (function () { throw new RuntimeError('Variable "responseContents" does not exist.', 17, $this->source); })()), "results", [], "array", false, false, false, 17), 0, [], "array", false, false, false, 17), "id", [], "array", false, false, false, 17), "html", null, true);
+                     data-item-id=\"";
+            // line 18
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["responseContents"]) || array_key_exists("responseContents", $context) ? $context["responseContents"] : (function () { throw new RuntimeError('Variable "responseContents" does not exist.', 18, $this->source); })()), "results", [], "array", false, false, false, 18), 0, [], "array", false, false, false, 18), "id", [], "array", false, false, false, 18), "html", null, true);
             echo "\" >
+            </div>
+
             <p class=\"dj-or-label\">Juste pour info c'est un
-                ";
-            // line 19
-            if ((0 === twig_compare(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["responseContents"]) || array_key_exists("responseContents", $context) ? $context["responseContents"] : (function () { throw new RuntimeError('Variable "responseContents" does not exist.', 19, $this->source); })()), "results", [], "array", false, false, false, 19), 0, [], "array", false, false, false, 19), "type", [], "array", false, false, false, 19), "artist"))) {
-                // line 20
-                echo "                    artiste
-                ";
+                    ";
+            // line 22
+            if ((0 === twig_compare(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["responseContents"]) || array_key_exists("responseContents", $context) ? $context["responseContents"] : (function () { throw new RuntimeError('Variable "responseContents" does not exist.', 22, $this->source); })()), "results", [], "array", false, false, false, 22), 0, [], "array", false, false, false, 22), "type", [], "array", false, false, false, 22), "artist"))) {
+                // line 23
+                echo "                        artiste
+                    ";
             } else {
-                // line 22
-                echo "                    ";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["responseContents"]) || array_key_exists("responseContents", $context) ? $context["responseContents"] : (function () { throw new RuntimeError('Variable "responseContents" does not exist.', 22, $this->source); })()), "results", [], "array", false, false, false, 22), 0, [], "array", false, false, false, 22), "type", [], "array", false, false, false, 22), "html", null, true);
+                // line 25
+                echo "                        ";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["responseContents"]) || array_key_exists("responseContents", $context) ? $context["responseContents"] : (function () { throw new RuntimeError('Variable "responseContents" does not exist.', 25, $this->source); })()), "results", [], "array", false, false, false, 25), 0, [], "array", false, false, false, 25), "type", [], "array", false, false, false, 25), "html", null, true);
                 echo "
+                    ";
+            }
+            // line 26
+            echo "</p>
+                <p>Alors c'est ça ?</p>
+                ";
+            // line 28
+            if ((isset($context["guzzleException"]) || array_key_exists("guzzleException", $context) ? $context["guzzleException"] : (function () { throw new RuntimeError('Variable "guzzleException" does not exist.', 28, $this->source); })())) {
+                // line 29
+                echo "                    <p>";
+                echo twig_escape_filter($this->env, (isset($context["guzzleException"]) || array_key_exists("guzzleException", $context) ? $context["guzzleException"] : (function () { throw new RuntimeError('Variable "guzzleException" does not exist.', 29, $this->source); })()), "html", null, true);
+                echo "</p>
                 ";
             }
-            // line 23
-            echo "</p>
-            <p>Alors c'est ça ?</p>
-            ";
-            // line 25
-            if ((isset($context["guzzleException"]) || array_key_exists("guzzleException", $context) ? $context["guzzleException"] : (function () { throw new RuntimeError('Variable "guzzleException" does not exist.', 25, $this->source); })())) {
-                // line 26
-                echo "                <p>";
-                echo twig_escape_filter($this->env, (isset($context["guzzleException"]) || array_key_exists("guzzleException", $context) ? $context["guzzleException"] : (function () { throw new RuntimeError('Variable "guzzleException" does not exist.', 26, $this->source); })()), "html", null, true);
-                echo "</p>
-            ";
-            }
-            // line 28
+            // line 31
             echo "        </div>
 
          <div class=\"discogs-query-control-pannel\" data-pages=\"";
-            // line 30
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["discogsQueryInfos"]) || array_key_exists("discogsQueryInfos", $context) ? $context["discogsQueryInfos"] : (function () { throw new RuntimeError('Variable "discogsQueryInfos" does not exist.', 30, $this->source); })()), "pages", [], "any", false, false, false, 30), "html", null, true);
+            // line 33
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["discogsQueryInfos"]) || array_key_exists("discogsQueryInfos", $context) ? $context["discogsQueryInfos"] : (function () { throw new RuntimeError('Variable "discogsQueryInfos" does not exist.', 33, $this->source); })()), "pages", [], "any", false, false, false, 33), "html", null, true);
             echo "\" data-elements=\"";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["discogsQueryInfos"]) || array_key_exists("discogsQueryInfos", $context) ? $context["discogsQueryInfos"] : (function () { throw new RuntimeError('Variable "discogsQueryInfos" does not exist.', 30, $this->source); })()), "totalLength", [], "any", false, false, false, 30), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["discogsQueryInfos"]) || array_key_exists("discogsQueryInfos", $context) ? $context["discogsQueryInfos"] : (function () { throw new RuntimeError('Variable "discogsQueryInfos" does not exist.', 33, $this->source); })()), "totalLength", [], "any", false, false, false, 33), "html", null, true);
             echo "\">
-             <button type=\"button\" class=\"good-answer-ma-man\">Yesss c ca</button>
-             <button type=\"button\" class='previous-research-button discogs-research-button'><img class=\"previous-discogs-image\" src=\"";
-            // line 32
+             <button type=\"button\" class=\"good-answer-ma-man btn btn-light\">Yesss c ca</button>
+             <button type=\"button\" class='previous-research-button discogs-research-button btn btn-light'><img class=\"previous-discogs-image\" src=\"";
+            // line 35
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/icons/keyboard_arrow_left-24px.svg"), "html", null, true);
             echo "\"></button>
-             <button type=\"button\" class='next-research-button discogs-research-button'><img class=\"next-discogs-image\" src=\"";
-            // line 33
+             <button type=\"button\" class='next-research-button discogs-research-button btn btn-light'><img class=\"next-discogs-image\" src=\"";
+            // line 36
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/icons/keyboard_arrow_right-24px.svg"), "html", null, true);
             echo "\"> </button>
          </div>
@@ -145,7 +148,7 @@ class __TwigTemplate_ccada23f8dad0a42fd5582983a30a3ee11248ccccce60352c4385f9a1d4
     </section>
     ";
         }
-        // line 42
+        // line 45
         echo "
 ";
         
@@ -168,7 +171,7 @@ class __TwigTemplate_ccada23f8dad0a42fd5582983a30a3ee11248ccccce60352c4385f9a1d4
 
     public function getDebugInfo()
     {
-        return array (  149 => 42,  137 => 33,  133 => 32,  126 => 30,  122 => 28,  116 => 26,  114 => 25,  110 => 23,  104 => 22,  100 => 20,  98 => 19,  93 => 17,  85 => 16,  81 => 14,  79 => 13,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  152 => 45,  140 => 36,  136 => 35,  129 => 33,  125 => 31,  119 => 29,  117 => 28,  113 => 26,  107 => 25,  103 => 23,  101 => 22,  94 => 18,  86 => 17,  81 => 14,  79 => 13,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -181,31 +184,34 @@ class __TwigTemplate_ccada23f8dad0a42fd5582983a30a3ee11248ccccce60352c4385f9a1d4
         <form method=\"post\" >
             <label for=\"query\">Votre recherche</label>
             <input type=\"text\" id=\"query-discogs\" name=\"query-discogs\">
-            <button type=\"submit\">Cherche ma frye</button>
-            <button type=\"reset\">Annule</button>
+            <button type=\"submit btn btn-light\" id=\"discogs-query-research-button\">Cherche ma frye</button>
+            <button type=\"reset btn btn-light\" id=\"discogs-query-cancel-button\">Annule</button>
         </form>
     </section>
     {% if img and responseContents %}
     <section class=\"discogs-response-section\">
         <div class=\"discogs-result-display\">
-            <img src=\"{{ img }}\" onerror=\"this.src='{{ asset('build/images/no_image.jpg') }}'\" class=\"research-logo\" data-item-type=\"{{ responseContents['results'][0]['type']}}\"
-                 data-item-id=\"{{ responseContents['results'][0]['id']}}\" >
+            <div class=\"stay-put\">
+                <img src=\"{{ img }}\" onerror=\"this.src='{{ asset('build/images/no_image.jpg') }}'\" class=\"research-logo\" data-item-type=\"{{ responseContents['results'][0]['type']}}\"
+                     data-item-id=\"{{ responseContents['results'][0]['id']}}\" >
+            </div>
+
             <p class=\"dj-or-label\">Juste pour info c'est un
-                {% if responseContents['results'][0]['type'] == 'artist'%}
-                    artiste
-                {% else %}
-                    {{ responseContents['results'][0]['type'] }}
-                {% endif %}</p>
-            <p>Alors c'est ça ?</p>
-            {% if guzzleException %}
-                <p>{{ guzzleException }}</p>
-            {% endif %}
+                    {% if responseContents['results'][0]['type'] == 'artist'%}
+                        artiste
+                    {% else %}
+                        {{ responseContents['results'][0]['type'] }}
+                    {% endif %}</p>
+                <p>Alors c'est ça ?</p>
+                {% if guzzleException %}
+                    <p>{{ guzzleException }}</p>
+                {% endif %}
         </div>
 
          <div class=\"discogs-query-control-pannel\" data-pages=\"{{ discogsQueryInfos.pages }}\" data-elements=\"{{ discogsQueryInfos.totalLength }}\">
-             <button type=\"button\" class=\"good-answer-ma-man\">Yesss c ca</button>
-             <button type=\"button\" class='previous-research-button discogs-research-button'><img class=\"previous-discogs-image\" src=\"{{ asset('build/icons/keyboard_arrow_left-24px.svg') }}\"></button>
-             <button type=\"button\" class='next-research-button discogs-research-button'><img class=\"next-discogs-image\" src=\"{{ asset('build/icons/keyboard_arrow_right-24px.svg') }}\"> </button>
+             <button type=\"button\" class=\"good-answer-ma-man btn btn-light\">Yesss c ca</button>
+             <button type=\"button\" class='previous-research-button discogs-research-button btn btn-light'><img class=\"previous-discogs-image\" src=\"{{ asset('build/icons/keyboard_arrow_left-24px.svg') }}\"></button>
+             <button type=\"button\" class='next-research-button discogs-research-button btn btn-light'><img class=\"next-discogs-image\" src=\"{{ asset('build/icons/keyboard_arrow_right-24px.svg') }}\"> </button>
          </div>
         <div class=\"video-section\">
         </div>

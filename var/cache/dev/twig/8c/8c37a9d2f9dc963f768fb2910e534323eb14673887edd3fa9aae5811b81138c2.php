@@ -29,9 +29,9 @@ class __TwigTemplate_31f625391de98e0f37bbdcb81a896a7ea5e87f2fd166f84462d7e105ad8
         $this->blocks = [
             'title' => [$this, 'block_title'],
             'stylesheets' => [$this, 'block_stylesheets'],
+            'jsfiles' => [$this, 'block_jsfiles'],
             'body' => [$this, 'block_body'],
             'content' => [$this, 'block_content'],
-            'jsfiles' => [$this, 'block_jsfiles'],
         ];
     }
 
@@ -60,18 +60,18 @@ class __TwigTemplate_31f625391de98e0f37bbdcb81a896a7ea5e87f2fd166f84462d7e105ad8
         // line 9
         $this->displayBlock('stylesheets', $context, $blocks);
         // line 12
+        echo "    ";
+        $this->displayBlock('jsfiles', $context, $blocks);
+        // line 18
         echo "</head>
 <body>
 ";
-        // line 14
-        $this->displayBlock('body', $context, $blocks);
-        // line 19
-        echo "</body>
-";
         // line 20
-        $this->displayBlock('jsfiles', $context, $blocks);
+        $this->displayBlock('body', $context, $blocks);
         // line 25
-        echo "</html>";
+        echo "</body>
+
+</html>";
         
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
 
@@ -122,7 +122,42 @@ class __TwigTemplate_31f625391de98e0f37bbdcb81a896a7ea5e87f2fd166f84462d7e105ad8
 
     }
 
-    // line 14
+    // line 12
+    public function block_jsfiles($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "jsfiles"));
+
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "jsfiles"));
+
+        // line 13
+        echo "        ";
+        echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("app");
+        echo "
+        ";
+        // line 14
+        echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("signup");
+        echo "
+        ";
+        // line 15
+        echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("index");
+        echo "
+        ";
+        // line 16
+        echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("bootstrapjs");
+        echo "
+    ";
+        
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+        
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
+
+    }
+
+    // line 20
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -132,12 +167,12 @@ class __TwigTemplate_31f625391de98e0f37bbdcb81a896a7ea5e87f2fd166f84462d7e105ad8
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 15
+        // line 21
         echo "    <div id=\"content\">
         ";
-        // line 16
+        // line 22
         $this->displayBlock('content', $context, $blocks);
-        // line 17
+        // line 23
         echo "    </div>
 ";
         
@@ -148,7 +183,7 @@ class __TwigTemplate_31f625391de98e0f37bbdcb81a896a7ea5e87f2fd166f84462d7e105ad8
 
     }
 
-    // line 16
+    // line 22
     public function block_content($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -166,37 +201,6 @@ class __TwigTemplate_31f625391de98e0f37bbdcb81a896a7ea5e87f2fd166f84462d7e105ad8
 
     }
 
-    // line 20
-    public function block_jsfiles($context, array $blocks = [])
-    {
-        $macros = $this->macros;
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "jsfiles"));
-
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "jsfiles"));
-
-        // line 21
-        echo "    ";
-        echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("app");
-        echo "
-    ";
-        // line 22
-        echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("signup");
-        echo "
-    ";
-        // line 23
-        echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("index");
-        echo "
-";
-        
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
-
-        
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
-
-    }
-
     public function getTemplateName()
     {
         return "base.html.twig";
@@ -204,7 +208,7 @@ class __TwigTemplate_31f625391de98e0f37bbdcb81a896a7ea5e87f2fd166f84462d7e105ad8
 
     public function getDebugInfo()
     {
-        return array (  189 => 23,  185 => 22,  180 => 21,  170 => 20,  152 => 16,  141 => 17,  139 => 16,  136 => 15,  126 => 14,  113 => 10,  103 => 9,  84 => 5,  74 => 25,  72 => 20,  69 => 19,  67 => 14,  63 => 12,  61 => 9,  54 => 5,  48 => 1,);
+        return array (  187 => 22,  176 => 23,  174 => 22,  171 => 21,  161 => 20,  149 => 16,  145 => 15,  141 => 14,  136 => 13,  126 => 12,  113 => 10,  103 => 9,  84 => 5,  72 => 25,  70 => 20,  66 => 18,  63 => 12,  61 => 9,  54 => 5,  48 => 1,);
     }
 
     public function getSourceContext()
@@ -220,6 +224,12 @@ class __TwigTemplate_31f625391de98e0f37bbdcb81a896a7ea5e87f2fd166f84462d7e105ad8
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
+    {% block jsfiles %}
+        {{ encore_entry_script_tags('app') }}
+        {{ encore_entry_script_tags('signup') }}
+        {{ encore_entry_script_tags('index') }}
+        {{ encore_entry_script_tags('bootstrapjs') }}
+    {% endblock %}
 </head>
 <body>
 {% block body %}
@@ -228,11 +238,7 @@ class __TwigTemplate_31f625391de98e0f37bbdcb81a896a7ea5e87f2fd166f84462d7e105ad8
     </div>
 {% endblock %}
 </body>
-{% block jsfiles %}
-    {{ encore_entry_script_tags('app') }}
-    {{ encore_entry_script_tags('signup') }}
-    {{ encore_entry_script_tags('index') }}
-{% endblock %}
+
 </html>", "base.html.twig", "C:\\Users\\Boulanger\\dev\\cultureClub\\templates\\base.html.twig");
     }
 }

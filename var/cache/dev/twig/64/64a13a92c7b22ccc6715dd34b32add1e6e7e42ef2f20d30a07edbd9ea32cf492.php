@@ -96,25 +96,31 @@ class __TwigTemplate_fe4a11b35efc530c593dea4746cafd900739652fdf40a00d0c9fa769d80
                     <div>
                         <input type=\"text\" id=\"mail_confirm\"  placeholder=\"Confirmez votre adresse mail\" class=\"confirm_mail\">
                     </div>
+                    <div class=\"alert alert-warning alert-dismissible fade show\" id=\"same-email-alert\" role=\"alert\">
+                        <strong>Oops!</strong> Les deux adresses mail ne sont pas identiques !
+                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                            <span aria-hidden=\"true\">&times;</span>
+                        </button>
+                    </div>
                     ";
-        // line 28
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 28, $this->source); })()), "password", [], "any", false, false, false, 28), 'row');
+        // line 34
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 34, $this->source); })()), "password", [], "any", false, false, false, 34), 'row');
         echo "
                     ";
-        // line 29
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 29, $this->source); })()), "birthDate", [], "any", false, false, false, 29), 'row', ["attr" => ["class" => "signInFormInput"]]);
+        // line 35
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 35, $this->source); })()), "birthDate", [], "any", false, false, false, 35), 'row', ["attr" => ["class" => "signInFormInput"]]);
         echo "
                     ";
-        // line 30
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 30, $this->source); })()), "sex", [], "any", false, false, false, 30), 'row', ["attr" => ["class" => "signInFormInput"]]);
+        // line 36
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 36, $this->source); })()), "sex", [], "any", false, false, false, 36), 'row', ["attr" => ["class" => "signInFormInput"]]);
         echo "
                     ";
-        // line 31
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 31, $this->source); })()), "save", [], "any", false, false, false, 31), 'row', ["attr" => ["class" => "btn btn-light"]]);
+        // line 37
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 37, $this->source); })()), "save", [], "any", false, false, false, 37), 'row', ["attr" => ["class" => "btn btn-light"]]);
         echo "
                     ";
-        // line 32
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 32, $this->source); })()), 'form_end');
+        // line 38
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["userForm"]) || array_key_exists("userForm", $context) ? $context["userForm"] : (function () { throw new RuntimeError('Variable "userForm" does not exist.', 38, $this->source); })()), 'form_end');
         echo "
                 </section>
             </section>
@@ -141,7 +147,7 @@ class __TwigTemplate_fe4a11b35efc530c593dea4746cafd900739652fdf40a00d0c9fa769d80
 
     public function getDebugInfo()
     {
-        return array (  117 => 32,  113 => 31,  109 => 30,  105 => 29,  101 => 28,  95 => 24,  93 => 18,  89 => 17,  86 => 16,  84 => 14,  80 => 13,  68 => 3,  58 => 2,  35 => 1,);
+        return array (  123 => 38,  119 => 37,  115 => 36,  111 => 35,  107 => 34,  95 => 24,  93 => 18,  89 => 17,  86 => 16,  84 => 14,  80 => 13,  68 => 3,  58 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -172,6 +178,12 @@ class __TwigTemplate_fe4a11b35efc530c593dea4746cafd900739652fdf40a00d0c9fa769d80
                     }} ) }}
                     <div>
                         <input type=\"text\" id=\"mail_confirm\"  placeholder=\"Confirmez votre adresse mail\" class=\"confirm_mail\">
+                    </div>
+                    <div class=\"alert alert-warning alert-dismissible fade show\" id=\"same-email-alert\" role=\"alert\">
+                        <strong>Oops!</strong> Les deux adresses mail ne sont pas identiques !
+                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                            <span aria-hidden=\"true\">&times;</span>
+                        </button>
                     </div>
                     {{ form_row(userForm.password) }}
                     {{ form_row(userForm.birthDate, { 'attr' : { 'class':'signInFormInput' }} ) }}

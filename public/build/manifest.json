@@ -1,11 +1,13 @@
 {
   "build/app.css": "/build/app.css",
   "build/app.js": "/build/app.js",
+  "build/bootstrapjs.js": "/build/bootstrapjs.js",
   "build/index.js": "/build/index.js",
   "build/runtime.js": "/build/runtime.js",
   "build/signup.js": "/build/signup.js",
-  "build/vendors~app.js": "/build/vendors~app.js",
-  "build/vendors~index.js": "/build/vendors~index.js",
+  "build/vendors~app~bootstrapjs.js": "/build/vendors~app~bootstrapjs.js",
+  "build/vendors~bootstrapjs.js": "/build/vendors~bootstrapjs.js",
+  "build/vendors~bootstrapjs~index.js": "/build/vendors~bootstrapjs~index.js",
   "build/icons/keyboard_arrow_left-24px.svg": "/build/icons/keyboard_arrow_left-24px.svg",
   "build/icons/keyboard_arrow_right-24px.svg": "/build/icons/keyboard_arrow_right-24px.svg",
   "build/images/no_image.jpg": "/build/images/no_image.jpg"

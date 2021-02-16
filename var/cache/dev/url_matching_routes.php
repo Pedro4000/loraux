@@ -19,6 +19,7 @@ return [
         '/sign_up' => [[['_route' => 'sign_up', '_controller' => 'App\\Controller\\IndexController::signUpAction'], null, null, null, false, false, null]],
         '/google_redirect_for_calendar' => [[['_route' => 'google_redirect_for_calendar', '_controller' => 'App\\Controller\\IndexController::getGoogleCalendarRedirectInformationAction'], null, null, null, false, false, null]],
         '/resume' => [[['_route' => 'resume', '_controller' => 'App\\Controller\\IndexController::resume'], null, null, null, false, false, null]],
+        '/movies' => [[['_route' => 'movies', '_controller' => 'App\\Controller\\MoviesController::MoviesAction'], null, null, null, false, false, null]],
         '/createYoutubePlaylist' => [[['_route' => 'createYoutubePlaylist', '_controller' => 'App\\Controller\\YoutubeController::createYoutubePlaylistAction'], null, null, null, false, false, null]],
         '/createYoutubePlaylistCode' => [[['_route' => 'createYoutubePlaylistCode', '_controller' => 'App\\Controller\\YoutubeController::createYoutubePlaylistCodeAction'], null, null, null, false, false, null]],
     ],

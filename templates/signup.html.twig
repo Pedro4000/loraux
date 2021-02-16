@@ -25,6 +25,12 @@
                     <div>
                         <input type="text" id="mail_confirm"  placeholder="Confirmez votre adresse mail" class="confirm_mail">
                     </div>
+                    <div class="alert alert-warning alert-dismissible fade show" id="same-email-alert" role="alert">
+                        <strong>Oops!</strong> Les deux adresses mail ne sont pas identiques !
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                     {{ form_row(userForm.password) }}
                     {{ form_row(userForm.birthDate, { 'attr' : { 'class':'signInFormInput' }} ) }}
                     {{ form_row(userForm.sex, { 'attr' : { 'class':'signInFormInput' }} ) }}

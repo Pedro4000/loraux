@@ -4,9 +4,10 @@ $(document).ready(function(){
         e.preventDefault();
         console.log(validateEmail($("#user_emailAddress").val()));
         if($("#user_emailAddress").val().toLowerCase() == $("#mail_confirm").val().toLowerCase()) {
-            console.log('pareil');
+
         } else {
-            console.log('paspareil');
+            console.log($("#same-email-alert"));
+            $('#same-email-alert').css("display",'block');
         }
     });
     function validateEmail(email) {

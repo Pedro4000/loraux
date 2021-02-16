@@ -134,10 +134,15 @@ class IndexController extends AbstractController
         $this->session->set('videosToPutInPlaylist','');
         $em =$this->getDoctrine()->getManager();
 
+
+
+
+
         // SI ON A DU CONTENU ALORS ON VA LISTER LES RELEASE PAR TYPE DOBJET
         if($type == 'label') {
             $client = new Client();
-            $resSpec = $client->request('GET', $baseDiscogsApi.'labels/'.$id.'/releases?'.$discogsCredentials);
+/*            $resSpec = $client->request('GET', $baseDiscogsApi.'labels/'.$id.'/releases?'.$discogsCredentials);*/
+            $resSpec = $client->request('GET', $baseDiscogsApi.'labels/'.$id.'/releases?'.$discogsCredentials.'&page=5&per_page=50');
             $labelInfos = $client->request('GET', $baseDiscogsApi.'labels/'.$id.'?'.$discogsCredentials);
             $labelInfos = json_decode($labelInfos->getBody()->getContents(),true);
             $recArray = json_decode($resSpec->getBody()->getContents(),true);
@@ -169,6 +174,10 @@ class IndexController extends AbstractController
 
         }
 
+
+
+
+
         $now = new \DateTime();
         if($labelFromDb->getLastTimeFullyScraped()){
             if($now->diff($labelFromDb->getLastTimeFullyScraped())->days < 85){
@@ -181,7 +190,9 @@ class IndexController extends AbstractController
                     }
                 }
             }
+            return new JsonResponse(['', $videosArray]);
         }
+
 
         // ICI ON VIENT CHERCHER LES VIDEOS UNES A UNES
         if(!empty($recArray)) {
@@ -192,9 +203,8 @@ class IndexController extends AbstractController
                 }
                 $i=0;
                 foreach ($recArray['releases'] as $release)
-                $i++;
                 {
-
+                $i++;
                     // si la release ne contient pas de track ou n'est pas présente en db on vient la créer
                     if(!$this->getDoctrine()
                             ->getRepository(Release::class)
@@ -279,6 +289,12 @@ class IndexController extends AbstractController
                                     }
                                 }
                             }
+                       if($i==count($recArray['releases']) && $j== $recArray['pagination']['pages']){
+                            $now = new \Datetime();
+                            $labelFromDb->setLastTimeFullyScraped($now);
+                            $em->persist($labelFromDb);
+                            $em->flush();
+                        }
 
                             sleep(2);
                         } catch (ClientException $exception) {
@@ -287,28 +303,22 @@ class IndexController extends AbstractController
                         }
                     }
 
-/*                    if (array_key_exists('videos',$releaseInfos)) {
-                        $videosArray['label']= $releaseInfos['labels']['0']['name'];
-                        foreach ($releaseInfos['videos'] as $video){
-                            array_push($videosArray['releases'], [
-                                    'videoUri'=> $video['uri'],
-                                    'artists'=> $artists,
-                                    'videoName'=> $video['title']
-                                ]
-                            );
-                        }
-                    }*/
+
+
+
                     $this->session->set('videosToPutInPlaylist',$videosArray);
                 }
             }
 
         }
-/*        if(!$guzzleException){
+
+        if($recArray['pagination']['items']==count($labelFromDb->getReleases())){
             $now = new \Datetime();
             $labelFromDb->setLastTimeFullyScraped($now);
             $em->persist($labelFromDb);
             $em->flush();
-        }*/
+        }
+
 
         return new JsonResponse([$guzzleException, $videosArray]);
 

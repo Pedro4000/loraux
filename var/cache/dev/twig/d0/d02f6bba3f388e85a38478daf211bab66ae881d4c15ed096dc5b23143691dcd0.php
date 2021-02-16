@@ -75,13 +75,22 @@ class __TwigTemplate_66fb4d4a2fb17aa8bb7daf3d96aabf35e7f80fe2751e95530addf918de5
         echo " id='landing_link'>Culture Club</a></li>
             <li><a href=";
         // line 8
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("movies");
+        echo " id='signup_link'>Culture Films</a></li>
+            <li><a href=";
+        // line 9
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("sign_up");
         echo " id='signup_link'>Créer un profil</a></li>
         </ul>
     </nav>
-    ";
-        // line 11
+    <main>
+        ";
+        // line 13
         $this->displayBlock('page_content', $context, $blocks);
+        // line 15
+        echo "    </main>
+
+    ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -90,6 +99,7 @@ class __TwigTemplate_66fb4d4a2fb17aa8bb7daf3d96aabf35e7f80fe2751e95530addf918de5
 
     }
 
+    // line 13
     public function block_page_content($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -99,9 +109,8 @@ class __TwigTemplate_66fb4d4a2fb17aa8bb7daf3d96aabf35e7f80fe2751e95530addf918de5
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "page_content"));
 
-        // line 12
-        echo "
-    ";
+        // line 14
+        echo "        ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -122,7 +131,7 @@ class __TwigTemplate_66fb4d4a2fb17aa8bb7daf3d96aabf35e7f80fe2751e95530addf918de5
 
     public function getDebugInfo()
     {
-        return array (  103 => 12,  84 => 11,  78 => 8,  74 => 7,  69 => 4,  59 => 3,  36 => 1,);
+        return array (  113 => 14,  103 => 13,  91 => 15,  89 => 13,  82 => 9,  78 => 8,  74 => 7,  69 => 4,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -134,13 +143,16 @@ class __TwigTemplate_66fb4d4a2fb17aa8bb7daf3d96aabf35e7f80fe2751e95530addf918de5
     <nav class=\"navbar\">
         <ul>
             <li><a href={{ path('index') }} id='landing_link'>Culture Club</a></li>
+            <li><a href={{ path('movies') }} id='signup_link'>Culture Films</a></li>
             <li><a href={{ path('sign_up') }} id='signup_link'>Créer un profil</a></li>
         </ul>
     </nav>
-    {% block page_content %}
+    <main>
+        {% block page_content %}
+        {% endblock %}
+    </main>
 
     {% endblock %}
-{% endblock %}
 
 ", "layout.html.twig", "C:\\Users\\Boulanger\\dev\\cultureClub\\templates\\layout.html.twig");
     }

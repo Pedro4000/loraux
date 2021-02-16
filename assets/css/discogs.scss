@@ -33,3 +33,31 @@
 .hidden-links-div{
   display:none;
 }
+
+.stay-put{
+  height: 200px;
+  display: flex;
+  align-items: center;
+  img{
+    border: 2mm ridge aliceblue;
+  }
+}
+
+#query-discogs{
+  background: rgb(63,94,251);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+  color:white;
+}
+
+#discogs-query-research-button,#discogs-query-cancel-button{
+  background: rgb(238,174,174);
+  background: radial-gradient(circle, rgba(238,174,174,1) 0%, rgba(233,148,220,1) 100%);
+  border-radius : 3px;
+  border: 2px solid aliceblue;
+  &:hover{
+    opacity: 0.5;
+    transition: 300ms;
+  }
+}
+
+

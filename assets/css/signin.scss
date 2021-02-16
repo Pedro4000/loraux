@@ -16,7 +16,7 @@ p{
   width: 50%;
   .signInFormSection {
     width: 510px;
-    background-color : rgba(161,0,18,.3);
+    background-color : aliceblue;
     border-radius : 6px;
     box-shadow: 2px 2px 4px lightgray;
   }
@@ -40,7 +40,7 @@ p{
       flex-direction: column;
       align-items: center;
     }
-    div:nth-child(-n+5) {
+    div:nth-child(-n+6) {
       label{
         display: none;
       }
@@ -55,4 +55,8 @@ p{
       width: 85%;
     }
   }
+}
+
+#same-email-alert{
+  display: none;
 }

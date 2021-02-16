@@ -21,6 +21,7 @@ return [
     'sign_up' => [[], ['_controller' => 'App\\Controller\\IndexController::signUpAction'], [], [['text', '/sign_up']], [], []],
     'google_redirect_for_calendar' => [[], ['_controller' => 'App\\Controller\\IndexController::getGoogleCalendarRedirectInformationAction'], [], [['text', '/google_redirect_for_calendar']], [], []],
     'resume' => [[], ['_controller' => 'App\\Controller\\IndexController::resume'], [], [['text', '/resume']], [], []],
+    'movies' => [[], ['_controller' => 'App\\Controller\\MoviesController::MoviesAction'], [], [['text', '/movies']], [], []],
     'createYoutubePlaylist' => [[], ['_controller' => 'App\\Controller\\YoutubeController::createYoutubePlaylistAction'], [], [['text', '/createYoutubePlaylist']], [], []],
     'createYoutubePlaylistCode' => [[], ['_controller' => 'App\\Controller\\YoutubeController::createYoutubePlaylistCodeAction'], [], [['text', '/createYoutubePlaylistCode']], [], []],
 ];
