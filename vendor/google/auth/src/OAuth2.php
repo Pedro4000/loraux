@@ -17,10 +17,12 @@
 
 namespace Google\Auth;
 
+use Firebase\JWT\JWT;
 use Google\Auth\HttpHandler\HttpClientCache;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Utils;
 use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -428,7 +430,6 @@ class OAuth2 implements FetchAuthTokenInterface
 
         $assertion = [
             'iss' => $this->getIssuer(),
-            'aud' => $this->getAudience(),
             'exp' => ($now + $this->getExpiry()),
             'iat' => ($now - $opts['skew']),
         ];
@@ -437,9 +438,18 @@ class OAuth2 implements FetchAuthTokenInterface
                 throw new \DomainException($k . ' should not be null');
             }
         }
+        if (!(is_null($this->getAudience()))) {
+            $assertion['aud'] = $this->getAudience();
+        }
+
         if (!(is_null($this->getScope()))) {
             $assertion['scope'] = $this->getScope();
         }
+
+        if (empty($assertion['scope']) && empty($assertion['aud'])) {
+            throw new \DomainException('one of scope or aud should not be null');
+        }
+
         if (!(is_null($this->getSub()))) {
             $assertion['sub'] = $this->getSub();
         }
@@ -507,7 +517,7 @@ class OAuth2 implements FetchAuthTokenInterface
             'POST',
             $uri,
             $headers,
-            Psr7\build_query($params)
+            Query::build($params)
         );
     }
 
@@ -682,10 +692,10 @@ class OAuth2 implements FetchAuthTokenInterface
 
         // Construct the uri object; return it if it is valid.
         $result = clone $this->authorizationUri;
-        $existingParams = Psr7\parse_query($result->getQuery());
+        $existingParams = Query::parse($result->getQuery());
 
         $result = $result->withQuery(
-            Psr7\build_query(array_merge($existingParams, $params))
+            Query::build(array_merge($existingParams, $params))
         );
 
         if ($result->getScheme() != 'https') {
@@ -1303,18 +1313,36 @@ class OAuth2 implements FetchAuthTokenInterface
     /**
      * The expiration of the last received token.
      *
-     * @return array
+     * @return array|null
      */
     public function getLastReceivedToken()
     {
         if ($token = $this->getAccessToken()) {
-            return [
+            // the bare necessity of an auth token
+            $authToken = [
                 'access_token' => $token,
                 'expires_at' => $this->getExpiresAt(),
             ];
+        } elseif ($idToken = $this->getIdToken()) {
+            $authToken = [
+                'id_token' => $idToken,
+                'expires_at' => $this->getExpiresAt(),
+            ];
+        } else {
+            return null;
         }
 
-        return null;
+        if ($expiresIn = $this->getExpiresIn()) {
+            $authToken['expires_in'] = $expiresIn;
+        }
+        if ($issuedAt = $this->getIssuedAt()) {
+            $authToken['issued_at'] = $issuedAt;
+        }
+        if ($refreshToken = $this->getRefreshToken()) {
+            $authToken['refresh_token'] = $refreshToken;
+        }
+
+        return $authToken;
     }
 
     /**
@@ -1343,7 +1371,7 @@ class OAuth2 implements FetchAuthTokenInterface
             return;
         }
 
-        return Psr7\uri_for($uri);
+        return Utils::uriFor($uri);
     }
 
     /**
@@ -1354,25 +1382,17 @@ class OAuth2 implements FetchAuthTokenInterface
      */
     private function jwtDecode($idToken, $publicKey, $allowedAlgs)
     {
-        if (class_exists('Firebase\JWT\JWT')) {
-            return \Firebase\JWT\JWT::decode($idToken, $publicKey, $allowedAlgs);
-        }
-
-        return \JWT::decode($idToken, $publicKey, $allowedAlgs);
+        return JWT::decode($idToken, $publicKey, $allowedAlgs);
     }
 
     private function jwtEncode($assertion, $signingKey, $signingAlgorithm, $signingKeyId = null)
     {
-        if (class_exists('Firebase\JWT\JWT')) {
-            return \Firebase\JWT\JWT::encode(
-                $assertion,
-                $signingKey,
-                $signingAlgorithm,
-                $signingKeyId
-            );
-        }
-
-        return \JWT::encode($assertion, $signingKey, $signingAlgorithm, $signingKeyId);
+        return JWT::encode(
+            $assertion,
+            $signingKey,
+            $signingAlgorithm,
+            $signingKeyId
+        );
     }
 
     /**

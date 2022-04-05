@@ -197,10 +197,10 @@ class GCECredentials extends CredentialsLoader implements
 
             $scope = implode(',', $scope);
 
-            $tokenUri = $tokenUri . '?scopes='. $scope;
+            $tokenUri = $tokenUri . '?scopes=' . $scope;
         } elseif ($targetAudience) {
             $tokenUri = self::getIdTokenUri($serviceAccountIdentity);
-            $tokenUri = $tokenUri . '?audience='. $targetAudience;
+            $tokenUri = $tokenUri . '?audience=' . $targetAudience;
             $this->targetAudience = $targetAudience;
         }
 
@@ -385,9 +385,10 @@ class GCECredentials extends CredentialsLoader implements
             throw new \Exception('Invalid JSON response');
         }
 
+        $json['expires_at'] = time() + $json['expires_in'];
+
         // store this so we can retrieve it later
         $this->lastReceivedToken = $json;
-        $this->lastReceivedToken['expires_at'] = time() + $json['expires_in'];
 
         return $json;
     }
@@ -459,9 +460,12 @@ class GCECredentials extends CredentialsLoader implements
      * @param string $stringToSign The string to sign.
      * @param bool $forceOpenSsl [optional] Does not apply to this credentials
      *        type.
+     * @param string $accessToken The access token to use to sign the blob. If
+     *        provided, saves a call to the metadata server for a new access
+     *        token. **Defaults to** `null`.
      * @return string
      */
-    public function signBlob($stringToSign, $forceOpenSsl = false)
+    public function signBlob($stringToSign, $forceOpenSsl = false, $accessToken = null)
     {
         $httpHandler = HttpHandlerFactory::build(HttpClientCache::getHttpClient());
 
@@ -471,10 +475,12 @@ class GCECredentials extends CredentialsLoader implements
 
         $email = $this->getClientName($httpHandler);
 
-        $previousToken = $this->getLastReceivedToken();
-        $accessToken = $previousToken
-            ? $previousToken['access_token']
-            : $this->fetchAuthToken($httpHandler)['access_token'];
+        if (is_null($accessToken)) {
+            $previousToken = $this->getLastReceivedToken();
+            $accessToken = $previousToken
+                ? $previousToken['access_token']
+                : $this->fetchAuthToken($httpHandler)['access_token'];
+        }
 
         return $signer->signBlob($email, $accessToken, $stringToSign);
     }

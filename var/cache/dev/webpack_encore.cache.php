@@ -19,18 +19,27 @@ return [[
         'index' => [
             'js' => [
                 '/build/runtime.js',
-                '/build/vendors~index.js',
+                '/build/vendors~bootstrapjs~index.js',
                 '/build/index.js',
             ],
         ],
         'app' => [
             'js' => [
                 '/build/runtime.js',
-                '/build/vendors~app.js',
+                '/build/vendors~app~bootstrapjs.js',
                 '/build/app.js',
             ],
             'css' => [
                 '/build/app.css',
+            ],
+        ],
+        'bootstrapjs' => [
+            'js' => [
+                '/build/runtime.js',
+                '/build/vendors~app~bootstrapjs.js',
+                '/build/vendors~bootstrapjs~index.js',
+                '/build/vendors~bootstrapjs.js',
+                '/build/bootstrapjs.js',
             ],
         ],
     ],

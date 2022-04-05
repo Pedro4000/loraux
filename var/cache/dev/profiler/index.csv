@@ -1148,3 +1148,9 @@ e68198,127.0.0.1,GET,http://127.0.0.1:8000/movies,1613497334,,500
 0d8444,127.0.0.1,GET,http://127.0.0.1:8000/index,1613497372,,200
 159992,127.0.0.1,POST,http://127.0.0.1:8000/index,1613497375,,200
 2dcb4d,127.0.0.1,GET,http://127.0.0.1:8000/ajaxImage?count=1,1613497377,,200
+ad4cf4,127.0.0.1,GET,http://cultureclub.local/,1649154814,,404
+92226e,127.0.0.1,GET,http://cultureclub.local/favicon.ico,1649154814,3dc571,404
+3dc571,127.0.0.1,GET,http://cultureclub.local/favicon.ico,1649154814,,404
+365b8b,127.0.0.1,GET,http://cultureclub.local/,1649154851,,404
+3a7c5e,127.0.0.1,GET,http://cultureclub.local/favicon.ico,1649154851,e64970,404
+e64970,127.0.0.1,GET,http://cultureclub.local/favicon.ico,1649154851,,404
