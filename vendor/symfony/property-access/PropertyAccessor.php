@@ -38,6 +38,19 @@ use Symfony\Component\PropertyInfo\PropertyWriteInfoExtractorInterface;
  */
 class PropertyAccessor implements PropertyAccessorInterface
 {
+    /** @var int Allow none of the magic methods */
+    public const DISALLOW_MAGIC_METHODS = ReflectionExtractor::DISALLOW_MAGIC_METHODS;
+    /** @var int Allow magic __get methods */
+    public const MAGIC_GET = ReflectionExtractor::ALLOW_MAGIC_GET;
+    /** @var int Allow magic __set methods */
+    public const MAGIC_SET = ReflectionExtractor::ALLOW_MAGIC_SET;
+    /** @var int Allow magic __call methods */
+    public const MAGIC_CALL = ReflectionExtractor::ALLOW_MAGIC_CALL;
+
+    public const DO_NOT_THROW = 0;
+    public const THROW_ON_INVALID_INDEX = 1;
+    public const THROW_ON_INVALID_PROPERTY_PATH = 2;
+
     private const VALUE = 0;
     private const REF = 1;
     private const IS_REF_CHAINED = 2;
@@ -45,10 +58,7 @@ class PropertyAccessor implements PropertyAccessorInterface
     private const CACHE_PREFIX_WRITE = 'w';
     private const CACHE_PREFIX_PROPERTY_PATH = 'p';
 
-    /**
-     * @var bool
-     */
-    private $magicCall;
+    private $magicMethodsFlags;
     private $ignoreInvalidIndices;
     private $ignoreInvalidProperty;
 
@@ -68,7 +78,6 @@ class PropertyAccessor implements PropertyAccessorInterface
      * @var PropertyWriteInfoExtractorInterface
      */
     private $writeInfoExtractor;
-
     private $readPropertyCache = [];
     private $writePropertyCache = [];
     private const RESULT_PROTO = [self::VALUE => null];
@@ -76,13 +85,19 @@ class PropertyAccessor implements PropertyAccessorInterface
     /**
      * Should not be used by application code. Use
      * {@link PropertyAccess::createPropertyAccessor()} instead.
+     *
+     * @param int $magicMethods A bitwise combination of the MAGIC_* constants
+     *                          to specify the allowed magic methods (__get, __set, __call)
+     *                          or self::DISALLOW_MAGIC_METHODS for none
+     * @param int $throw        A bitwise combination of the THROW_* constants
+     *                          to specify when exceptions should be thrown
      */
-    public function __construct(bool $magicCall = false, bool $throwExceptionOnInvalidIndex = false, CacheItemPoolInterface $cacheItemPool = null, bool $throwExceptionOnInvalidPropertyPath = true, PropertyReadInfoExtractorInterface $readInfoExtractor = null, PropertyWriteInfoExtractorInterface $writeInfoExtractor = null)
+    public function __construct(int $magicMethods = self::MAGIC_GET | self::MAGIC_SET, int $throw = self::THROW_ON_INVALID_PROPERTY_PATH, CacheItemPoolInterface $cacheItemPool = null, PropertyReadInfoExtractorInterface $readInfoExtractor = null, PropertyWriteInfoExtractorInterface $writeInfoExtractor = null)
     {
-        $this->magicCall = $magicCall;
-        $this->ignoreInvalidIndices = !$throwExceptionOnInvalidIndex;
+        $this->magicMethodsFlags = $magicMethods;
+        $this->ignoreInvalidIndices = 0 === ($throw & self::THROW_ON_INVALID_INDEX);
         $this->cacheItemPool = $cacheItemPool instanceof NullAdapter ? null : $cacheItemPool; // Replace the NullAdapter by the null value
-        $this->ignoreInvalidProperty = !$throwExceptionOnInvalidPropertyPath;
+        $this->ignoreInvalidProperty = 0 === ($throw & self::THROW_ON_INVALID_PROPERTY_PATH);
         $this->readInfoExtractor = $readInfoExtractor ?? new ReflectionExtractor([], null, null, false);
         $this->writeInfoExtractor = $writeInfoExtractor ?? new ReflectionExtractor(['set'], null, null, false);
     }
@@ -90,7 +105,7 @@ class PropertyAccessor implements PropertyAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function getValue($objectOrArray, $propertyPath)
+    public function getValue(object|array $objectOrArray, string|PropertyPathInterface $propertyPath): mixed
     {
         $zval = [
             self::VALUE => $objectOrArray,
@@ -110,7 +125,7 @@ class PropertyAccessor implements PropertyAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function setValue(&$objectOrArray, $propertyPath, $value)
+    public function setValue(object|array &$objectOrArray, string|PropertyPathInterface $propertyPath, mixed $value)
     {
         if (\is_object($objectOrArray) && false === strpbrk((string) $propertyPath, '.[')) {
             $zval = [
@@ -193,23 +208,13 @@ class PropertyAccessor implements PropertyAccessorInterface
         if (!isset($trace[$i]['file']) || __FILE__ !== $trace[$i]['file']) {
             return;
         }
-
-        if (\PHP_VERSION_ID < 80000) {
-            if (0 !== strpos($message, 'Argument ')) {
-                return;
-            }
-
-            $pos = strpos($message, $delim = 'must be of the type ') ?: (strpos($message, $delim = 'must be an instance of ') ?: strpos($message, $delim = 'must implement interface '));
-            $pos += \strlen($delim);
-            $j = strpos($message, ',', $pos);
-            $type = substr($message, 2 + $j, strpos($message, ' given', $j) - $j - 2);
-            $message = substr($message, $pos, $j - $pos);
-
-            throw new InvalidArgumentException(sprintf('Expected argument of type "%s", "%s" given at property path "%s".', $message, 'NULL' === $type ? 'null' : $type, $propertyPath), 0, $previous);
-        }
-
         if (preg_match('/^\S+::\S+\(\): Argument #\d+ \(\$\S+\) must be of type (\S+), (\S+) given/', $message, $matches)) {
             [, $expectedType, $actualType] = $matches;
+
+            throw new InvalidArgumentException(sprintf('Expected argument of type "%s", "%s" given at property path "%s".', $expectedType, 'NULL' === $actualType ? 'null' : $actualType, $propertyPath), 0, $previous);
+        }
+        if (preg_match('/^Cannot assign (\S+) to property \S+::\$\S+ of type (\S+)$/', $message, $matches)) {
+            [, $actualType, $expectedType] = $matches;
 
             throw new InvalidArgumentException(sprintf('Expected argument of type "%s", "%s" given at property path "%s".', $expectedType, 'NULL' === $actualType ? 'null' : $actualType, $propertyPath), 0, $previous);
         }
@@ -218,7 +223,7 @@ class PropertyAccessor implements PropertyAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function isReadable($objectOrArray, $propertyPath)
+    public function isReadable(object|array $objectOrArray, string|PropertyPathInterface $propertyPath): bool
     {
         if (!$propertyPath instanceof PropertyPathInterface) {
             $propertyPath = new PropertyPath($propertyPath);
@@ -241,7 +246,7 @@ class PropertyAccessor implements PropertyAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function isWritable($objectOrArray, $propertyPath)
+    public function isWritable(object|array $objectOrArray, string|PropertyPathInterface $propertyPath): bool
     {
         $propertyPath = $this->getPropertyPath($propertyPath);
 
@@ -259,10 +264,8 @@ class PropertyAccessor implements PropertyAccessorInterface
                     if (!$zval[self::VALUE] instanceof \ArrayAccess && !\is_array($zval[self::VALUE])) {
                         return false;
                     }
-                } else {
-                    if (!$this->isPropertyWritable($zval[self::VALUE], $propertyPath->getElement($i))) {
-                        return false;
-                    }
+                } elseif (!\is_object($zval[self::VALUE]) || !$this->isPropertyWritable($zval[self::VALUE], $propertyPath->getElement($i))) {
+                    return false;
                 }
 
                 if (\is_object($zval[self::VALUE])) {
@@ -352,11 +355,9 @@ class PropertyAccessor implements PropertyAccessorInterface
     /**
      * Reads a key from an array-like structure.
      *
-     * @param string|int $index The key to read
-     *
      * @throws NoSuchIndexException If the array does not implement \ArrayAccess or it is not an array
      */
-    private function readIndex(array $zval, $index): array
+    private function readIndex(array $zval, string|int $index): array
     {
         if (!$zval[self::VALUE] instanceof \ArrayAccess && !\is_array($zval[self::VALUE])) {
             throw new NoSuchIndexException(sprintf('Cannot read index "%s" from object of type "%s" because it doesn\'t implement \ArrayAccess.', $index, get_debug_type($zval[self::VALUE])));
@@ -380,7 +381,7 @@ class PropertyAccessor implements PropertyAccessorInterface
     }
 
     /**
-     * Reads the a property from an object.
+     * Reads the value of a property from an object.
      *
      * @throws NoSuchPropertyException If $ignoreInvalidProperty is false and the property does not exist or is not public
      */
@@ -412,12 +413,16 @@ class PropertyAccessor implements PropertyAccessorInterface
                             && $object instanceof $trace['class']
                             && preg_match('/Return value (?:of .*::\w+\(\) )?must be of (?:the )?type (\w+), null returned$/', $e->getMessage(), $matches)
                         ) {
-                            throw new UninitializedPropertyException(sprintf('The method "%s::%s()" returned "null", but expected type "%3$s". Did you forget to initialize a property or to make the return type nullable using "?%3$s"?', false === strpos(\get_class($object), "@anonymous\0") ? \get_class($object) : (get_parent_class($object) ?: key(class_implements($object)) ?: 'class').'@anonymous', $name, $matches[1]), 0, $e);
+                            throw new UninitializedPropertyException(sprintf('The method "%s::%s()" returned "null", but expected type "%3$s". Did you forget to initialize a property or to make the return type nullable using "?%3$s"?', get_debug_type($object), $name, $matches[1]), 0, $e);
                         }
 
                         throw $e;
                     }
                 } elseif (PropertyReadInfo::TYPE_PROPERTY === $type) {
+                    if ($access->canBeReference() && !isset($object->$name) && !\array_key_exists($name, (array) $object) && !(new \ReflectionProperty($class, $name))->hasType()) {
+                        throw new UninitializedPropertyException(sprintf('The property "%s::$%s" is not initialized.', $class, $name));
+                    }
+
                     $result[self::VALUE] = $object->$name;
 
                     if (isset($zval[self::REF]) && $access->canBeReference()) {
@@ -426,16 +431,16 @@ class PropertyAccessor implements PropertyAccessorInterface
                 }
             } catch (\Error $e) {
                 // handle uninitialized properties in PHP >= 7.4
-                if (\PHP_VERSION_ID >= 70400 && preg_match('/^Typed property ([\w\\\]+)::\$(\w+) must not be accessed before initialization$/', $e->getMessage(), $matches)) {
-                    $r = new \ReflectionProperty($matches[1], $matches[2]);
+                if (preg_match('/^Typed property ([\w\\\\@]+)::\$(\w+) must not be accessed before initialization$/', $e->getMessage(), $matches)) {
+                    $r = new \ReflectionProperty(str_contains($matches[1], '@anonymous') ? $class : $matches[1], $matches[2]);
                     $type = ($type = $r->getType()) instanceof \ReflectionNamedType ? $type->getName() : (string) $type;
 
-                    throw new UninitializedPropertyException(sprintf('The property "%s::$%s" is not readable because it is typed "%s". You should initialize it or declare a default value instead.', $r->getDeclaringClass()->getName(), $r->getName(), $type), 0, $e);
+                    throw new UninitializedPropertyException(sprintf('The property "%s::$%s" is not readable because it is typed "%s". You should initialize it or declare a default value instead.', $matches[1], $r->getName(), $type), 0, $e);
                 }
 
                 throw $e;
             }
-        } elseif ($object instanceof \stdClass && property_exists($object, $property)) {
+        } elseif (property_exists($object, $property) && \array_key_exists($property, (array) $object)) {
             $result[self::VALUE] = $object->$property;
             if (isset($zval[self::REF])) {
                 $result[self::REF] = &$object->$property;
@@ -472,7 +477,7 @@ class PropertyAccessor implements PropertyAccessorInterface
 
         $accessor = $this->readInfoExtractor->getReadInfo($class, $property, [
             'enable_getter_setter_extraction' => true,
-            'enable_magic_call_extraction' => $this->magicCall,
+            'enable_magic_methods_extraction' => $this->magicMethodsFlags,
             'enable_constructor_extraction' => false,
         ]);
 
@@ -486,12 +491,9 @@ class PropertyAccessor implements PropertyAccessorInterface
     /**
      * Sets the value of an index in a given array-accessible value.
      *
-     * @param string|int $index The index to write at
-     * @param mixed      $value The value to write
-     *
      * @throws NoSuchIndexException If the array does not implement \ArrayAccess or it is not an array
      */
-    private function writeIndex(array $zval, $index, $value)
+    private function writeIndex(array $zval, string|int $index, mixed $value)
     {
         if (!$zval[self::VALUE] instanceof \ArrayAccess && !\is_array($zval[self::VALUE])) {
             throw new NoSuchIndexException(sprintf('Cannot modify index "%s" in object of type "%s" because it doesn\'t implement \ArrayAccess.', $index, get_debug_type($zval[self::VALUE])));
@@ -503,11 +505,9 @@ class PropertyAccessor implements PropertyAccessorInterface
     /**
      * Sets the value of a property in the given object.
      *
-     * @param mixed $value The value to write
-     *
      * @throws NoSuchPropertyException if the property does not exist or is not public
      */
-    private function writeProperty(array $zval, string $property, $value)
+    private function writeProperty(array $zval, string $property, mixed $value)
     {
         if (!\is_object($zval[self::VALUE])) {
             throw new NoSuchPropertyException(sprintf('Cannot write property "%s" to an array. Maybe you should write the property path as "[%1$s]" instead?', $property));
@@ -574,9 +574,9 @@ class PropertyAccessor implements PropertyAccessorInterface
         }
     }
 
-    private function getWriteInfo(string $class, string $property, $value): PropertyWriteInfo
+    private function getWriteInfo(string $class, string $property, mixed $value): PropertyWriteInfo
     {
-        $useAdderAndRemover = \is_array($value) || $value instanceof \Traversable;
+        $useAdderAndRemover = is_iterable($value);
         $key = str_replace('\\', '.', $class).'..'.$property.'..'.(int) $useAdderAndRemover;
 
         if (isset($this->writePropertyCache[$key])) {
@@ -592,7 +592,7 @@ class PropertyAccessor implements PropertyAccessorInterface
 
         $mutator = $this->writeInfoExtractor->getWriteInfo($class, $property, [
             'enable_getter_setter_extraction' => true,
-            'enable_magic_call_extraction' => $this->magicCall,
+            'enable_magic_methods_extraction' => $this->magicMethodsFlags,
             'enable_constructor_extraction' => false,
             'enable_adder_remover_extraction' => $useAdderAndRemover,
         ]);
@@ -606,15 +606,9 @@ class PropertyAccessor implements PropertyAccessorInterface
 
     /**
      * Returns whether a property is writable in the given object.
-     *
-     * @param object $object The object to write to
      */
-    private function isPropertyWritable($object, string $property): bool
+    private function isPropertyWritable(object $object, string $property): bool
     {
-        if (!\is_object($object)) {
-            return false;
-        }
-
         $mutatorForArray = $this->getWriteInfo(\get_class($object), $property, []);
 
         if (PropertyWriteInfo::TYPE_NONE !== $mutatorForArray->getType() || ($object instanceof \stdClass && property_exists($object, $property))) {
@@ -628,10 +622,8 @@ class PropertyAccessor implements PropertyAccessorInterface
 
     /**
      * Gets a PropertyPath instance and caches it.
-     *
-     * @param string|PropertyPath $propertyPath
      */
-    private function getPropertyPath($propertyPath): PropertyPath
+    private function getPropertyPath(string|PropertyPath $propertyPath): PropertyPath
     {
         if ($propertyPath instanceof PropertyPathInterface) {
             // Don't call the copy constructor has it is not needed here
@@ -661,11 +653,9 @@ class PropertyAccessor implements PropertyAccessorInterface
     /**
      * Creates the APCu adapter if applicable.
      *
-     * @return AdapterInterface
-     *
      * @throws \LogicException When the Cache Component isn't available
      */
-    public static function createCache(string $namespace, int $defaultLifetime, string $version, LoggerInterface $logger = null)
+    public static function createCache(string $namespace, int $defaultLifetime, string $version, LoggerInterface $logger = null): AdapterInterface
     {
         if (!class_exists(ApcuAdapter::class)) {
             throw new \LogicException(sprintf('The Symfony Cache component must be installed to use "%s()".', __METHOD__));

@@ -21,10 +21,7 @@ use function sprintf;
  */
 class CreateDatabaseDoctrineCommand extends DoctrineCommand
 {
-    /**
-     * {@inheritDoc}
-     */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('doctrine:database:create')
@@ -44,10 +41,7 @@ EOT
         );
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $connectionName = $input->getOption('connection');
         if (empty($connectionName)) {

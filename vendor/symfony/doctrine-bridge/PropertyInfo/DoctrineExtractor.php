@@ -11,11 +11,12 @@
 
 namespace Symfony\Bridge\Doctrine\PropertyInfo;
 
-use Doctrine\DBAL\Types\Type as DBALType;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
+use Doctrine\ORM\Mapping\Embedded;
 use Doctrine\ORM\Mapping\MappingException as OrmMappingException;
 use Doctrine\Persistence\Mapping\MappingException;
 use Symfony\Component\PropertyInfo\PropertyAccessExtractorInterface;
@@ -31,22 +32,16 @@ use Symfony\Component\PropertyInfo\Type;
 class DoctrineExtractor implements PropertyListExtractorInterface, PropertyTypeExtractorInterface, PropertyAccessExtractorInterface
 {
     private $entityManager;
-    private $classMetadataFactory;
-    private static $useDeprecatedConstants;
 
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
-
-        if (null === self::$useDeprecatedConstants) {
-            self::$useDeprecatedConstants = !class_exists(Types::class);
-        }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getProperties(string $class, array $context = [])
+    public function getProperties(string $class, array $context = []): ?array
     {
         if (null === $metadata = $this->getMetadata($class)) {
             return null;
@@ -54,9 +49,9 @@ class DoctrineExtractor implements PropertyListExtractorInterface, PropertyTypeE
 
         $properties = array_merge($metadata->getFieldNames(), $metadata->getAssociationNames());
 
-        if ($metadata instanceof ClassMetadataInfo && class_exists(\Doctrine\ORM\Mapping\Embedded::class) && $metadata->embeddedClasses) {
+        if ($metadata instanceof ClassMetadataInfo && class_exists(Embedded::class) && $metadata->embeddedClasses) {
             $properties = array_filter($properties, function ($property) {
-                return false === strpos($property, '.');
+                return !str_contains($property, '.');
             });
 
             $properties = array_merge($properties, array_keys($metadata->embeddedClasses));
@@ -68,7 +63,7 @@ class DoctrineExtractor implements PropertyListExtractorInterface, PropertyTypeE
     /**
      * {@inheritdoc}
      */
-    public function getTypes(string $class, string $property, array $context = [])
+    public function getTypes(string $class, string $property, array $context = []): ?array
     {
         if (null === $metadata = $this->getMetadata($class)) {
             return null;
@@ -96,7 +91,7 @@ class DoctrineExtractor implements PropertyListExtractorInterface, PropertyTypeE
 
                 if (isset($associationMapping['indexBy'])) {
                     /** @var ClassMetadataInfo $subMetadata */
-                    $subMetadata = $this->entityManager ? $this->entityManager->getClassMetadata($associationMapping['targetEntity']) : $this->classMetadataFactory->getMetadataFor($associationMapping['targetEntity']);
+                    $subMetadata = $this->entityManager->getClassMetadata($associationMapping['targetEntity']);
 
                     // Check if indexBy value is a property
                     $fieldName = $associationMapping['indexBy'];
@@ -109,7 +104,7 @@ class DoctrineExtractor implements PropertyListExtractorInterface, PropertyTypeE
 
                             /** @var ClassMetadataInfo $subMetadata */
                             $indexProperty = $subMetadata->getSingleAssociationReferencedJoinColumnName($fieldName);
-                            $subMetadata = $this->entityManager ? $this->entityManager->getClassMetadata($associationMapping['targetEntity']) : $this->classMetadataFactory->getMetadataFor($associationMapping['targetEntity']);
+                            $subMetadata = $this->entityManager->getClassMetadata($associationMapping['targetEntity']);
 
                             //Not a property, maybe a column name?
                             if (null === ($typeOfField = $subMetadata->getTypeOfField($indexProperty))) {
@@ -128,58 +123,57 @@ class DoctrineExtractor implements PropertyListExtractorInterface, PropertyTypeE
             return [new Type(
                 Type::BUILTIN_TYPE_OBJECT,
                 false,
-                'Doctrine\Common\Collections\Collection',
+                Collection::class,
                 true,
                 new Type($collectionKeyType),
                 new Type(Type::BUILTIN_TYPE_OBJECT, false, $class)
             )];
         }
 
-        if ($metadata instanceof ClassMetadataInfo && class_exists(\Doctrine\ORM\Mapping\Embedded::class) && isset($metadata->embeddedClasses[$property])) {
+        if ($metadata instanceof ClassMetadataInfo && class_exists(Embedded::class) && isset($metadata->embeddedClasses[$property])) {
             return [new Type(Type::BUILTIN_TYPE_OBJECT, false, $metadata->embeddedClasses[$property]['class'])];
         }
 
         if ($metadata->hasField($property)) {
+            $nullable = $metadata instanceof ClassMetadataInfo && $metadata->isNullable($property);
+            if (null !== $enumClass = $metadata->getFieldMapping($property)['enumType'] ?? null) {
+                return [new Type(Type::BUILTIN_TYPE_OBJECT, $nullable, $enumClass)];
+            }
+
             $typeOfField = $metadata->getTypeOfField($property);
 
             if (!$builtinType = $this->getPhpType($typeOfField)) {
                 return null;
             }
 
-            $nullable = $metadata instanceof ClassMetadataInfo && $metadata->isNullable($property);
-
             switch ($builtinType) {
                 case Type::BUILTIN_TYPE_OBJECT:
                     switch ($typeOfField) {
-                        case self::$useDeprecatedConstants ? DBALType::DATE : Types::DATE_MUTABLE:
-                        // no break
-                        case self::$useDeprecatedConstants ? DBALType::DATETIME : Types::DATETIME_MUTABLE:
-                        // no break
-                        case self::$useDeprecatedConstants ? DBALType::DATETIMETZ : Types::DATETIMETZ_MUTABLE:
-                        // no break
+                        case Types::DATE_MUTABLE:
+                        case Types::DATETIME_MUTABLE:
+                        case Types::DATETIMETZ_MUTABLE:
                         case 'vardatetime':
-                        case self::$useDeprecatedConstants ? DBALType::TIME : Types::TIME_MUTABLE:
+                        case Types::TIME_MUTABLE:
                             return [new Type(Type::BUILTIN_TYPE_OBJECT, $nullable, 'DateTime')];
 
-                        case 'date_immutable':
-                        case 'datetime_immutable':
-                        case 'datetimetz_immutable':
-                        case 'time_immutable':
+                        case Types::DATE_IMMUTABLE:
+                        case Types::DATETIME_IMMUTABLE:
+                        case Types::DATETIMETZ_IMMUTABLE:
+                        case Types::TIME_IMMUTABLE:
                             return [new Type(Type::BUILTIN_TYPE_OBJECT, $nullable, 'DateTimeImmutable')];
 
-                        case 'dateinterval':
+                        case Types::DATEINTERVAL:
                             return [new Type(Type::BUILTIN_TYPE_OBJECT, $nullable, 'DateInterval')];
                     }
 
                     break;
                 case Type::BUILTIN_TYPE_ARRAY:
                     switch ($typeOfField) {
-                        case self::$useDeprecatedConstants ? DBALType::TARRAY : Types::ARRAY:
-                        // no break
+                        case Types::ARRAY:
                         case 'json_array':
                             return [new Type(Type::BUILTIN_TYPE_ARRAY, $nullable, null, true)];
 
-                        case self::$useDeprecatedConstants ? DBALType::SIMPLE_ARRAY : Types::SIMPLE_ARRAY:
+                        case Types::SIMPLE_ARRAY:
                             return [new Type(Type::BUILTIN_TYPE_ARRAY, $nullable, null, true, new Type(Type::BUILTIN_TYPE_INT), new Type(Type::BUILTIN_TYPE_STRING))];
                     }
             }
@@ -193,7 +187,7 @@ class DoctrineExtractor implements PropertyListExtractorInterface, PropertyTypeE
     /**
      * {@inheritdoc}
      */
-    public function isReadable(string $class, string $property, array $context = [])
+    public function isReadable(string $class, string $property, array $context = []): ?bool
     {
         return null;
     }
@@ -201,7 +195,7 @@ class DoctrineExtractor implements PropertyListExtractorInterface, PropertyTypeE
     /**
      * {@inheritdoc}
      */
-    public function isWritable(string $class, string $property, array $context = [])
+    public function isWritable(string $class, string $property, array $context = []): ?bool
     {
         if (
             null === ($metadata = $this->getMetadata($class))
@@ -217,8 +211,8 @@ class DoctrineExtractor implements PropertyListExtractorInterface, PropertyTypeE
     private function getMetadata(string $class): ?ClassMetadata
     {
         try {
-            return $this->entityManager ? $this->entityManager->getClassMetadata($class) : $this->classMetadataFactory->getMetadataFor($class);
-        } catch (MappingException | OrmMappingException $exception) {
+            return $this->entityManager->getClassMetadata($class);
+        } catch (MappingException|OrmMappingException $exception) {
             return null;
         }
     }
@@ -254,55 +248,42 @@ class DoctrineExtractor implements PropertyListExtractorInterface, PropertyTypeE
     private function getPhpType(string $doctrineType): ?string
     {
         switch ($doctrineType) {
-            case self::$useDeprecatedConstants ? DBALType::SMALLINT : Types::SMALLINT:
-            // no break
-            case self::$useDeprecatedConstants ? DBALType::INTEGER : Types::INTEGER:
+            case Types::SMALLINT:
+            case Types::INTEGER:
                 return Type::BUILTIN_TYPE_INT;
 
-            case self::$useDeprecatedConstants ? DBALType::FLOAT : Types::FLOAT:
+            case Types::FLOAT:
                 return Type::BUILTIN_TYPE_FLOAT;
 
-            case self::$useDeprecatedConstants ? DBALType::BIGINT : Types::BIGINT:
-            // no break
-            case self::$useDeprecatedConstants ? DBALType::STRING : Types::STRING:
-            // no break
-            case self::$useDeprecatedConstants ? DBALType::TEXT : Types::TEXT:
-            // no break
-            case self::$useDeprecatedConstants ? DBALType::GUID : Types::GUID:
-            // no break
-            case self::$useDeprecatedConstants ? DBALType::DECIMAL : Types::DECIMAL:
+            case Types::BIGINT:
+            case Types::STRING:
+            case Types::TEXT:
+            case Types::GUID:
+            case Types::DECIMAL:
                 return Type::BUILTIN_TYPE_STRING;
 
-            case self::$useDeprecatedConstants ? DBALType::BOOLEAN : Types::BOOLEAN:
+            case Types::BOOLEAN:
                 return Type::BUILTIN_TYPE_BOOL;
 
-            case self::$useDeprecatedConstants ? DBALType::BLOB : Types::BLOB:
-            // no break
-            case 'binary':
+            case Types::BLOB:
+            case Types::BINARY:
                 return Type::BUILTIN_TYPE_RESOURCE;
 
-            case self::$useDeprecatedConstants ? DBALType::OBJECT : Types::OBJECT:
-            // no break
-            case self::$useDeprecatedConstants ? DBALType::DATE : Types::DATE_MUTABLE:
-            // no break
-            case self::$useDeprecatedConstants ? DBALType::DATETIME : Types::DATETIME_MUTABLE:
-            // no break
-            case self::$useDeprecatedConstants ? DBALType::DATETIMETZ : Types::DATETIMETZ_MUTABLE:
-            // no break
+            case Types::OBJECT:
+            case Types::DATE_MUTABLE:
+            case Types::DATETIME_MUTABLE:
+            case Types::DATETIMETZ_MUTABLE:
             case 'vardatetime':
-            case self::$useDeprecatedConstants ? DBALType::TIME : Types::TIME_MUTABLE:
-            // no break
-            case 'date_immutable':
-            case 'datetime_immutable':
-            case 'datetimetz_immutable':
-            case 'time_immutable':
-            case 'dateinterval':
+            case Types::TIME_MUTABLE:
+            case Types::DATE_IMMUTABLE:
+            case Types::DATETIME_IMMUTABLE:
+            case Types::DATETIMETZ_IMMUTABLE:
+            case Types::TIME_IMMUTABLE:
+            case Types::DATEINTERVAL:
                 return Type::BUILTIN_TYPE_OBJECT;
 
-            case self::$useDeprecatedConstants ? DBALType::TARRAY : Types::ARRAY:
-            // no break
-            case self::$useDeprecatedConstants ? DBALType::SIMPLE_ARRAY : Types::SIMPLE_ARRAY:
-            // no break
+            case Types::ARRAY:
+            case Types::SIMPLE_ARRAY:
             case 'json_array':
                 return Type::BUILTIN_TYPE_ARRAY;
         }

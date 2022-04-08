@@ -13,7 +13,7 @@
         "friendsofsymfony/ckeditor-bundle": "^2.4",
         "google/apiclient": "^2.0",
         "guzzlehttp/guzzle": "^7.1",
-        "sensio/framework-extra-bundle": "^5.6",
+        "sensio/framework-extra-bundle": "^6.2",
         "symfony/asset": "6.0.*",
         "symfony/console": "6.0.*",
         "symfony/dotenv": "6.0.*",
@@ -26,7 +26,7 @@
         "symfony/http-foundation": "6.0.*",
         "symfony/mailer": "6.0.*",
         "symfony/twig-bundle": "6.0.*",
-        "symfony/webpack-encore-bundle": "^1.14.0",
+        "symfony/webpack-encore-bundle": "^1.14",
         "symfony/yaml": "6.0.*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"

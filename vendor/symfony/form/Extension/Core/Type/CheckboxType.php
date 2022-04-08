@@ -60,6 +60,7 @@ class CheckboxType extends AbstractType
             'empty_data' => $emptyData,
             'compound' => false,
             'false_values' => [null],
+            'invalid_message' => 'The checkbox has an invalid value.',
             'is_empty_callback' => static function ($modelData): bool {
                 return false === $modelData;
             },
@@ -71,7 +72,7 @@ class CheckboxType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'checkbox';
     }

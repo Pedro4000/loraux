@@ -54,15 +54,10 @@ class CouchbaseBucketAdapter extends AbstractAdapter
         $this->marshaller = $marshaller ?? new DefaultMarshaller();
     }
 
-    /**
-     * @param array|string $servers
-     */
-    public static function createConnection($servers, array $options = []): \CouchbaseBucket
+    public static function createConnection(array|string $servers, array $options = []): \CouchbaseBucket
     {
         if (\is_string($servers)) {
             $servers = [$servers];
-        } elseif (!\is_array($servers)) {
-            throw new \TypeError(sprintf('Argument 1 passed to "%s()" must be array or string, "%s" given.', __METHOD__, get_debug_type($servers)));
         }
 
         if (!static::isSupported()) {
@@ -164,7 +159,7 @@ class CouchbaseBucketAdapter extends AbstractAdapter
     /**
      * {@inheritdoc}
      */
-    protected function doFetch(array $ids)
+    protected function doFetch(array $ids): iterable
     {
         $resultsCouchbase = $this->bucket->get($ids);
 
@@ -182,7 +177,7 @@ class CouchbaseBucketAdapter extends AbstractAdapter
     /**
      * {@inheritdoc}
      */
-    protected function doHave($id): bool
+    protected function doHave(string $id): bool
     {
         return false !== $this->bucket->get($id);
     }
@@ -190,7 +185,7 @@ class CouchbaseBucketAdapter extends AbstractAdapter
     /**
      * {@inheritdoc}
      */
-    protected function doClear($namespace): bool
+    protected function doClear(string $namespace): bool
     {
         if ('' === $namespace) {
             $this->bucket->manager()->flush();
@@ -221,7 +216,7 @@ class CouchbaseBucketAdapter extends AbstractAdapter
     /**
      * {@inheritdoc}
      */
-    protected function doSave(array $values, $lifetime)
+    protected function doSave(array $values, int $lifetime): array|bool
     {
         if (!$values = $this->marshaller->marshall($values, $failed)) {
             return $failed;

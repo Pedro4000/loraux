@@ -29,7 +29,7 @@ class TransformationFailureListener implements EventSubscriberInterface
         $this->translator = $translator;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             FormEvents::POST_SUBMIT => ['convertTransformationFailureToFormError', -1024],
@@ -51,14 +51,15 @@ class TransformationFailureListener implements EventSubscriberInterface
         }
 
         $clientDataAsString = is_scalar($form->getViewData()) ? (string) $form->getViewData() : get_debug_type($form->getViewData());
-        $messageTemplate = 'The value {{ value }} is not valid.';
+        $messageTemplate = $form->getConfig()->getOption('invalid_message', 'The value {{ value }} is not valid.');
+        $messageParameters = array_replace(['{{ value }}' => $clientDataAsString], $form->getConfig()->getOption('invalid_message_parameters', []));
 
         if (null !== $this->translator) {
-            $message = $this->translator->trans($messageTemplate, ['{{ value }}' => $clientDataAsString]);
+            $message = $this->translator->trans($messageTemplate, $messageParameters);
         } else {
-            $message = strtr($messageTemplate, ['{{ value }}' => $clientDataAsString]);
+            $message = strtr($messageTemplate, $messageParameters);
         }
 
-        $form->addError(new FormError($message, $messageTemplate, ['{{ value }}' => $clientDataAsString], null, $form->getTransformationFailure()));
+        $form->addError(new FormError($message, $messageTemplate, $messageParameters, null, $form->getTransformationFailure()));
     }
 }

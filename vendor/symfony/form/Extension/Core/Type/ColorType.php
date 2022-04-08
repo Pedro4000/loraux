@@ -69,6 +69,7 @@ class ColorType extends AbstractType
     {
         $resolver->setDefaults([
             'html5' => false,
+            'invalid_message' => 'Please select a valid color.',
         ]);
 
         $resolver->setAllowedTypes('html5', 'bool');
@@ -77,7 +78,7 @@ class ColorType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getParent()
+    public function getParent(): ?string
     {
         return TextType::class;
     }
@@ -85,7 +86,7 @@ class ColorType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'color';
     }

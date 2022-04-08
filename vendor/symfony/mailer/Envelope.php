@@ -22,7 +22,7 @@ use Symfony\Component\Mime\RawMessage;
 class Envelope
 {
     private $sender;
-    private $recipients = [];
+    private array $recipients = [];
 
     /**
      * @param Address[] $recipients
@@ -44,6 +44,10 @@ class Envelope
 
     public function setSender(Address $sender): void
     {
+        // to ensure deliverability of bounce emails independent of UTF-8 capabilities of SMTP servers
+        if (!preg_match('/^[^@\x80-\xFF]++@/', $sender->getAddress())) {
+            throw new InvalidArgumentException(sprintf('Invalid sender "%s": non-ASCII characters not supported in local-part of email.', $sender->getAddress()));
+        }
         $this->sender = $sender;
     }
 

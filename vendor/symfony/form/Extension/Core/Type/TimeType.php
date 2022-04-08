@@ -30,8 +30,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class TimeType extends AbstractType
 {
     private const WIDGETS = [
-        'text' => 'Symfony\Component\Form\Extension\Core\Type\TextType',
-        'choice' => 'Symfony\Component\Form\Extension\Core\Type\ChoiceType',
+        'text' => TextType::class,
+        'choice' => ChoiceType::class,
     ];
 
     /**
@@ -43,7 +43,7 @@ class TimeType extends AbstractType
         $format = 'H';
 
         if ($options['with_seconds'] && !$options['with_minutes']) {
-            throw new InvalidConfigurationException('You can not disable minutes if you have enabled seconds.');
+            throw new InvalidConfigurationException('You cannot disable minutes if you have enabled seconds.');
         }
 
         if (null !== $options['reference_date'] && $options['reference_date']->getTimezone()->getName() !== $options['model_timezone']) {
@@ -221,7 +221,7 @@ class TimeType extends AbstractType
             'with_seconds' => $options['with_seconds'],
         ]);
 
-        // Change the input to a HTML5 time input if
+        // Change the input to an HTML5 time input if
         //  * the widget is set to "single_text"
         //  * the html5 is set to true
         if ($options['html5'] && 'single_text' === $options['widget']) {
@@ -336,6 +336,7 @@ class TimeType extends AbstractType
             },
             'compound' => $compound,
             'choice_translation_domain' => false,
+            'invalid_message' => 'Please enter a valid time.',
         ]);
 
         $resolver->setNormalizer('view_timezone', function (Options $options, $viewTimezone): ?string {
@@ -374,7 +375,7 @@ class TimeType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'time';
     }

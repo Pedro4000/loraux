@@ -12,6 +12,7 @@
 namespace Symfony\Bundle\TwigBundle\Command;
 
 use Symfony\Bridge\Twig\Command\LintCommand as BaseLintCommand;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Finder\Finder;
 
 /**
@@ -20,6 +21,7 @@ use Symfony\Component\Finder\Finder;
  * @author Marc Weistroff <marc.weistroff@sensiolabs.com>
  * @author Jérôme Tamarelle <jerome@tamarelle.net>
  */
+#[AsCommand(name: 'lint:twig', description: 'Lint a Twig template and outputs encountered errors')]
 final class LintCommand extends BaseLintCommand
 {
     /**
@@ -44,7 +46,7 @@ EOF
 
     protected function findFiles(string $filename): iterable
     {
-        if (0 === strpos($filename, '@')) {
+        if (str_starts_with($filename, '@')) {
             $dir = $this->getApplication()->getKernel()->locateResource($filename);
 
             return Finder::create()->files()->in($dir)->name('*.twig');

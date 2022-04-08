@@ -34,7 +34,7 @@ class ResolveReferencesToAliasesPass extends AbstractRecursivePass
             $this->currentId = $id;
 
             if ($aliasId !== $defId = $this->getDefinitionId($aliasId, $container)) {
-                $container->setAlias($id, $defId)->setPublic($alias->isPublic())->setPrivate($alias->isPrivate());
+                $container->setAlias($id, $defId)->setPublic($alias->isPublic());
             }
         }
     }
@@ -42,7 +42,7 @@ class ResolveReferencesToAliasesPass extends AbstractRecursivePass
     /**
      * {@inheritdoc}
      */
-    protected function processValue($value, bool $isRoot = false)
+    protected function processValue(mixed $value, bool $isRoot = false): mixed
     {
         if (!$value instanceof Reference) {
             return parent::processValue($value, $isRoot);

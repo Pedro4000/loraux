@@ -121,6 +121,7 @@ class CollectionType extends AbstractType
             'entry_type' => TextType::class,
             'entry_options' => [],
             'delete_empty' => false,
+            'invalid_message' => 'The collection is invalid.',
         ]);
 
         $resolver->setNormalizer('entry_options', $entryOptionsNormalizer);
@@ -130,7 +131,7 @@ class CollectionType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'collection';
     }

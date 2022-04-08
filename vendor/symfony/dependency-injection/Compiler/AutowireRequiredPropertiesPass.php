@@ -14,6 +14,7 @@ namespace Symfony\Component\DependencyInjection\Compiler;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\TypedReference;
+use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * Looks for definitions with autowiring enabled and registers their corresponding "@required" properties.
@@ -26,11 +27,8 @@ class AutowireRequiredPropertiesPass extends AbstractRecursivePass
     /**
      * {@inheritdoc}
      */
-    protected function processValue($value, bool $isRoot = false)
+    protected function processValue(mixed $value, bool $isRoot = false): mixed
     {
-        if (\PHP_VERSION_ID < 70400) {
-            return $value;
-        }
         $value = parent::processValue($value, $isRoot);
 
         if (!$value instanceof Definition || !$value->isAutowired() || $value->isAbstract() || !$value->getClass()) {
@@ -45,10 +43,9 @@ class AutowireRequiredPropertiesPass extends AbstractRecursivePass
             if (!($type = $reflectionProperty->getType()) instanceof \ReflectionNamedType) {
                 continue;
             }
-            if (false === $doc = $reflectionProperty->getDocComment()) {
-                continue;
-            }
-            if (false === stripos($doc, '@required') || !preg_match('#(?:^/\*\*|\n\s*+\*)\s*+@required(?:\s|\*/$)#i', $doc)) {
+            if (!$reflectionProperty->getAttributes(Required::class)
+                && ((false === $doc = $reflectionProperty->getDocComment()) || false === stripos($doc, '@required') || !preg_match('#(?:^/\*\*|\n\s*+\*)\s*+@required(?:\s|\*/$)#i', $doc))
+            ) {
                 continue;
             }
             if (\array_key_exists($name = $reflectionProperty->getName(), $properties)) {
