@@ -90,6 +90,18 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.7"
     },
+    "friendsofsymfony/ckeditor-bundle": {
+        "version": "2.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.0",
+            "ref": "f5ad42002183a6881962683e6d84bbb25cdfce5d"
+        },
+        "files": [
+            "config/packages/fos_ckeditor.yaml"
+        ]
+    },
     "google/apiclient": {
         "version": "2.0",
         "recipe": {
@@ -225,6 +237,9 @@
     "symfony/event-dispatcher-contracts": {
         "version": "v2.1.3"
     },
+    "symfony/expression-language": {
+        "version": "v5.1.11"
+    },
     "symfony/filesystem": {
         "version": "v5.1.5"
     },
@@ -315,6 +330,21 @@
     },
     "symfony/options-resolver": {
         "version": "v5.1.5"
+    },
+    "symfony/phpunit-bridge": {
+        "version": "6.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.3",
+            "ref": "97cb3dc7b0f39c7cfc4b7553504c9d7b7795de96"
+        },
+        "files": [
+            ".env.test",
+            "bin/phpunit",
+            "phpunit.xml.dist",
+            "tests/bootstrap.php"
+        ]
     },
     "symfony/polyfill-intl-grapheme": {
         "version": "v1.18.1"

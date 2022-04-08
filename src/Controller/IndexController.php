@@ -2,37 +2,19 @@
 
 namespace App\Controller;
 
-use App\Entity\Artist;
-use App\Entity\Label;
-use App\Entity\Release;
-use App\Entity\User;
+use App\Entity\{Artist, Label, Release, User};
 use App\Form\UserType;
-use App\Service\CalendarService;
-use App\Service\DiscogsService;
-use App\Service\MailToNewMember;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\PersistentCollection;
+use App\Service\{CalendarService, DiscogsService, MailToNewMember};
 use Google_Client;
-use Google_Service;
 use Google_Service_Calendar;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\{Request, Response, JsonResponse};
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use GuzzleHttp\Client;
-use GuzzleHttp\Command\Guzzle\Description;
-use GuzzleHttp\Command\Guzzle\GuzzleClient;
-use Guzzle\Http\Exception\ClientErrorResponseException;
 use GuzzleHttp\Exception\ClientException;
-use Doctrine\ORM\EntityManagerInterface;
-
-
 
 class IndexController extends AbstractController
 {
@@ -50,7 +32,7 @@ class IndexController extends AbstractController
 
 
     /**
-     * @Route("/index", name="index")
+     * @Route("/", name="index")
      * @param Request $request
      */
     public function indexAction(Request $request){
@@ -70,9 +52,9 @@ class IndexController extends AbstractController
 
 
         // PREMIERE RECHERCHE AFIN DE TROUVER LOBJET VOULU
-        if($request->request->get('query-discogs')){
+        if($request->get('query-discogs')){
             $this->session->set('discogsQueryResult','');
-            $queryString = $request->request->get('query-discogs');
+            $queryString = $request->get('query-discogs');
             $res = $client->request('GET', $baseDiscogsApi.'/database/search?q='.$queryString.'&'.$discogsCredentials);
             $responseContents = json_decode($res->getBody()->getContents(), true);
             $pagesOfDiscogsResponse = $responseContents['pagination']['pages'];
@@ -289,7 +271,7 @@ class IndexController extends AbstractController
                                     }
                                 }
                             }
-                       if($i==count($recArray['releases']) && $j== $recArray['pagination']['pages']){
+                       if ($i == count($recArray['releases']) && $j == $recArray['pagination']['pages']) {
                             $now = new \Datetime();
                             $labelFromDb->setLastTimeFullyScraped($now);
                             $em->persist($labelFromDb);

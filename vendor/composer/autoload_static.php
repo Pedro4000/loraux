@@ -9,12 +9,13 @@ class ComposerStaticInit2402c200ae27f76fdd7c56b6a372b9e6
     public static $files = array (
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
-        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
+        '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
@@ -71,6 +72,7 @@ class ComposerStaticInit2402c200ae27f76fdd7c56b6a372b9e6
             'Symfony\\Component\\Form\\' => 23,
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\Filesystem\\' => 29,
+            'Symfony\\Component\\ExpressionLanguage\\' => 37,
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\ErrorHandler\\' => 31,
             'Symfony\\Component\\Dotenv\\' => 25,
@@ -85,6 +87,7 @@ class ComposerStaticInit2402c200ae27f76fdd7c56b6a372b9e6
             'Symfony\\Bundle\\FrameworkBundle\\' => 31,
             'Symfony\\Bundle\\DebugBundle\\' => 27,
             'Symfony\\Bridge\\Twig\\' => 20,
+            'Symfony\\Bridge\\PhpUnit\\' => 23,
             'Symfony\\Bridge\\Doctrine\\' => 24,
             'Sensio\\Bundle\\FrameworkExtraBundle\\' => 35,
         ),
@@ -121,6 +124,7 @@ class ComposerStaticInit2402c200ae27f76fdd7c56b6a372b9e6
         'F' => 
         array (
             'Firebase\\JWT\\' => 13,
+            'FOS\\CKEditorBundle\\' => 19,
         ),
         'E' => 
         array (
@@ -296,6 +300,10 @@ class ComposerStaticInit2402c200ae27f76fdd7c56b6a372b9e6
         array (
             0 => __DIR__ . '/..' . '/symfony/filesystem',
         ),
+        'Symfony\\Component\\ExpressionLanguage\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/expression-language',
+        ),
         'Symfony\\Component\\EventDispatcher\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
@@ -351,6 +359,10 @@ class ComposerStaticInit2402c200ae27f76fdd7c56b6a372b9e6
         'Symfony\\Bridge\\Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/twig-bridge',
+        ),
+        'Symfony\\Bridge\\PhpUnit\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/phpunit-bridge',
         ),
         'Symfony\\Bridge\\Doctrine\\' => 
         array (
@@ -436,6 +448,10 @@ class ComposerStaticInit2402c200ae27f76fdd7c56b6a372b9e6
         'Firebase\\JWT\\' => 
         array (
             0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
+        ),
+        'FOS\\CKEditorBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src',
         ),
         'Egulias\\EmailValidator\\' => 
         array (
@@ -1701,6 +1717,21 @@ class ComposerStaticInit2402c200ae27f76fdd7c56b6a372b9e6
         'Egulias\\EmailValidator\\Warning\\QuotedString' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/QuotedString.php',
         'Egulias\\EmailValidator\\Warning\\TLD' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/TLD.php',
         'Egulias\\EmailValidator\\Warning\\Warning' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/Warning.php',
+        'FOS\\CKEditorBundle\\Builder\\JsonBuilder' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Builder/JsonBuilder.php',
+        'FOS\\CKEditorBundle\\Command\\CKEditorInstallerCommand' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Command/CKEditorInstallerCommand.php',
+        'FOS\\CKEditorBundle\\Config\\CKEditorConfiguration' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Config/CKEditorConfiguration.php',
+        'FOS\\CKEditorBundle\\Config\\CKEditorConfigurationInterface' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Config/CKEditorConfigurationInterface.php',
+        'FOS\\CKEditorBundle\\DependencyInjection\\Configuration' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/DependencyInjection/Configuration.php',
+        'FOS\\CKEditorBundle\\DependencyInjection\\FOSCKEditorExtension' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/DependencyInjection/FOSCKEditorExtension.php',
+        'FOS\\CKEditorBundle\\Exception\\BadProxyUrlException' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Exception/BadProxyUrlException.php',
+        'FOS\\CKEditorBundle\\Exception\\ConfigException' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Exception/ConfigException.php',
+        'FOS\\CKEditorBundle\\Exception\\FOSCKEditorException' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Exception/FOSCKEditorException.php',
+        'FOS\\CKEditorBundle\\FOSCKEditorBundle' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/FOSCKEditorBundle.php',
+        'FOS\\CKEditorBundle\\Form\\Type\\CKEditorType' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Form/Type/CKEditorType.php',
+        'FOS\\CKEditorBundle\\Installer\\CKEditorInstaller' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Installer/CKEditorInstaller.php',
+        'FOS\\CKEditorBundle\\Renderer\\CKEditorRenderer' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Renderer/CKEditorRenderer.php',
+        'FOS\\CKEditorBundle\\Renderer\\CKEditorRendererInterface' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Renderer/CKEditorRendererInterface.php',
+        'FOS\\CKEditorBundle\\Twig\\CKEditorExtension' => __DIR__ . '/..' . '/friendsofsymfony/ckeditor-bundle/src/Twig/CKEditorExtension.php',
         'Firebase\\JWT\\BeforeValidException' => __DIR__ . '/..' . '/firebase/php-jwt/src/BeforeValidException.php',
         'Firebase\\JWT\\ExpiredException' => __DIR__ . '/..' . '/firebase/php-jwt/src/ExpiredException.php',
         'Firebase\\JWT\\JWK' => __DIR__ . '/..' . '/firebase/php-jwt/src/JWK.php',
@@ -18414,6 +18445,31 @@ class ComposerStaticInit2402c200ae27f76fdd7c56b6a372b9e6
         'Symfony\\Bridge\\Doctrine\\Validator\\Constraints\\UniqueEntityValidator' => __DIR__ . '/..' . '/symfony/doctrine-bridge/Validator/Constraints/UniqueEntityValidator.php',
         'Symfony\\Bridge\\Doctrine\\Validator\\DoctrineInitializer' => __DIR__ . '/..' . '/symfony/doctrine-bridge/Validator/DoctrineInitializer.php',
         'Symfony\\Bridge\\Doctrine\\Validator\\DoctrineLoader' => __DIR__ . '/..' . '/symfony/doctrine-bridge/Validator/DoctrineLoader.php',
+        'Symfony\\Bridge\\PhpUnit\\ClassExistsMock' => __DIR__ . '/..' . '/symfony/phpunit-bridge/ClassExistsMock.php',
+        'Symfony\\Bridge\\PhpUnit\\ClockMock' => __DIR__ . '/..' . '/symfony/phpunit-bridge/ClockMock.php',
+        'Symfony\\Bridge\\PhpUnit\\ConstraintTrait' => __DIR__ . '/..' . '/symfony/phpunit-bridge/ConstraintTrait.php',
+        'Symfony\\Bridge\\PhpUnit\\CoverageListener' => __DIR__ . '/..' . '/symfony/phpunit-bridge/CoverageListener.php',
+        'Symfony\\Bridge\\PhpUnit\\DeprecationErrorHandler' => __DIR__ . '/..' . '/symfony/phpunit-bridge/DeprecationErrorHandler.php',
+        'Symfony\\Bridge\\PhpUnit\\DeprecationErrorHandler\\Configuration' => __DIR__ . '/..' . '/symfony/phpunit-bridge/DeprecationErrorHandler/Configuration.php',
+        'Symfony\\Bridge\\PhpUnit\\DeprecationErrorHandler\\Deprecation' => __DIR__ . '/..' . '/symfony/phpunit-bridge/DeprecationErrorHandler/Deprecation.php',
+        'Symfony\\Bridge\\PhpUnit\\DeprecationErrorHandler\\DeprecationGroup' => __DIR__ . '/..' . '/symfony/phpunit-bridge/DeprecationErrorHandler/DeprecationGroup.php',
+        'Symfony\\Bridge\\PhpUnit\\DeprecationErrorHandler\\DeprecationNotice' => __DIR__ . '/..' . '/symfony/phpunit-bridge/DeprecationErrorHandler/DeprecationNotice.php',
+        'Symfony\\Bridge\\PhpUnit\\DnsMock' => __DIR__ . '/..' . '/symfony/phpunit-bridge/DnsMock.php',
+        'Symfony\\Bridge\\PhpUnit\\ExpectDeprecationTrait' => __DIR__ . '/..' . '/symfony/phpunit-bridge/ExpectDeprecationTrait.php',
+        'Symfony\\Bridge\\PhpUnit\\Legacy\\CommandForV7' => __DIR__ . '/..' . '/symfony/phpunit-bridge/Legacy/CommandForV7.php',
+        'Symfony\\Bridge\\PhpUnit\\Legacy\\CommandForV9' => __DIR__ . '/..' . '/symfony/phpunit-bridge/Legacy/CommandForV9.php',
+        'Symfony\\Bridge\\PhpUnit\\Legacy\\ConstraintLogicTrait' => __DIR__ . '/..' . '/symfony/phpunit-bridge/Legacy/ConstraintLogicTrait.php',
+        'Symfony\\Bridge\\PhpUnit\\Legacy\\ConstraintTraitForV7' => __DIR__ . '/..' . '/symfony/phpunit-bridge/Legacy/ConstraintTraitForV7.php',
+        'Symfony\\Bridge\\PhpUnit\\Legacy\\ConstraintTraitForV8' => __DIR__ . '/..' . '/symfony/phpunit-bridge/Legacy/ConstraintTraitForV8.php',
+        'Symfony\\Bridge\\PhpUnit\\Legacy\\ConstraintTraitForV9' => __DIR__ . '/..' . '/symfony/phpunit-bridge/Legacy/ConstraintTraitForV9.php',
+        'Symfony\\Bridge\\PhpUnit\\Legacy\\ExpectDeprecationTraitBeforeV8_4' => __DIR__ . '/..' . '/symfony/phpunit-bridge/Legacy/ExpectDeprecationTraitBeforeV8_4.php',
+        'Symfony\\Bridge\\PhpUnit\\Legacy\\ExpectDeprecationTraitForV8_4' => __DIR__ . '/..' . '/symfony/phpunit-bridge/Legacy/ExpectDeprecationTraitForV8_4.php',
+        'Symfony\\Bridge\\PhpUnit\\Legacy\\PolyfillAssertTrait' => __DIR__ . '/..' . '/symfony/phpunit-bridge/Legacy/PolyfillAssertTrait.php',
+        'Symfony\\Bridge\\PhpUnit\\Legacy\\PolyfillTestCaseTrait' => __DIR__ . '/..' . '/symfony/phpunit-bridge/Legacy/PolyfillTestCaseTrait.php',
+        'Symfony\\Bridge\\PhpUnit\\Legacy\\SymfonyTestsListenerForV7' => __DIR__ . '/..' . '/symfony/phpunit-bridge/Legacy/SymfonyTestsListenerForV7.php',
+        'Symfony\\Bridge\\PhpUnit\\Legacy\\SymfonyTestsListenerTrait' => __DIR__ . '/..' . '/symfony/phpunit-bridge/Legacy/SymfonyTestsListenerTrait.php',
+        'Symfony\\Bridge\\PhpUnit\\SymfonyTestsListener' => __DIR__ . '/..' . '/symfony/phpunit-bridge/SymfonyTestsListener.php',
+        'Symfony\\Bridge\\PhpUnit\\TextUI\\Command' => __DIR__ . '/..' . '/symfony/phpunit-bridge/TextUI/Command.php',
         'Symfony\\Bridge\\Twig\\AppVariable' => __DIR__ . '/..' . '/symfony/twig-bridge/AppVariable.php',
         'Symfony\\Bridge\\Twig\\Command\\DebugCommand' => __DIR__ . '/..' . '/symfony/twig-bridge/Command/DebugCommand.php',
         'Symfony\\Bridge\\Twig\\Command\\LintCommand' => __DIR__ . '/..' . '/symfony/twig-bridge/Command/LintCommand.php',
@@ -19080,6 +19136,28 @@ class ComposerStaticInit2402c200ae27f76fdd7c56b6a372b9e6
         'Symfony\\Component\\EventDispatcher\\GenericEvent' => __DIR__ . '/..' . '/symfony/event-dispatcher/GenericEvent.php',
         'Symfony\\Component\\EventDispatcher\\ImmutableEventDispatcher' => __DIR__ . '/..' . '/symfony/event-dispatcher/ImmutableEventDispatcher.php',
         'Symfony\\Component\\EventDispatcher\\LegacyEventDispatcherProxy' => __DIR__ . '/..' . '/symfony/event-dispatcher/LegacyEventDispatcherProxy.php',
+        'Symfony\\Component\\ExpressionLanguage\\Compiler' => __DIR__ . '/..' . '/symfony/expression-language/Compiler.php',
+        'Symfony\\Component\\ExpressionLanguage\\Expression' => __DIR__ . '/..' . '/symfony/expression-language/Expression.php',
+        'Symfony\\Component\\ExpressionLanguage\\ExpressionFunction' => __DIR__ . '/..' . '/symfony/expression-language/ExpressionFunction.php',
+        'Symfony\\Component\\ExpressionLanguage\\ExpressionFunctionProviderInterface' => __DIR__ . '/..' . '/symfony/expression-language/ExpressionFunctionProviderInterface.php',
+        'Symfony\\Component\\ExpressionLanguage\\ExpressionLanguage' => __DIR__ . '/..' . '/symfony/expression-language/ExpressionLanguage.php',
+        'Symfony\\Component\\ExpressionLanguage\\Lexer' => __DIR__ . '/..' . '/symfony/expression-language/Lexer.php',
+        'Symfony\\Component\\ExpressionLanguage\\Node\\ArgumentsNode' => __DIR__ . '/..' . '/symfony/expression-language/Node/ArgumentsNode.php',
+        'Symfony\\Component\\ExpressionLanguage\\Node\\ArrayNode' => __DIR__ . '/..' . '/symfony/expression-language/Node/ArrayNode.php',
+        'Symfony\\Component\\ExpressionLanguage\\Node\\BinaryNode' => __DIR__ . '/..' . '/symfony/expression-language/Node/BinaryNode.php',
+        'Symfony\\Component\\ExpressionLanguage\\Node\\ConditionalNode' => __DIR__ . '/..' . '/symfony/expression-language/Node/ConditionalNode.php',
+        'Symfony\\Component\\ExpressionLanguage\\Node\\ConstantNode' => __DIR__ . '/..' . '/symfony/expression-language/Node/ConstantNode.php',
+        'Symfony\\Component\\ExpressionLanguage\\Node\\FunctionNode' => __DIR__ . '/..' . '/symfony/expression-language/Node/FunctionNode.php',
+        'Symfony\\Component\\ExpressionLanguage\\Node\\GetAttrNode' => __DIR__ . '/..' . '/symfony/expression-language/Node/GetAttrNode.php',
+        'Symfony\\Component\\ExpressionLanguage\\Node\\NameNode' => __DIR__ . '/..' . '/symfony/expression-language/Node/NameNode.php',
+        'Symfony\\Component\\ExpressionLanguage\\Node\\Node' => __DIR__ . '/..' . '/symfony/expression-language/Node/Node.php',
+        'Symfony\\Component\\ExpressionLanguage\\Node\\UnaryNode' => __DIR__ . '/..' . '/symfony/expression-language/Node/UnaryNode.php',
+        'Symfony\\Component\\ExpressionLanguage\\ParsedExpression' => __DIR__ . '/..' . '/symfony/expression-language/ParsedExpression.php',
+        'Symfony\\Component\\ExpressionLanguage\\Parser' => __DIR__ . '/..' . '/symfony/expression-language/Parser.php',
+        'Symfony\\Component\\ExpressionLanguage\\SerializedParsedExpression' => __DIR__ . '/..' . '/symfony/expression-language/SerializedParsedExpression.php',
+        'Symfony\\Component\\ExpressionLanguage\\SyntaxError' => __DIR__ . '/..' . '/symfony/expression-language/SyntaxError.php',
+        'Symfony\\Component\\ExpressionLanguage\\Token' => __DIR__ . '/..' . '/symfony/expression-language/Token.php',
+        'Symfony\\Component\\ExpressionLanguage\\TokenStream' => __DIR__ . '/..' . '/symfony/expression-language/TokenStream.php',
         'Symfony\\Component\\Filesystem\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/symfony/filesystem/Exception/ExceptionInterface.php',
         'Symfony\\Component\\Filesystem\\Exception\\FileNotFoundException' => __DIR__ . '/..' . '/symfony/filesystem/Exception/FileNotFoundException.php',
         'Symfony\\Component\\Filesystem\\Exception\\IOException' => __DIR__ . '/..' . '/symfony/filesystem/Exception/IOException.php',

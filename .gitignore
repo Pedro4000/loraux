@@ -1,5 +1,3 @@
-
-###> symfony/framework-bundle ###
 /.env.local
 .env
 /config/secrets/prod/prod.decrypt.private.php
@@ -7,11 +5,8 @@
 /var
 /vendor
 /credentials.json
-### < symfony/framework-bundle ###
 
-###> symfony/webpack-encore-bundle ###
-#s/node_modules/
-#s/public/build/
-#snpm-debug.log
-#syarn-error.log
-###< symfony/webpack-encore-bundle ###
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###

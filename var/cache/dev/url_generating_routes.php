@@ -15,7 +15,7 @@ return [
     '_profiler_router' => [['token'], ['_controller' => 'web_profiler.controller.router::panelAction'], [], [['text', '/router'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
-    'index' => [[], ['_controller' => 'App\\Controller\\IndexController::indexAction'], [], [['text', '/index']], [], []],
+    'index' => [[], ['_controller' => 'App\\Controller\\IndexController::indexAction'], [], [['text', '/']], [], []],
     'ajaxLoadVideos' => [[], ['_controller' => 'App\\Controller\\IndexController::ajaxLoadVideosAction'], [], [['text', '/ajaxLoadVideos']], [], []],
     'ajaxImage' => [[], ['_controller' => 'App\\Controller\\IndexController::ajaxImageAction'], [], [['text', '/ajaxImage']], [], []],
     'sign_up' => [[], ['_controller' => 'App\\Controller\\IndexController::signUpAction'], [], [['text', '/sign_up']], [], []],
