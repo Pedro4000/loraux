@@ -9,7 +9,7 @@ use Google_Client;
 use Google_Service_Calendar;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\{Request, Response, JsonResponse};
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -22,7 +22,7 @@ class IndexController extends AbstractController
     private $client;
     public $em;
 
-    public function __construct (Google_Client $client, ParameterBagInterface $params, SessionInterface $session, DiscogsService $discogsService)
+    public function __construct (Google_Client $client, ParameterBagInterface $params, Session $session, DiscogsService $discogsService)
     {
         $this->client = $client;
         $this->params = $params;
@@ -35,8 +35,8 @@ class IndexController extends AbstractController
      * @Route("/", name="index")
      * @param Request $request
      */
-    public function indexAction(Request $request){
-
+    public function indexAction(Request $request)
+    {
         $client = new Client();
         $consumerKey = $this->getParameter('app.discogs_consumer_key');
         $consumerSecret = $this->getParameter('app.discogs_consumer_secret');
