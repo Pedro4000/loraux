@@ -22,11 +22,10 @@ class IndexController extends AbstractController
     private $client;
     public $em;
 
-    public function __construct (Google_Client $client, ParameterBagInterface $params, Session $session, DiscogsService $discogsService)
+    public function __construct (Google_Client $client, ParameterBagInterface $params, DiscogsService $discogsService)
     {
         $this->client = $client;
         $this->params = $params;
-        $this->session = $session;
         $this->discogsService = $discogsService;
     }
 

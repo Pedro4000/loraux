@@ -40,7 +40,7 @@ class MoviesController extends AbstractController
     private $client;
     public $em;
 
-    public function __construct (Google_Client $client, ParameterBagInterface $params, SessionInterface $session, DiscogsService $discogsService)
+    public function __construct (Google_Client $client, ParameterBagInterface $params, DiscogsService $discogsService)
     {
         $this->client = $client;
         $this->params = $params;

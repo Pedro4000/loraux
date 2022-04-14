@@ -30,7 +30,7 @@ class CalendarService extends AbstractController
      */
     private $session;
 
-    public function __construct(RequestStack $requestStack, SessionInterface $session, UrlGeneratorInterface $router)
+    public function __construct(RequestStack $requestStack, UrlGeneratorInterface $router)
     {
 
         $this->session = $session;

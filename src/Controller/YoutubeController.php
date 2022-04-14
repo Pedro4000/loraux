@@ -38,7 +38,7 @@ class YoutubeController extends AbstractController
     private $client;
     public $em;
 
-    public function __construct(Google_Client $client, ParameterBagInterface $params, SessionInterface $session)
+    public function __construct(Google_Client $client, ParameterBagInterface $params)
     {
         $this->client = $client;
         $this->params = $params;
